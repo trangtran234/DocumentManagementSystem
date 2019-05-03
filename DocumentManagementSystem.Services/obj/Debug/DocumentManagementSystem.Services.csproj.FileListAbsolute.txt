@@ -1,0 +1,12 @@
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\bin\Debug\DocumentManagementSystem.Services.dll
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\bin\Debug\DocumentManagementSystem.Services.pdb
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\bin\Debug\AutoMapper.dll
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\bin\Debug\DocumentManagementSystem.Repository.dll
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\bin\Debug\DocumentManagementSystem.Repository.pdb
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\bin\Debug\AutoMapper.pdb
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\bin\Debug\AutoMapper.xml
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\obj\Debug\DocumentManagementSystem.Services.csprojAssemblyReference.cache
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\obj\Debug\DocumentManagementSystem.Services.csproj.CoreCompileInputs.cache
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\obj\Debug\DocumentManagementSystem.Services.csproj.CopyComplete
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\obj\Debug\DocumentManagementSystem.Services.dll
+H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Services\obj\Debug\DocumentManagementSystem.Services.pdb
