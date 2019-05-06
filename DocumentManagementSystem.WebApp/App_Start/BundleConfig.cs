@@ -10,6 +10,10 @@ namespace DocumentManagementSystem.WebApp
         {
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/lib/angular/angular.min.js", "~/Content/*.js"));
+            bundles.Add(new ScriptBundle("~/bundles/controller").Include(
+                      "~/Content/controllers/*.js"));
+            bundles.Add(new ScriptBundle("~/bundles/directive").Include(
+                      "~/Content/directives/*.js"));
         }
     }
 }

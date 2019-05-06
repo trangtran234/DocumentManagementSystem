@@ -7,14 +7,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Document Management System</title>
     @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/controller")
+    @Scripts.Render("~/bundles/directive")
 </head>
-<body ng-app="app">
-    <div class="container body-content" ng-controller="GreetingController">
-        <div class="jumbotron">
-            {{greeting}}
-        </div>
+<body ng-app="rootApp">
+    <div class="container body-content">
+        <div user-login></div>
     </div>
 </body>
 </html>
