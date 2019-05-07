@@ -187,6 +187,7 @@
     <Content Include="bin\DocumentManagementSystem.WebApp.dll" />
     <Content Include="bin\DocumentManagementSystem.WebApp.pdb" />
     <Content Include="Content\controllers\MainController.js" />
+    <Content Include="Content\directives\user-login.html" />
     <Content Include="Content\directives\userLoginDirective.js" />
     <Content Include="Content\models\User.js" />
     <Content Include="Content\rootApp.js" />
