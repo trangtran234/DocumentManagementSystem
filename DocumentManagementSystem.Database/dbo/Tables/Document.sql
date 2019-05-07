@@ -12,7 +12,6 @@
     [LastModifiedBy]      INT             NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     FOREIGN KEY ([CreateBy]) REFERENCES [dbo].[Account] ([Id]),
-    FOREIGN KEY ([DocumentContentId]) REFERENCES [dbo].[DocumentContent] ([ContendId]),
     FOREIGN KEY ([LastModifiedBy]) REFERENCES [dbo].[Account] ([Id]),
     UNIQUE NONCLUSTERED ([DocumentContentId] ASC)
 );

@@ -34,8 +34,17 @@
     <Reference Include="AutoMapper, Version=8.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.8.1.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,9 +53,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs">
+      <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Document.cs">
+      <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentContent.cs">
+      <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentManagementSystem.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentManagementSystem.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentManagementSystem.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentManagementSystem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentManagementSystem.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentTag.cs">
+      <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\DocumentRepository.cs" />
+    <Compile Include="Interface\IDocumentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tag.cs">
+      <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="DocumentManagementSystem.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DocumentManagementSystem.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="DocumentManagementSystem.edmx.diagram">
+      <DependentUpon>DocumentManagementSystem.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +103,21 @@
       <Project>{54ac05e1-f58a-4a92-ac0c-da1bc46c82b2}</Project>
       <Name>DocumentManagementSystem.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DocumentManagementSystem.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DocumentManagementSystem.Context.cs</LastGenOutput>
+      <DependentUpon>DocumentManagementSystem.edmx</DependentUpon>
+    </Content>
+    <Content Include="DocumentManagementSystem.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DocumentManagementSystem.edmx</DependentUpon>
+      <LastGenOutput>DocumentManagementSystem.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

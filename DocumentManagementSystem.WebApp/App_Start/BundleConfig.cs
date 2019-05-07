@@ -15,13 +15,15 @@ namespace DocumentManagementSystem.WebApp
             bundles.Add(new ScriptBundle("~/bundles/directive").Include(
                       "~/Content/directives/*.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+            bundles.Add(new ScriptBundle("~/bundles/libs").Include(
                         "~/Scripts/lib/jQuery/dist/jquery.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/lib/bootstrap/dist/js/bootstrap.js"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Scripts/lib/bootstrap/dist/css/bootstrap.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/less").Include("~/Scripts/lib/less/dist/less.js"));           
         }
     }
 }

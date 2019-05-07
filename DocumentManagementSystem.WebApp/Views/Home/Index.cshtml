@@ -8,13 +8,28 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Document Management System</title>
+
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/controller")
     @Scripts.Render("~/bundles/directive")
+ 
+    @*@Styles.Render("~/Content/css")*@
+
+    <style type="text/less">
+        .container{
+            background: center
+        }
+    </style>
+    @Scripts.Render("~/bundles/less")
 </head>
 <body ng-app="rootApp">
     <div class="container">
+  
         <div user-login></div>
     </div>
+    @*<div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>*@
+    
 </body>
 </html>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DocumentManagementSystem.Repository.Interface
+namespace DocumentManagementSystem.Repository
 {
     public interface IDocumentRepository
     {

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DocumentManagementSystem.Repository.Interface;
+using DocumentManagementSystem.Repository;
 using DocumentManagementSystem.Services.Interface;
 
 namespace DocumentManagementSystem.Services.Implement
 {
     public class DocumentService : IDocumentService
     {
+        private int _count = 0;
         private IDocumentRepository _documentRepository;
         public DocumentService(IDocumentRepository documentRepository)
         {
@@ -18,7 +19,8 @@ namespace DocumentManagementSystem.Services.Implement
 
         public string GetAllDocument()
         {
-            return _documentRepository.GetDocuments();
+            ++_count;
+            return _documentRepository.GetDocuments() + " service " + _count;
         }
     }
 }

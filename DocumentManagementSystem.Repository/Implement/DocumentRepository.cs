@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DocumentManagementSystem.Repository.Interface;
-
-namespace DocumentManagementSystem.Repository.Implement
+namespace DocumentManagementSystem.Repository
 {
     public class DocumentRepository : IDocumentRepository
     {
+        private int _count = 0;
         public string GetDocuments()
         {
-            return "Get Data";
+            ++_count;
+            return "Repository " + _count;
         }
     }
 }

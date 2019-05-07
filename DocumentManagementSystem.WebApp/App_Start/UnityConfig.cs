@@ -1,7 +1,8 @@
 using System.Web.Http;
-using DocumentManagementSystem.Services;
+using DocumentManagementSystem.Services.DependencyExtension;
 using DocumentManagementSystem.Services.Implement;
 using DocumentManagementSystem.Services.Interface;
+using DocumentManagementSystem.WebApp.DependencyExtension;
 using Unity;
 using Unity.Lifetime;
 using Unity.WebApi;
@@ -14,13 +15,8 @@ namespace DocumentManagementSystem.WebApp
         {
 			var container = new UnityContainer();
 
-            // register all your components with the container here
-            // it is NOT necessary to register your controllers
-
-            // e.g. container.RegisterType<ITestService, TestService>();
-
-            container.RegisterType<IDocumentService, DocumentService>(new ContainerControlledLifetimeManager());
-            container.AddExtension(new DependencyExtensionServices());
+            container.AddExtension(new DependencyExtensionRepository());
+            container.AddExtension(new DependencyExtensionServices());           
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
