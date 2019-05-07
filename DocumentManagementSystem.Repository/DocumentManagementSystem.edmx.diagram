@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="38e69d880c3c4f09af5b2bc2f58a1332" Name="Diagram1">
+        <EntityTypeShape EntityType="DocumentManagementSystemModel.Account" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DocumentManagementSystemModel.Document" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DocumentManagementSystemModel.DocumentContent" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DocumentManagementSystemModel.DocumentTag" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DocumentManagementSystemModel.Tag" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="DocumentManagementSystemModel.FK__Document__Create__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="DocumentManagementSystemModel.FK__Document__LastMo__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="DocumentManagementSystemModel.FK__Document___Docum__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="DocumentManagementSystemModel.FK__Document__Docume__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="DocumentManagementSystemModel.FK__Document___TagId__31EC6D26" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

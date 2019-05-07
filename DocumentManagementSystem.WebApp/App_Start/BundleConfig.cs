@@ -14,6 +14,14 @@ namespace DocumentManagementSystem.WebApp
                       "~/Content/controllers/*.js"));
             bundles.Add(new ScriptBundle("~/bundles/directive").Include(
                       "~/Content/directives/*.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/lib/jQuery/dist/jquery.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                        "~/Scripts/lib/bootstrap/dist/js/bootstrap.js"));
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                        "~/Scripts/lib/bootstrap/dist/css/bootstrap.css"));
         }
     }
 }

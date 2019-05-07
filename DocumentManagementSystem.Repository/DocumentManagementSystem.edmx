@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DocumentManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentName" Type="varchar" MaxLength="255" />
+          <Property Name="DocumentType" Type="varchar" MaxLength="10" />
+          <Property Name="DocumentSize" Type="float" />
+          <Property Name="DocumentDescription" Type="varbinary(max)" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="LastModified" Type="datetime" />
+          <Property Name="DocumentContentId" Type="int" Nullable="false" />
+          <Property Name="CreateBy" Type="int" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentContent">
+          <Key>
+            <PropertyRef Name="ContendId" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ContendId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="DocumentTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="DocumentId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Document___Docum__30F848ED">
+          <End Role="Document" Type="Self.Document" Multiplicity="1" />
+          <End Role="DocumentTag" Type="Self.DocumentTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentTag">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document___TagId__31EC6D26">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="DocumentTag" Type="Self.DocumentTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentTag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document__Create__2E1BDC42">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="CreateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document__Docume__2F10007B">
+          <End Role="DocumentContent" Type="Self.DocumentContent" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentContent">
+              <PropertyRef Name="ContendId" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document__LastMo__300424B4">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="LastModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DocumentManagementSystemModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentContent" EntityType="Self.DocumentContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentTag" EntityType="Self.DocumentTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Document___Docum__30F848ED" Association="Self.FK__Document___Docum__30F848ED">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="DocumentTag" EntitySet="DocumentTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document___TagId__31EC6D26" Association="Self.FK__Document___TagId__31EC6D26">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="DocumentTag" EntitySet="DocumentTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document__Create__2E1BDC42" Association="Self.FK__Document__Create__2E1BDC42">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document__Docume__2F10007B" Association="Self.FK__Document__Docume__2F10007B">
+            <End Role="DocumentContent" EntitySet="DocumentContent" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document__LastMo__300424B4" Association="Self.FK__Document__LastMo__300424B4">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DocumentManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Documents" Relationship="Self.FK__Document__Create__2E1BDC42" FromRole="Account" ToRole="Document" />
+          <NavigationProperty Name="Documents1" Relationship="Self.FK__Document__LastMo__300424B4" FromRole="Account" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentSize" Type="Double" />
+          <Property Name="DocumentDescription" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="LastModified" Type="DateTime" Precision="3" />
+          <Property Name="DocumentContentId" Type="Int32" Nullable="false" />
+          <Property Name="CreateBy" Type="Int32" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Document__Create__2E1BDC42" FromRole="Document" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="Self.FK__Document__LastMo__300424B4" FromRole="Document" ToRole="Account" />
+          <NavigationProperty Name="DocumentTags" Relationship="Self.FK__Document___Docum__30F848ED" FromRole="Document" ToRole="DocumentTag" />
+          <NavigationProperty Name="DocumentContent" Relationship="Self.FK__Document__Docume__2F10007B" FromRole="Document" ToRole="DocumentContent" />
+        </EntityType>
+        <EntityType Name="DocumentContent">
+          <Key>
+            <PropertyRef Name="ContendId" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ContendId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Documents" Relationship="Self.FK__Document__Docume__2F10007B" FromRole="DocumentContent" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="DocumentTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="DocumentId" Type="Int32" Nullable="false" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Document" Relationship="Self.FK__Document___Docum__30F848ED" FromRole="DocumentTag" ToRole="Document" />
+          <NavigationProperty Name="Tag" Relationship="Self.FK__Document___TagId__31EC6D26" FromRole="DocumentTag" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DocumentTags" Relationship="Self.FK__Document___TagId__31EC6D26" FromRole="Tag" ToRole="DocumentTag" />
+        </EntityType>
+        <Association Name="FK__Document__Create__2E1BDC42">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="CreateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document__LastMo__300424B4">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="LastModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document___Docum__30F848ED">
+          <End Role="Document" Type="Self.Document" Multiplicity="1" />
+          <End Role="DocumentTag" Type="Self.DocumentTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentTag">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document__Docume__2F10007B">
+          <End Role="DocumentContent" Type="Self.DocumentContent" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentContent">
+              <PropertyRef Name="ContendId" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document___TagId__31EC6D26">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="DocumentTag" Type="Self.DocumentTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentTag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DocumentManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Documents" EntityType="Self.Document" />
+          <EntitySet Name="DocumentContents" EntityType="Self.DocumentContent" />
+          <EntitySet Name="DocumentTags" EntityType="Self.DocumentTag" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <AssociationSet Name="FK__Document__Create__2E1BDC42" Association="Self.FK__Document__Create__2E1BDC42">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document__LastMo__300424B4" Association="Self.FK__Document__LastMo__300424B4">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document___Docum__30F848ED" Association="Self.FK__Document___Docum__30F848ED">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="DocumentTag" EntitySet="DocumentTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document__Docume__2F10007B" Association="Self.FK__Document__Docume__2F10007B">
+            <End Role="DocumentContent" EntitySet="DocumentContents" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document___TagId__31EC6D26" Association="Self.FK__Document___TagId__31EC6D26">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="DocumentTag" EntitySet="DocumentTags" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DocumentManagementSystemModelStoreContainer" CdmEntityContainer="DocumentManagementSystemEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="DocumentManagementSystemModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="DocumentManagementSystemModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="DocumentSize" ColumnName="DocumentSize" />
+                <ScalarProperty Name="DocumentDescription" ColumnName="DocumentDescription" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="DocumentContentId" ColumnName="DocumentContentId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentContents">
+            <EntityTypeMapping TypeName="DocumentManagementSystemModel.DocumentContent">
+              <MappingFragment StoreEntitySet="DocumentContent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ContendId" ColumnName="ContendId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentTags">
+            <EntityTypeMapping TypeName="DocumentManagementSystemModel.DocumentTag">
+              <MappingFragment StoreEntitySet="DocumentTag">
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="DocumentManagementSystemModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
