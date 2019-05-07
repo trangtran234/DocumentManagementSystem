@@ -167,6 +167,8 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <TypeScriptCompile Include="node_modules\%40types\angular\index.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\angular\jqlite.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -178,6 +180,9 @@
   <ItemGroup>
     <Content Include="bower.json" />
     <Content Include=".bowerrc" />
+    <Content Include="node_modules\%40types\angular\LICENSE" />
+    <Content Include="node_modules\%40types\angular\package.json" />
+    <Content Include="node_modules\%40types\angular\README.md" />
     <None Include="packages.config" />
     <Content Include="Scripts\lib\angular\.bower.json" />
     <Content Include="Scripts\lib\angular\angular.min.js.gzip" />
