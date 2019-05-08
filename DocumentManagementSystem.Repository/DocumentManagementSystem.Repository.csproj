@@ -88,11 +88,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="DocumentManagementSystem.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DocumentManagementSystem.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
     <None Include="DocumentManagementSystem.edmx.diagram">
       <DependentUpon>DocumentManagementSystem.edmx</DependentUpon>
     </None>
@@ -105,19 +107,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DocumentManagementSystem.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DocumentManagementSystem.Context.cs</LastGenOutput>
       <DependentUpon>DocumentManagementSystem.edmx</DependentUpon>
+      <LastGenOutput>DocumentManagementSystem.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DocumentManagementSystem.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DocumentManagementSystem.edmx</DependentUpon>
       <LastGenOutput>DocumentManagementSystem.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

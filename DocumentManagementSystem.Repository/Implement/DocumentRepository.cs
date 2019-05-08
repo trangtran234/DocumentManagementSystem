@@ -7,11 +7,14 @@ namespace DocumentManagementSystem.Repository
 {
     public class DocumentRepository : IDocumentRepository
     {
-        private int _count = 0;
-        public string GetDocuments()
+        public List<Document> GetAllDocuments()
         {
-            ++_count;
-            return "Repository " + _count;
+            List<Document> listDocumemts = new List<Document>();
+            using(var ctx = new DocumentManagementSystemEntities())
+            {
+                listDocumemts = ctx.Documents.Select(d => d).ToList();
+            }
+            return listDocumemts;
         }
     }
 }

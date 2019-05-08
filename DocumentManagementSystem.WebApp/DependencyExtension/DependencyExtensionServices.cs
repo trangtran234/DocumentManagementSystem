@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DocumentManagementSystem.Services.Implement;
-using DocumentManagementSystem.Services.Interface;
+using DocumentManagementSystem.Services;
 using Unity;
 using Unity.Extension;
 using Unity.Lifetime;

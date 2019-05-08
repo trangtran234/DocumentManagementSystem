@@ -28,14 +28,14 @@ namespace DocumentManagementSystem.Repository
         public Nullable<int> ParentId { get; set; }
         public Nullable<System.DateTime> Created { get; set; }
         public Nullable<System.DateTime> LastModified { get; set; }
-        public int DocumentContentId { get; set; }
+        public System.Guid DocumentContentId { get; set; }
         public int CreateBy { get; set; }
         public int LastModifiedBy { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Account Account1 { get; set; }
+        public virtual DocumentContent DocumentContent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentTag> DocumentTags { get; set; }
-        public virtual DocumentContent DocumentContent { get; set; }
     }
 }

@@ -1015,6 +1015,10 @@
     <Content Include="styles\app.less" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DocumentManagementSystem.Models\DocumentManagementSystem.Models.csproj">
+      <Project>{54ac05e1-f58a-4a92-ac0c-da1bc46c82b2}</Project>
+      <Name>DocumentManagementSystem.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DocumentManagementSystem.Services\DocumentManagementSystem.Services.csproj">
       <Project>{6f354e66-8c0e-41c7-97cc-8100516497de}</Project>
       <Name>DocumentManagementSystem.Services</Name>

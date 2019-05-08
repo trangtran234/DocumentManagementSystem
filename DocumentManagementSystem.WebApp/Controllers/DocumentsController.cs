@@ -4,22 +4,22 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using DocumentManagementSystem.Services.Implement;
-using DocumentManagementSystem.Services.Interface;
+using DocumentManagementSystem.Models;
+using DocumentManagementSystem.Services;
 
 namespace DocumentManagementSystem.WebApp.Controllers
 {
     public class DocumentsController : ApiController
     {
-        private IDocumentService _documentServices;
+        private IDocumentService documentServices;
         public DocumentsController(DocumentService documentServices)
         {
-            _documentServices = documentServices;
+            this.documentServices = documentServices;
         }
 
-        public string GetAllDocument()
+        public List<Document> GetAllDocument()
         {
-            return _documentServices.GetAllDocument();
+            return documentServices.GetAllDocument();
         }
     }
 }

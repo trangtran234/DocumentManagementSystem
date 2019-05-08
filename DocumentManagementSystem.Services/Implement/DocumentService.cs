@@ -4,23 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DocumentManagementSystem.Repository;
-using DocumentManagementSystem.Services.Interface;
+using AutoMapper;
 
-namespace DocumentManagementSystem.Services.Implement
+namespace DocumentManagementSystem.Services
 {
     public class DocumentService : IDocumentService
     {
-        private int _count = 0;
-        private IDocumentRepository _documentRepository;
+        private IDocumentRepository documentRepository;
         public DocumentService(IDocumentRepository documentRepository)
         {
-            _documentRepository = documentRepository;
+            this.documentRepository = documentRepository;
         }
 
-        public string GetAllDocument()
+        public List<Models.Document> GetAllDocument()
         {
-            ++_count;
-            return _documentRepository.GetDocuments() + " service " + _count;
+            List<Document> listDocuments = documentRepository.GetAllDocuments();
+            List<Models.Document> listDocumentsView = new List<Models.Document>();
+            foreach (Document document in listDocuments)
+            {
+                Models.Document documentView = Mapper.Map<Document, Models.Document>(document);
+                listDocumentsView.Add(documentView);
+            }
+            return listDocumentsView;
         }
     }
 }

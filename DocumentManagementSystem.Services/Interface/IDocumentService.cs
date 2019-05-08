@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentManagementSystem.Repository;
 
-namespace DocumentManagementSystem.Services.Interface
+namespace DocumentManagementSystem.Services
 {
     public interface IDocumentService
     {
-        string GetAllDocument();
+        List<Models.Document> GetAllDocument();
     }
 }

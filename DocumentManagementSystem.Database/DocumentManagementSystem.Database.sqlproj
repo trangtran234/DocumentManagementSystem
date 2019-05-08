@@ -7,7 +7,7 @@
     <Name>DocumentManagementSystem.Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{06cd789c-ddee-41da-bc68-899a2ab316ee}</ProjectGuid>
+    <ProjectGuid>{9bba06f4-7e57-4db5-b3ff-2fb8c6f95e4e}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -17,7 +17,7 @@
     <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetLanguage>CS</TargetLanguage>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SqlServerVerification>False</SqlServerVerification>
@@ -65,11 +65,14 @@
     <Folder Include="Storage\" />
   </ItemGroup>
   <ItemGroup>
+    <Build Include="dbo\Tables\DocumentContent.sql" />
     <Build Include="dbo\Tables\Account.sql" />
+    <Build Include="dbo\Tables\Tag.sql" />
     <Build Include="dbo\Tables\Document.sql" />
     <Build Include="dbo\Tables\DocumentTag.sql" />
-    <Build Include="dbo\Tables\DocumentContent.sql" />
-    <Build Include="dbo\Tables\Tag.sql" />
     <Build Include="Storage\FileStreamGroup1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dev.publish.xml" />
   </ItemGroup>
 </Project>

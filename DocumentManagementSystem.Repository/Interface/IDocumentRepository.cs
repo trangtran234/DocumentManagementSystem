@@ -8,6 +8,6 @@ namespace DocumentManagementSystem.Repository
 {
     public interface IDocumentRepository
     {
-        string GetDocuments();
+        List<Document> GetAllDocuments();
     }
 }
