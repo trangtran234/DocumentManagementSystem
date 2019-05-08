@@ -1,0 +1,53 @@
+﻿.class {
+  width: 50%;
+  color: #d5d1d1;
+  background-color: #ffffff;
+}
+.content {
+  height: 800px;
+  display: flex;
+}
+.left-layout {
+  background-color: #f1f1f1;
+  height: 100%;
+  float: left;
+  padding-left: 25px;
+}
+.right-layout {
+  background-color: aquamarine;
+  height: 100%;
+  float: right;
+}
+.user-login {
+  height: 5%;
+  background-color: lightpink;
+  padding-left: inherit;
+}
+.left-navigation {
+  background-color: lightgray;
+  height: 55%;
+}
+.action-1 {
+  background-color: lightslategrey;
+  height: 35%;
+}
+.action-2 {
+  background-color: #494b46;
+  height: 5%;
+}
+.header {
+  background-color: lightgreen;
+  height: 10%;
+}
+.listing-information-area {
+  background-color: lightsalmon;
+  height: 90%;
+}
+.listing {
+  background-color: lightpink;
+  height: 100%;
+}
+.information-area {
+  background-color: lightseagreen;
+  height: 100%;
+}

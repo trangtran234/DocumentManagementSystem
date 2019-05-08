@@ -682,6 +682,12 @@
     <Content Include="Scripts\lib\less\dist\less.js" />
     <Content Include="Scripts\lib\less\dist\less.min.js" />
     <Content Include="Scripts\lib\less\index.js" />
+    <Content Include="styles\app.css">
+      <DependentUpon>app.less</DependentUpon>
+    </Content>
+    <Content Include="styles\app.min.css">
+      <DependentUpon>app.css</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -714,6 +720,10 @@
     <Content Include="Content\directives\userLoginDirective.js.map" />
     <Content Include="Content\rootApp.js.map" />
     <Content Include="Content\models\User.js.map" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <Content Include="Scripts\lib\angular\.bower.json" />
     <Content Include="Scripts\lib\angular\angular.min.js.gzip" />

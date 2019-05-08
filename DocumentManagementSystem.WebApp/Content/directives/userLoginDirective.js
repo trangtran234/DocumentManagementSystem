@@ -1,16 +1,17 @@
 var rootApp;
 (function (rootApp) {
-    var UserLoginDirective = /** @class */ (function () {
-        function UserLoginDirective() {
+    var UserLoginController = /** @class */ (function () {
+        function UserLoginController($scope) {
+            $scope.user = { userName: 'James' };
         }
-        UserLoginDirective.UserLoginDirective = function () {
-            return {
-                controller: rootApp.MainController,
-                template: 'Name: {{user.userName}}'
-            };
-        };
-        return UserLoginDirective;
+        return UserLoginController;
     }());
-    angular.module('rootApp', []).directive('userLogin', UserLoginDirective.UserLoginDirective);
+    function UserLoginDirective() {
+        return {
+            templateUrl: '/Content/directives/user-login.html',
+            scope: { user: "=user" },
+        };
+    }
+    angular.module('rootApp', []).controller('UserLoginController', UserLoginController).directive('userLogin', UserLoginDirective);
 })(rootApp || (rootApp = {}));
 //# sourceMappingURL=userLoginDirective.js.map

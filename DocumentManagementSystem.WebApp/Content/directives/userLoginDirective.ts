@@ -1,11 +1,15 @@
 ﻿module rootApp {
-    class UserLoginDirective {
-        static UserLoginDirective(): ng.IDirective {
-            return {
-                controller: MainController,
-                template: 'Name: {{user.userName}}'
-            };
+    class UserLoginController {
+        constructor($scope) {
+            $scope.user = { userName: 'James' };
         }
     }
-    angular.module('rootApp', []).directive('userLogin', UserLoginDirective.UserLoginDirective);
+
+    function UserLoginDirective(): ng.IDirective {
+        return {
+            templateUrl: '/Content/directives/user-login.html',
+            scope: { user: "=user"},
+        };
+    }
+    angular.module('rootApp', []).controller('UserLoginController', UserLoginController).directive('userLogin', UserLoginDirective)
 }

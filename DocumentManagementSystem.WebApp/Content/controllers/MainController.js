@@ -2,7 +2,6 @@ var rootApp;
 (function (rootApp) {
     var MainController = /** @class */ (function () {
         function MainController($scope) {
-            $scope.user = { userName: 'James' };
         }
         return MainController;
     }());
