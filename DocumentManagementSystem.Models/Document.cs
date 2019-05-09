@@ -12,11 +12,11 @@ namespace DocumentManagementSystem.Models
         public string DocumentName { get; set; }
         public string DocumentType { get; set; }
         public double DocumentSize { get; set; }
-        public byte[] DocumentDescription { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime LastModified { get; set; }
-        public int CreateBy { get; set; }
-        public int LastModifiedBy { get; set; }
-        public Guid DocumentContentId { get; set; }
+        public string DocumentDescription { get; set; }
+        public string Created { get; set; }
+        public string LastModified { get; set; }
+        public virtual Account CreatedBy { get; set; }
+        public virtual Account LastModifiedBy { get; set; }
+        public virtual DocumentContent DocumentContent { get; set; }
     }
 }

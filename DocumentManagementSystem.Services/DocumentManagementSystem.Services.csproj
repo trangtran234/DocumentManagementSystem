@@ -68,6 +68,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Automapper\IAutoMapperConfig.cs" />
+    <Compile Include="Automapper\AutoMapperConfig.cs" />
     <Compile Include="DependencyExtension\DependencyExtensionRepository.cs" />
     <Compile Include="Implement\DocumentService.cs" />
     <Compile Include="Interface\IDocumentService.cs" />

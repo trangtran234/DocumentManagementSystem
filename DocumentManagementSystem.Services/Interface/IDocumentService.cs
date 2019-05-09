@@ -1,14 +1,17 @@
-﻿using System;
+﻿using DocumentManagementSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DocumentManagementSystem.Repository;
 
 namespace DocumentManagementSystem.Services
 {
     public interface IDocumentService
     {
-        List<Models.Document> GetAllDocument();
+        IList<Document> GetAllDocument();
+        IList<Document> GetDocumentByContentId(int id);
+        IList<Document> GetDocumentByParentId(int id);
+        Document GetDocumentByDocumentId(int id);
     }
 }

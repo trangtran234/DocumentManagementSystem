@@ -8,6 +8,9 @@ namespace DocumentManagementSystem.Repository
 {
     public interface IDocumentRepository
     {
-        List<Document> GetAllDocuments();
+        IList<Document> GetAllDocuments();
+        IList<Document> GetDocumentByParentId(int id);
+        IList<Document> GetDocumentByContentId(Guid id);
+        Document GetDocumentByDocumentId(int id);
     }
 }

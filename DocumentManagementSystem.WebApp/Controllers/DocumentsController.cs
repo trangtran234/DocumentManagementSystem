@@ -17,9 +17,24 @@ namespace DocumentManagementSystem.WebApp.Controllers
             this.documentServices = documentServices;
         }
 
-        public List<Document> GetAllDocument()
+        public IList<Document> GetAllDocument()
         {
             return documentServices.GetAllDocument();
+        }
+
+        public IList<Document> GetDocumentsByContentId(int id)
+        {
+            return documentServices.GetDocumentByContentId(id);
+        }
+
+        public IList<Document> GetDocumentByParentId(int id)
+        {
+            return documentServices.GetDocumentByParentId(id);
+        }
+
+        public Document GetDocumentByDocumentId(int id)
+        {
+            return documentServices.GetDocumentByDocumentId(id);
         }
     }
 }
