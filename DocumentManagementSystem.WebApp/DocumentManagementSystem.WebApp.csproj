@@ -187,6 +187,7 @@
     <Content Include="bin\DocumentManagementSystem.WebApp.dll" />
     <Content Include="bin\DocumentManagementSystem.WebApp.pdb" />
     <Content Include="Content\controllers\MainController.js" />
+    <Content Include="Content\directives\add-document.html" />
     <Content Include="Content\directives\user-login.html" />
     <Content Include="Content\directives\userLoginDirective.js" />
     <Content Include="Content\models\User.js" />
@@ -698,6 +699,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <TypeScriptCompile Include="Content\controllers\MainController.ts" />
+    <TypeScriptCompile Include="Content\directives\addDocumentDirective.ts" />
     <TypeScriptCompile Include="Content\directives\userLoginDirective.ts" />
     <TypeScriptCompile Include="Content\models\User.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\index.d.ts" />
