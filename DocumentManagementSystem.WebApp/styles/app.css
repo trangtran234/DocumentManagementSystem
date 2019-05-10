@@ -8,47 +8,40 @@
   display: flex;
 }
 .left-layout {
-  background-color: #f1f1f1;
   height: 100%;
   float: left;
   padding-left: 25px;
 }
 .right-layout {
-  background-color: aquamarine;
   height: 100%;
   float: right;
 }
 .user-login {
   height: 5%;
-  background-color: lightpink;
   padding-left: inherit;
 }
 .left-navigation {
-  background-color: lightgray;
   height: 55%;
 }
 .action-1 {
-  background-color: lightslategrey;
   height: 35%;
 }
 .action-2 {
-  background-color: #494b46;
   height: 5%;
 }
 .header {
-  background-color: lightgreen;
   height: 10%;
 }
+.action-button {
+  height: 5%;
+}
 .listing-information-area {
-  background-color: lightsalmon;
-  height: 90%;
+  height: 85%;
 }
 .listing {
-  background-color: lightpink;
   height: 100%;
 }
 .information-area {
-  background-color: lightseagreen;
   height: 100%;
 }
 .modal-dialog {

@@ -12,38 +12,33 @@ namespace DocumentManagementSystem.Services
     public class DocumentService : IDocumentService
     {
         private IDocumentRepository documentRepository;
-        private readonly IAutoMapperConfig mapper = new AutoMapperConfig();
-
         public DocumentService(IDocumentRepository documentRepository)
         {
             this.documentRepository = documentRepository;
         }
 
-        private Guid ConvertIntToGuid(int value)
-        {
-            byte[] bytes = new byte[16];
-            BitConverter.GetBytes(value).CopyTo(bytes, 0);
-            return new Guid(bytes);
-        }
-
         public IList<Models.Document> GetAllDocument()
-        { 
-            return mapper.GetMapper().Map<List<Models.Document>>(documentRepository.GetAllDocuments());
+        {
+            IList<Models.Document> documents = AutoMapperConfig.GetMapper().Map<List<Models.Document>>(documentRepository.GetAllDocuments());
+            return documents;
         }
 
-        public IList<Models.Document> GetDocumentByContentId(int id)
+        public IList<Models.Document> GetDocumentByContentId(Guid id)
         {
-            return mapper.GetMapper().Map<List<Models.Document>>(documentRepository.GetDocumentByContentId(ConvertIntToGuid(id)));
+            IList<Models.Document> documents = AutoMapperConfig.GetMapper().Map<List<Models.Document>>(documentRepository.GetDocumentByContentId(id));
+            return documents;
         }
 
         public IList<Models.Document> GetDocumentByParentId(int id)
         {
-            return mapper.GetMapper().Map<List<Models.Document>>(documentRepository.GetDocumentByParentId(id));
+            IList<Models.Document> documents = AutoMapperConfig.GetMapper().Map<List<Models.Document>>(documentRepository.GetDocumentByParentId(id));
+            return documents;
         }
 
         public Models.Document GetDocumentByDocumentId(int id)
         {
-            return mapper.GetMapper().Map<Models.Document>(documentRepository.GetDocumentByDocumentId(id));
+            Models.Document document = AutoMapperConfig.GetMapper().Map<Models.Document>(documentRepository.GetDocumentByDocumentId(id));
+            return document;
         }
     }
 }

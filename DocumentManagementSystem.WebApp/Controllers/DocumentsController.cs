@@ -19,22 +19,26 @@ namespace DocumentManagementSystem.WebApp.Controllers
 
         public IList<Document> GetAllDocument()
         {
-            return documentServices.GetAllDocument();
+            IList<Document> documents = documentServices.GetAllDocument();
+            return documents;
         }
 
-        public IList<Document> GetDocumentsByContentId(int id)
+        public IList<Document> GetDocumentsByContentId(Guid id)
         {
-            return documentServices.GetDocumentByContentId(id);
+            IList<Document> documents = documentServices.GetDocumentByContentId(id);
+            return documents;
         }
 
         public IList<Document> GetDocumentByParentId(int id)
         {
-            return documentServices.GetDocumentByParentId(id);
+            IList<Document> documents = documentServices.GetDocumentByParentId(id);
+            return documents;
         }
 
         public Document GetDocumentByDocumentId(int id)
         {
-            return documentServices.GetDocumentByDocumentId(id);
+            Document document = documentServices.GetDocumentByDocumentId(id);
+            return document;
         }
     }
 }

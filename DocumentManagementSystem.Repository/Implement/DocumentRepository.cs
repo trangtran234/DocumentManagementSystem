@@ -13,22 +13,26 @@ namespace DocumentManagementSystem.Repository
 
         public IList<Document> GetAllDocuments()
         {
-            return context.Documents.Select(d => d).ToList();
+            IList<Document> documents = context.Documents.Select(d => d).ToList();
+            return documents;
         }
 
         public IList<Document> GetDocumentByContentId(Guid id)
         {
-            return context.Documents.Where(d => d.DocumentContent.Id == id).ToList();
+            IList<Document> documents = context.Documents.Where(d => d.DocumentContent.Id == id).ToList();
+            return documents;
         }
 
         public Document GetDocumentByDocumentId(int id)
         {
-            return context.Documents.Where(d => d.Id == id).First();
+            Document document = context.Documents.Where(d => d.Id == id).First();
+            return document;
         }
 
         public IList<Document> GetDocumentByParentId(int id)
         {
-            return context.Documents.Where(d => d.ParentId == id).ToList();
+            IList<Document> documents = context.Documents.Where(d => d.ParentId == id).ToList();
+            return documents;
         }
     }
 }

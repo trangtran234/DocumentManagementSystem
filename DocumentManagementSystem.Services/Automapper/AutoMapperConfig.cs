@@ -7,9 +7,9 @@ using AutoMapper;
 
 namespace DocumentManagementSystem.Services.Automapper
 {
-    public class AutoMapperConfig : IAutoMapperConfig
+    public static class AutoMapperConfig
     {
-        IMapper IAutoMapperConfig.GetMapper()
+        public static IMapper GetMapper()
         {
             var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<Repository.Document, Models.Document>()
@@ -17,8 +17,12 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(d => d.LastModifiedBy, opt => opt.MapFrom(src => src.Account1))
                                         .ForMember(d => d.Created, opt => opt.MapFrom(src => ((DateTime)src.Created).ToString("yyyy-MM-dd")))
                                         .ForMember(d => d.LastModified, opt => opt.MapFrom(src => ((DateTime)src.LastModified).ToString("yyyy-MM-dd")))
-                                        .ForMember(d => d.DocumentDescription, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentDescription)));
-                //lots more maps...?
+                                        .ForMember(d => d.DocumentDescription, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentDescription)))
+                                        .ForMember(d => d.DocumentContent, opt => opt.MapFrom(src => src));
+                cfg.CreateMap<Repository.Document, Models.DocumentContent>()
+                                        .ForMember(d => d.Id, opt => opt.MapFrom(src => src.DocumentContent.Id))
+                                        .ForMember(d => d.Content, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentContent.Content)));
+                //lots more maps...here!
             });
 
             IMapper mapper = config.CreateMapper();
