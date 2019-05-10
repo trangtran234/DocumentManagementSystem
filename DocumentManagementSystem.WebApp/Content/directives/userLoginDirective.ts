@@ -1,24 +1,29 @@
 ﻿module rootApp {
-
-    class UserLoginController {
+    export class UserLoginController {
         constructor($scope) {
             $scope.user = { userName: 'James' };
         }
     }
 
-    function UserLoginDirective(): ng.IDirective {
-        return {
-            templateUrl: '/Content/directives/user-login.html'
-            //scope: { user: "=user"},
-        };
+    export class UserLoginDirective implements ng.IDirective {
+        public restrict: string = 'E'
+        public templateUrl: string = '/Content/directives/user-login.html';
+
+        public static Factory(): ng.IDirectiveFactory {
+            return () => new UserLoginDirective();
+        }
     }
 
-    angular.module('directiveModule', [])
-        .directive('userLogin', UserLoginDirective)
-        .directive('addDocument', AddDocumentDirective.Factory());
+    //angular.module('directiveModule', [])
+    //    .directive('userLogin', UserLoginDirective.Factory())
+    //    .directive('addDocument', AddDocumentDirective.Factory());
 
-    angular.module('controllerModule', ['directiveModule'])
-        .controller('UserLoginController', UserLoginController);
+    //angular.module('controllerModule', ['directiveModule'])
+    //    .controller('UserLoginController', UserLoginController);
 
-    angular.module('rootApp', ['controllerModule', 'directiveModule']);
+    //angular.module('rootApp', ['controllerModule', 'directiveModule']);
+
+    //angular.module('rootApp', [])
+    //    .controller('UserLoginController', UserLoginController)
+    //    .directive('userLogin', UserLoginDirective.Factory());
 }
