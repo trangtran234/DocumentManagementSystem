@@ -40,5 +40,11 @@ namespace DocumentManagementSystem.WebApp.Controllers
             Document document = documentServices.GetDocumentByDocumentId(id);
             return document;
         }
+
+        public IList<Document> GetDocumentByDocumentType(string type)
+        {
+            IList<Document> documents = documentServices.GetDocumentByDocumentType(type);
+            return documents;
+        }
     }
 }

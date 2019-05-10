@@ -29,6 +29,12 @@ namespace DocumentManagementSystem.Repository
             return document;
         }
 
+        public IList<Document> GetDocumentByDocumentType(string type)
+        {
+            IList<Document> documents = context.Documents.Where(d => d.DocumentType == type).ToList();
+            return documents;
+        }
+
         public IList<Document> GetDocumentByParentId(int id)
         {
             IList<Document> documents = context.Documents.Where(d => d.ParentId == id).ToList();

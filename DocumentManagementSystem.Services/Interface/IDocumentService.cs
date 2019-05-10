@@ -12,6 +12,7 @@ namespace DocumentManagementSystem.Services
         IList<Document> GetAllDocument();
         IList<Document> GetDocumentByContentId(Guid id);
         IList<Document> GetDocumentByParentId(int id);
+        IList<Document> GetDocumentByDocumentType(string type);
         Document GetDocumentByDocumentId(int id);
     }
 }
