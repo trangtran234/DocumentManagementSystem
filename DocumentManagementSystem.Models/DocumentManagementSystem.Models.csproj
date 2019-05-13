@@ -47,7 +47,9 @@
     <Compile Include="Account.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="DocumentContent.cs" />
+    <Compile Include="DocumentTag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tag.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -7,9 +7,9 @@ using AutoMapper;
 
 namespace DocumentManagementSystem.Services.Automapper
 {
-    public static class AutoMapperConfig
+    public class AutoMapperConfig : IAutoMapperConfig
     {
-        public static IMapper GetMapper()
+        public IMapper GetMapper()
         {
             var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<Repository.Document, Models.Document>()
@@ -19,6 +19,7 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(d => d.LastModified, opt => opt.MapFrom(src => ((DateTime)src.LastModified).ToString("yyyy-MM-dd")))
                                         .ForMember(d => d.DocumentDescription, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentDescription)))
                                         .ForMember(d => d.DocumentContent, opt => opt.MapFrom(src => src));
+
                 cfg.CreateMap<Repository.Document, Models.DocumentContent>()
                                         .ForMember(d => d.Id, opt => opt.MapFrom(src => src.DocumentContent.Id))
                                         .ForMember(d => d.Content, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentContent.Content)));

@@ -10,8 +10,8 @@ namespace DocumentManagementSystem.Repository
     {
         IList<Document> GetAllDocuments();
         IList<Document> GetDocumentByParentId(int id);
-        IList<Document> GetDocumentByContentId(Guid id);
-        IList<Document> GetDocumentByDocumentType(string type);
+        IList<Document> GetFolders();
+        IList<Document> GetFoldersByFolderId(int id);
         Document GetDocumentByDocumentId(int id);
     }
 }
