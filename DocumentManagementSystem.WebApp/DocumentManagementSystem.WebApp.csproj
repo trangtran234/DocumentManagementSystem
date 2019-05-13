@@ -702,6 +702,12 @@
     <TypeScriptCompile Include="Content\services\documentService.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\jqlite.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jquery\dist\jquery.slim.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jquery\JQuery.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jquery\JQueryStatic.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jquery\legacy.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jquery\misc.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\sizzle\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -724,6 +730,9 @@
     <Content Include="node_modules\%40types\angular\LICENSE" />
     <Content Include="node_modules\%40types\angular\package.json" />
     <Content Include="node_modules\%40types\angular\README.md" />
+    <Content Include="node_modules\%40types\jquery\LICENSE" />
+    <Content Include="node_modules\%40types\jquery\package.json" />
+    <Content Include="node_modules\%40types\jquery\README.md" />
     <None Include="packages.config" />
     <Content Include="Scripts\lib\angular\.bower.json" />
     <Content Include="Scripts\lib\angular\angular.min.js.gzip" />
