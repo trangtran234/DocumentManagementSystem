@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
-using DocumentManagementSystem.Models;
 namespace DocumentManagementSystem.Repository
 {
     public class DocumentRepository : IDocumentRepository
@@ -17,27 +15,30 @@ namespace DocumentManagementSystem.Repository
             return documents;
         }
 
-        public IList<Document> GetDocumentByContentId(Guid id)
-        {
-            IList<Document> documents = context.Documents.Where(d => d.DocumentContent.Id == id).ToList();
-            return documents;
-        }
-
         public Document GetDocumentByDocumentId(int id)
         {
-            Document document = context.Documents.Where(d => d.Id == id).First();
+            Document document = context.Documents.Include("DocumentTags").FirstOrDefault<Document>(d => d.Id == id);
             return document;
         }
 
-        public IList<Document> GetDocumentByDocumentType(string type)
+        public IList<Document> GetFolders()
         {
-            IList<Document> documents = context.Documents.Where(d => d.DocumentType == type).ToList();
+            const string folderType = "folder";
+            const int rootId = -1;
+            IList<Document> documents = context.Documents.Where(d => d.DocumentType == folderType && d.ParentId == rootId).ToList();
             return documents;
         }
 
         public IList<Document> GetDocumentByParentId(int id)
         {
             IList<Document> documents = context.Documents.Where(d => d.ParentId == id).ToList();
+            return documents;
+        }
+
+        public IList<Document> GetFoldersByFolderId(int id)
+        {
+            const string folderType = "folder";
+            IList<Document> documents = context.Documents.Where(d => d.ParentId == id && d.DocumentType == folderType).ToList();
             return documents;
         }
     }

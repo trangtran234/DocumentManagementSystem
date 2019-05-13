@@ -188,7 +188,6 @@
     <Content Include="bin\DocumentManagementSystem.WebApp.pdb" />
     <Content Include="Content\directives\add-document.html" />
     <Content Include="Content\directives\user-login.html" />
-    <Content Include="Content\models\User.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\lib\angular\angular-csp.css" />
@@ -698,11 +697,10 @@
     <TypeScriptCompile Include="Content\controllers\documentController.ts" />
     <TypeScriptCompile Include="Content\directives\documentDirective.ts" />
     <TypeScriptCompile Include="Content\directives\userLoginDirective.ts" />
-    <TypeScriptCompile Include="Content\models\User.ts" />
+    <TypeScriptCompile Include="Content\models\user.ts" />
     <TypeScriptCompile Include="Content\services\documentService.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\jqlite.d.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\sizzle\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -713,14 +711,10 @@
   <ItemGroup>
     <Content Include="bower.json" />
     <Content Include=".bowerrc" />
-    <Content Include="Content\models\User.js.map" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="node_modules\%40types\sizzle\LICENSE" />
-    <Content Include="node_modules\%40types\sizzle\package.json" />
-    <Content Include="node_modules\%40types\sizzle\README.md" />
     <Content Include="node_modules\%40types\angular\LICENSE" />
     <Content Include="node_modules\%40types\angular\package.json" />
     <Content Include="node_modules\%40types\angular\README.md" />

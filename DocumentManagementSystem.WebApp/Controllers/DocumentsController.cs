@@ -9,6 +9,7 @@ using DocumentManagementSystem.Services;
 
 namespace DocumentManagementSystem.WebApp.Controllers
 {
+    [RoutePrefix("api/documents")]
     public class DocumentsController : ApiController
     {
         private IDocumentService documentServices;
@@ -17,33 +18,35 @@ namespace DocumentManagementSystem.WebApp.Controllers
             this.documentServices = documentServices;
         }
 
-        public IList<Document> GetAllDocument()
-        {
-            IList<Document> documents = documentServices.GetAllDocument();
-            return documents;
-        }
-
-        public IList<Document> GetDocumentsByContentId(Guid id)
-        {
-            IList<Document> documents = documentServices.GetDocumentByContentId(id);
-            return documents;
-        }
-
+        [Route("DocumentByFolderId/{id:int}")]
+        [HttpGet]
         public IList<Document> GetDocumentByParentId(int id)
         {
             IList<Document> documents = documentServices.GetDocumentByParentId(id);
             return documents;
         }
 
+        [Route("DocumentById/{id:int}")]
+        [HttpGet]
         public Document GetDocumentByDocumentId(int id)
         {
             Document document = documentServices.GetDocumentByDocumentId(id);
             return document;
         }
 
-        public IList<Document> GetDocumentByDocumentType(string type)
+        [Route("Folders")]
+        [HttpGet]
+        public IList<Document> GetFolders()
         {
-            IList<Document> documents = documentServices.GetDocumentByDocumentType(type);
+            IList<Document> documents = documentServices.GetFolders();
+            return documents;
+        }
+
+        [Route("FolderByFolderId/{id:int}")]
+        [HttpGet]
+        public IList<Document> GetFoldersByFolderId(int id)
+        {
+            IList<Document> documents = documentServices.GetFoldersByFolderId(id);
             return documents;
         }
     }

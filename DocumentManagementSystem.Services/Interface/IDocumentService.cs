@@ -10,9 +10,9 @@ namespace DocumentManagementSystem.Services
     public interface IDocumentService
     {
         IList<Document> GetAllDocument();
-        IList<Document> GetDocumentByContentId(Guid id);
         IList<Document> GetDocumentByParentId(int id);
-        IList<Document> GetDocumentByDocumentType(string type);
+        IList<Document> GetFolders();
+        IList<Document> GetFoldersByFolderId(int id);
         Document GetDocumentByDocumentId(int id);
     }
 }
