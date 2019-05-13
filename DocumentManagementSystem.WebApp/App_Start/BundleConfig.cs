@@ -13,8 +13,11 @@ namespace DocumentManagementSystem.WebApp
                       "~/Scripts/lib/jQuery/dist/jquery.js",
                       "~/Scripts/lib/bootstrap/dist/js/bootstrap.bundle.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/Contents").IncludeDirectory(
-                            "~/Content", "*.js", true));
+            bundles.Add(new ScriptBundle("~/bundles/Contents").Include(
+                            "~/Content/services/*.js",
+                            "~/Content/directives/*.js",
+                            "~/Content/controllers/*.js",
+                            "~/Content/*.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Scripts/lib/bootstrap/dist/css/bootstrap.min.css",
