@@ -2,12 +2,14 @@
     'user strict';
 
     export class DocumentController {
+        static $inject = ['$scope'];
 
-        constructor() { }
-
-        public uploadDocument() {
-            var filePathInput: any = $("#addFile");
+        constructor(private $scope) {
+           
         }
-
+        
+        
+       
     }
+
 }
