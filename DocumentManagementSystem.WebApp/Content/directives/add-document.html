@@ -5,7 +5,6 @@
     <a class="dropdown-item" data-toggle="modal" data-target="#addFolder">Folder</a>
     <a class="dropdown-item" data-toggle="modal" data-target="#addDocument">Documents</a>
 </div>
-
 <div class="modal" id="addDocument">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -14,16 +13,16 @@
                 <h5>Upload documents</h5>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body" ng-controller="DocumentController">
                 <div class="custom-file mb-3">
-                    <input type="file" class="custom-file-input" file-model ='addFile' id="addFile"/>
+                    <input type="file" multiple class="custom-file-input" id="addFile" ng-model="addFile" required/>
                     <label class="custom-file-label" for="addFile">Select file(s) to upload</label>
                 </div>
 
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Filename</th>
+                            <th scope="col" ng-show="addFile"></th>
                             <th scope="col">Size</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
@@ -55,7 +54,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" ng-click="uploadDocument()">Upload</button>
+                <button type="button" class="btn btn-secondary" ng-click="uploadFile()">Upload</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
 
