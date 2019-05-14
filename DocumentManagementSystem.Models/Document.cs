@@ -18,6 +18,6 @@ namespace DocumentManagementSystem.Models
         public virtual Account CreatedBy { get; set; }
         public virtual Account LastModifiedBy { get; set; }
         public virtual DocumentContent DocumentContent { get; set; }
-        public virtual ICollection<DocumentTag> DocumentTags { get; set; }
+        public virtual List<Tag> Tags { get; set; }
     }
 }

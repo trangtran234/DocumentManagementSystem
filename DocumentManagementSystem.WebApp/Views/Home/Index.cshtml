@@ -32,7 +32,13 @@
                 <add-document></add-document>
             </div>
             <div class="row border border-warning listing-information-area">
-                <div class="col-sm-8 border border-primary listing"></div>
+                <div class="col-sm-8 border border-primary listing" ng-controller="TableController">
+                    <div ng-repeat="document in documents">
+                        <ul>
+                            <li>{{document.Description}}</li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="col-sm-4 border border-dark information-area"></div>
             </div>
         </div>
