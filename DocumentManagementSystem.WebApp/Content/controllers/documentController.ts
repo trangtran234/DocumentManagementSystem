@@ -3,12 +3,10 @@
 
     export class DocumentController {
 
-        static $inject = ["$scope"];
-
-        constructor(protected scope: ng.IScope) { }
+        constructor() { }
 
         public uploadDocument() {
-            //var filePathInput: any = $("#addFile");
+            var filePathInput: any = $("#addFile");
         }
 
     }
