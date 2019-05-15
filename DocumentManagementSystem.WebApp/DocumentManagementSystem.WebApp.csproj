@@ -450,6 +450,7 @@
     <TypeScriptCompile Include="Content\directives\documentDirective.ts" />
     <TypeScriptCompile Include="Content\directives\userLoginDirective.ts" />
     <TypeScriptCompile Include="Content\models\document.ts" />
+    <TypeScriptCompile Include="Content\models\tag.ts" />
     <TypeScriptCompile Include="Content\models\user.ts" />
     <TypeScriptCompile Include="Content\services\documentService.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\index.d.ts" />

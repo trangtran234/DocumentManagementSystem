@@ -1,6 +1,4 @@
-﻿class User {
-    public userName: string;
-    constructor(userName: string) {
-        this.userName = userName;
-    }
+﻿export class User {
+    id: number;
+    username: string;
 }

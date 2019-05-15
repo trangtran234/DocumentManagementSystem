@@ -32,14 +32,37 @@
                 <add-document></add-document>
             </div>
             <div class="row border border-warning listing-information-area">
-                <div class="col-sm-8 border border-primary listing" ng-controller="TableController">
-                    <div ng-repeat="document in documents">
-                        <ul>
-                            <li>{{document.Description}}</li>
-                        </ul>
-                    </div>
+                <div class="col-sm-9 border border-primary listing" ng-controller="TableController">
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Tags</th>
+                            <th scope="col">Created</th>
+                            <th scope="col">Created By</th>
+                            <th scope="col">Last Modified</th>
+                            <th scope="col">Last Modified By</th>
+                        </tr>
+                        <tbody ng-repeat="document in documents">
+                            <tr>
+                                <td ng-if="document.documentType !== 'folder'">{{document.documentName}}.{{document.documentType}}</td>
+                                <td ng-if="document.documentType === 'folder'">{{document.documentName}}</td>
+                                <td ng-if="document.tags.length === 0"></td>
+                                <td ng-if="document.tags.length !== 0">
+                                    <div>
+                                        <ul ng-repeat="tag in document.tags" class="list-inline">
+                                            <li class="list-inline-item">{{tag.tagName}}</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>{{document.created}}</td>
+                                <td>{{document.createdBy.username}}</td>
+                                <td>{{document.lastModified}}</td>
+                                <td>{{document.lastModifiedBy.username}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-sm-4 border border-dark information-area"></div>
+                <div class="col-sm-3 border border-dark information-area"></div>
             </div>
         </div>
     </div>

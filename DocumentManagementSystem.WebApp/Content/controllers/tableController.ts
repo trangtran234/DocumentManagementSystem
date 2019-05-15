@@ -20,7 +20,7 @@
         }
 
         getDocuments(): ng.IPromise<ng.IHttpResponse<Document[]>>{
-            return this.$http.get<Document[]>('/api/documents/documentDTO');
+            return this.$http.get<Document[]>('/api/documents/DocumentByFolderId/3');
         }
 
         addDocument(document: Document): ng.IPromise<ng.IHttpResponse<Document>> {
