@@ -1,8 +1,11 @@
 ﻿module rootApp {
     'user strict';
 
+    import Document = rootApp.model.Document;
+
     interface IDocumentScope extends ng.IScope {
         documents: Document[];
+        documentsByFolderId: Document[];
     }
 
     export class TableController  {
@@ -10,7 +13,7 @@
         static $inject = ['$http', '$scope'];
 
         constructor(private $http: ng.IHttpService, private $scope: IDocumentScope) {
-            this.getDocuments()
+            this.getDocumentByFolderId()
                 .then((response: ng.IHttpPromiseCallbackArg<Document[]>): Document[] => {
                     return <Document[]>response.data;
                 })
@@ -19,13 +22,11 @@
             });
         }
 
-        getDocuments(): ng.IPromise<ng.IHttpResponse<Document[]>>{
+        getDocumentByFolderId(): ng.IPromise<ng.IHttpResponse<Document[]>>{
             return this.$http.get<Document[]>('/api/documents/DocumentByFolderId/3');
         }
 
-        addDocument(document: Document): ng.IPromise<ng.IHttpResponse<Document>> {
-            return this.$http.post<Document>('/api/documents/documentDTO', document);
-        }
+        
 
 
     }

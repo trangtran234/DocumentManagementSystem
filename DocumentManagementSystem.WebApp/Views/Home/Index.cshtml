@@ -35,6 +35,7 @@
                 <div class="col-sm-9 border border-primary listing" ng-controller="TableController">
                     <table class="table">
                         <tr>
+                            <th scope="col"><input type="checkbox" ng-model="leader"/></th>
                             <th scope="col">Title</th>
                             <th scope="col">Tags</th>
                             <th scope="col">Created</th>
@@ -44,13 +45,14 @@
                         </tr>
                         <tbody ng-repeat="document in documents">
                             <tr>
+                                <td><input type="checkbox" ng-checked="leader"/></td>
                                 <td ng-if="document.documentType !== 'folder'">{{document.documentName}}.{{document.documentType}}</td>
                                 <td ng-if="document.documentType === 'folder'">{{document.documentName}}</td>
                                 <td ng-if="document.tags.length === 0"></td>
                                 <td ng-if="document.tags.length !== 0">
                                     <div>
                                         <ul ng-repeat="tag in document.tags" class="list-inline">
-                                            <li class="list-inline-item">{{tag.tagName}}</li>
+                                            <li class="list-inline-item border border-dark rounded-sm mx-auto text-center" style="width:150px">{{tag.tagName}}</li>
                                         </ul>
                                     </div>
                                 </td>
