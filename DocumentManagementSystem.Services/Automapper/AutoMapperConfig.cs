@@ -21,8 +21,6 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(d => d.DocumentContent, opt => opt.MapFrom(src => src))
                                         .ForMember(d => d.Tags, opt => opt.MapFrom(src => src.DocumentTags.Select(dt=> new Models.Tag() { Id = dt.Tag.Id, TagName = dt.Tag.TagName })));
                                         
-                                        
-
                 cfg.CreateMap<Repository.Document, Models.DocumentContent>()
                                         .ForMember(d => d.Id, opt => opt.MapFrom(src => src.DocumentContent.Id))
                                         .ForMember(d => d.Content, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentContent.Content)));

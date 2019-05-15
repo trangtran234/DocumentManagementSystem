@@ -1,7 +1,4 @@
-﻿import { Tag } from "./tag";
-import { User } from "./user";
-
-export class Document {
+﻿export class Document {
     Id: number;
     Description: string;
     FileType: string;
