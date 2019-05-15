@@ -42,6 +42,9 @@
 .listing {
   height: 100%;
 }
+.listing .mx-auto {
+  width: 150px;
+}
 .information-area {
   height: 100%;
 }
