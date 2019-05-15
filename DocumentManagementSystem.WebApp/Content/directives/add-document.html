@@ -15,28 +15,24 @@
 
             <div class="modal-body" ng-controller="DocumentController">
                 <div class="custom-file mb-3">
-                    <input type="file" multiple class="custom-file-input" id="addFile" ng-model="addFile" required/>
+                    <input type="file" multiple class="custom-file-input" id="addFile" ng-model="addFile" required />
                     <label class="custom-file-label" for="addFile">Select file(s) to upload</label>
                 </div>
 
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col" ng-show="addFile"></th>
+                            <th scope="col">File Name</th>
                             <th scope="col">Size</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>File 1</td>
+                        <tr ng-repeat="file in files">
+                            <td>{{file}}</td>
                             <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>File 2</td>
-                            <td>2</td>
-                        </tr>
+                        </tr>                   
                     </tbody>
                 </table>
 
