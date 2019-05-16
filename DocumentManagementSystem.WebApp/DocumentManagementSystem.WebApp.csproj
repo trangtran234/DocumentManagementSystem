@@ -195,6 +195,8 @@
     <Content Include="bin\DocumentManagementSystem.WebApp.dll" />
     <Content Include="bin\DocumentManagementSystem.WebApp.pdb" />
     <Content Include="Content\directives\add-document.html" />
+    <Content Include="Content\directives\informationDocumentTag.html" />
+    <Content Include="Content\directives\tableListView.html" />
     <Content Include="Content\directives\user-login.html" />
     <Content Include="Content\rootApp.js" />
     <Content Include="favicon.ico" />
@@ -704,8 +706,11 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <TypeScriptCompile Include="Content\controllers\documentController.ts" />
+    <TypeScriptCompile Include="Content\controllers\informationController.ts" />
     <TypeScriptCompile Include="Content\controllers\tableController.ts" />
     <TypeScriptCompile Include="Content\directives\documentDirective.ts" />
+    <TypeScriptCompile Include="Content\directives\informationDirective.ts" />
+    <TypeScriptCompile Include="Content\directives\tableDirective.ts" />
     <TypeScriptCompile Include="Content\directives\userLoginDirective.ts" />
     <TypeScriptCompile Include="Content\models\document.ts" />
     <TypeScriptCompile Include="Content\models\tag.ts" />
