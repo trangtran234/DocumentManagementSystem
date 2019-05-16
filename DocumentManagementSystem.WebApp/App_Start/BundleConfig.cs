@@ -14,6 +14,7 @@ namespace DocumentManagementSystem.WebApp
                       "~/Scripts/lib/bootstrap/dist/js/bootstrap.bundle.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Contents").Include(
+                            "~/Content/models/*.js",
                             "~/Content/services/*.js",
                             "~/Content/directives/*.js",
                             "~/Content/controllers/*.js",
