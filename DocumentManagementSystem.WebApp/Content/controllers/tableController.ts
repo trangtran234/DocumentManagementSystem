@@ -3,34 +3,51 @@
 
     import Document = rootApp.model.Document;
 
-    interface IDocumentScope extends ng.IScope {
+    interface IMyDocumentRootScope extends ng.IRootScopeService {
+        document: Document; 
+    }
+
+    interface IMyDocumentScope extends ng.IScope {
         documents: Document[];
-        getDocumentByFolderId: (id) => void;
+        getChildDocumentOfFolder: (id) => void;
+        getInfoOfDocument: (id) => void;
     }
 
     export class TableController  {
-        static $inject = ['$http', '$scope'];
+        static $inject = ['$http', '$scope', '$rootScope'];
 
-        constructor(private $http: ng.IHttpService, private $scope: IDocumentScope, ) {
-            this.getDocument()
-                .then((response: ng.IHttpPromiseCallbackArg<Document[]>): Document[] => {
-                    return <Document[]>response.data;
-                })
-                .then((response: Document[]) => {
-                    $scope.documents = response;
+        constructor(private $http: ng.IHttpService, private $scope: IMyDocumentScope, private $rootScope: IMyDocumentRootScope) {
+            this.getDocumentIntoListView();
+
+            $scope.getChildDocumentOfFolder = this.getChildDocumentOfFolder;
+            $scope.getInfoOfDocument = this.getInfoOfDocument;
+        }
+
+        getDocumentIntoListView = () => {
+            this.$http.get<Document[]>('/api/documents/DocumentByFolderId/3')
+                .then((response: ng.IHttpPromiseCallbackArg<Document[]>) => {
+                    this.$scope.documents = response.data;
                 });
-            $scope.getDocumentByFolderId = this.getDocumentByFolderId;
-        }
-        
-
-        getDocument(): ng.IPromise<ng.IHttpResponse<Document[]>>{
-            return this.$http.get<Document[]>('/api/documents/DocumentByFolderId/3');
         }
 
-        getDocumentByFolderId(id) {
-            console.log("Click on document");
-            console.log("Id:" + id);
-            console.log("/api/documents/DocumentByFolderId/" + id);
+        getChildDocumentOfFolder = (id) => {
+            this.$http.get<Document[]>('/api/documents/DocumentByFolderId/' + id)
+                .then((response: ng.IHttpPromiseCallbackArg<Document[]>) => {
+                    this.$scope.documents = response.data;
+                });
+
+            this.$http.get<Document>('/api/documents/DocumentById/' + id)
+                .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
+                    var document = response.data;
+                    this.$rootScope.$broadcast('rootScope:documentInfo', document)
+                });
+        }
+
+        getInfoOfDocument = (id) => {
+            this.$http.get<Document>('/api/documents/DocumentById/' + id)
+                .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
+                    this.$rootScope.$broadcast('rootScope:documentInfo', response.data)
+                });
         }
     }
 }
