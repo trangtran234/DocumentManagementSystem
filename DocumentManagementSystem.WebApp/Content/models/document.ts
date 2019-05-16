@@ -14,6 +14,6 @@
         lastModifiedBy?: User;
         tags?: Array<Tag>;
         statusUpload?: number;
-        documentContent?: string;
+        documentContent?: Int8Array;
     }
 }
