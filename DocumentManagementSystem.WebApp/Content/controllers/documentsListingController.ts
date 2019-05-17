@@ -13,12 +13,11 @@
         getInfoOfDocument: (id) => void;
     }
 
-    export class TableController  {
+    export class DocumentsListingController  {
         static $inject = ['$http', '$scope', '$rootScope'];
 
         constructor(private $http: ng.IHttpService, private $scope: IMyDocumentScope, private $rootScope: IMyDocumentRootScope) {
             this.getDocumentIntoListView();
-
             $scope.getChildDocumentOfFolder = this.getChildDocumentOfFolder;
             $scope.getInfoOfDocument = this.getInfoOfDocument;
         }

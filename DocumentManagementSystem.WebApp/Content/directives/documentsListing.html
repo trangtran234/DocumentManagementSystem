@@ -1,5 +1,5 @@
 ﻿<table class="table">
-    <tr>
+    <tr class="table-active">
         <th scope="col"><input type="checkbox" ng-model="leader" /></th>
         <th scope="col">Title</th>
         <th scope="col">Tags</th>
@@ -11,20 +11,20 @@
     <tbody ng-repeat="document in documents">
         <tr>
             <td><input type="checkbox" ng-checked="leader" /></td>
-            <td ng-if="document.documentType !== 'folder'" ng-click="getInfoOfDocument(document.id)">{{document.documentName}}.{{document.documentType}}</td>
-            <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)">{{document.documentName}}</td>
+            <td ng-if="document.documentType !== 'folder'" ng-click="getInfoOfDocument(document.id)"><a href="#">{{document.documentName}}.{{document.documentType}}</a></td>
+            <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)"><a href="#">{{document.documentName}}</a></td>
             <td ng-if="document.tags.length === 0"></td>
             <td ng-if="document.tags.length !== 0">
                 <div>
-                    <ul ng-repeat="tag in document.tags" class="list-inline">
-                        <li class="list-inline-item border border-dark rounded-sm mx-auto text-center">{{tag.tagName}}</li>
+                    <ul ng-repeat="tag in document.tags" class="nav navbar-nav list-inline">
+                        <li class="list-inline-item border border-dark rounded mx-auto">{{tag.tagName}}</li>
                     </ul>
                 </div>
             </td>
             <td>{{document.created}}</td>
-            <td>{{document.createdBy.username}}</td>
+            <td class="pointer"><a href="#">{{document.createdBy.username}}</a></td>
             <td>{{document.lastModified}}</td>
-            <td>{{document.lastModifiedBy.username}}</td>
+            <td><a href="#">{{document.lastModifiedBy.username}}</a></td>
         </tr>
     </tbody>
 </table>

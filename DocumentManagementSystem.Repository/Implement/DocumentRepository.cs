@@ -24,8 +24,7 @@ namespace DocumentManagementSystem.Repository
         public IList<Document> GetFolders()
         {
             const string folderType = "folder";
-            const int rootId = -1;
-            IList<Document> documents = context.Documents.Where(d => d.DocumentType == folderType && d.ParentId == rootId).ToList();
+            IList<Document> documents = context.Documents.Where(d => d.DocumentType == folderType).ToList();
             return documents;
         }
 

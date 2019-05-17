@@ -41,17 +41,17 @@ namespace DocumentManagementSystem.Services
             return document;
         }
 
-        public IList<Models.Document> GetFolders()
+        public IList<DocumentTreeViewDTO> GetFolders()
         {
             IList<Repository.Document> documentsRepo = documentRepository.GetFolders();
-            IList<Models.Document> documents = mapper.Map<List<Models.Document>>(documentsRepo);
+            IList<DocumentTreeViewDTO> documents = mapper.Map<List<DocumentTreeViewDTO>>(documentsRepo);
             return documents;
         }
 
-        public IList<Models.Document> GetFoldersByFolderId(int id)
+        public IList<DocumentTreeViewDTO> GetFoldersByFolderId(int id)
         {
             IList<Repository.Document> documentsRepo = documentRepository.GetFoldersByFolderId(id);
-            IList<Models.Document> documents = mapper.Map<List<Models.Document>>(documentsRepo);
+            IList<DocumentTreeViewDTO> documents = mapper.Map<List<DocumentTreeViewDTO>>(documentsRepo);
             return documents;
         }
     }

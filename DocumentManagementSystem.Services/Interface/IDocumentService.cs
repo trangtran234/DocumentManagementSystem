@@ -11,8 +11,8 @@ namespace DocumentManagementSystem.Services
     {
         IList<Document> GetAllDocument();
         IList<Document> GetDocumentByParentId(int id);
-        IList<Document> GetFolders();
-        IList<Document> GetFoldersByFolderId(int id);
+        IList<DocumentTreeViewDTO> GetFolders();
+        IList<DocumentTreeViewDTO> GetFoldersByFolderId(int id);
         Document GetDocumentByDocumentId(int id);
     }
 }

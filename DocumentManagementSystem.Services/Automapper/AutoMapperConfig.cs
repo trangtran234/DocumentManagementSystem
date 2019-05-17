@@ -25,7 +25,7 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(d => d.Id, opt => opt.MapFrom(src => src.DocumentContent.Id))
                                         .ForMember(d => d.Content, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentContent.Content)));
 
-
+                cfg.CreateMap<Repository.Document, Models.DocumentTreeViewDTO>();
                 //lots more maps...here!
             });
 
