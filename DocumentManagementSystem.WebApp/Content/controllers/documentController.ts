@@ -4,25 +4,33 @@
 
     export interface IUploadDocumentScope extends ng.IScope {
         filesList: Array<Document>;
-        uploadFile(): boolean;
-        deleteDocumentInDialog(id): boolean;
+        uploadFile: (documentList) => void;
+        deleteDocumentInDialog: (id) => boolean;
     }
 
     export class DocumentController {
+        static $inject = ['$http', '$scope'];
+        
+        constructor(private $http: ng.IHttpService, private $scope: IUploadDocumentScope) {
+            $scope.uploadFile = this.uploadFile;
+        }   
+        
+        uploadFile = (documentList) => {
+            var myJSON = JSON.stringify(documentList);
 
-        constructor(private $scope: IUploadDocumentScope) {
-            //$scope.uploadFile = this.uploadFile;
-        }      
+            console.log("JSON: " + myJSON);
 
-        //uploadFile(): boolean {
-        //    console.log("uploadFile123");
-        //    for (var i = 0; i < this.$scope.filesList.length; i++) {
-        //        if (this.$scope.filesList[i].documentSize > 20480) {
-        //            alert("Maximum size 20MB.");
-        //        }
-        //    }
-        //    return false;
-        //}
+            this.$http.post('/api/upload/uploadDocuments', myJSON)
+                .then(
+                    function (response) {
+                        console.log("Success: " + response);
+                    },
+                    function (response) {
+                        console.log("Fail: " + response);
+                    }
+                );
+
+        }
     }
 }
 
