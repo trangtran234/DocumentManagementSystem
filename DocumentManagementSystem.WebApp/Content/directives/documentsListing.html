@@ -1,6 +1,7 @@
-﻿<table class="table">
+﻿<table class="table table-hover">
     <tr class="table-active">
         <th scope="col"><input type="checkbox" ng-model="leader" /></th>
+        <th scope="col"></th>
         <th scope="col">Title</th>
         <th scope="col">Tags</th>
         <th scope="col">Created</th>
@@ -9,20 +10,24 @@
         <th scope="col">Last Modified By</th>
     </tr>
     <tbody ng-repeat="document in documents">
-        <tr>
+        <tr ng-switch="document.documentType">
             <td><input type="checkbox" ng-checked="leader" /></td>
-            <td ng-if="document.documentType !== 'folder'" ng-click="getInfoOfDocument(document.id)"><a href="#">{{document.documentName}}.{{document.documentType}}</a></td>
-            <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)"><a href="#">{{document.documentName}}</a></td>
+            <td ng-switch-when="docx"><i class="far fa-file-word"></i></td>
+            <td ng-switch-when="excel"><i class="far fa-file-excel"></i></td>
+            <td ng-switch-when="pdf"><i class="far fa-file-pdf"></i></td>
+            <td ng-switch-when="folder"><i class="far fa-folder"></i></td>
+            <td ng-if="document.documentType !== 'folder'" ng-click="clickOnFile(document.id)"><a href="#">{{document.documentName}}.{{document.documentType}}</a></td>
+            <td ng-if="document.documentType === 'folder'" ng-click="clickOnFolder(document.id)"><a href="#">{{document.documentName}}</a></td>
             <td ng-if="document.tags.length === 0"></td>
             <td ng-if="document.tags.length !== 0">
                 <div>
-                    <ul ng-repeat="tag in document.tags" class="nav navbar-nav list-inline">
-                        <li class="list-inline-item border border-dark rounded mx-auto">{{tag.tagName}}</li>
+                    <ul class="list-inline">
+                        <li class="list-inline-item border border-dark rounded mx-auto" ng-repeat="tag in document.tags">{{tag.tagName}}</li>
                     </ul>
                 </div>
             </td>
             <td>{{document.created}}</td>
-            <td class="pointer"><a href="#">{{document.createdBy.username}}</a></td>
+            <td><a href="#">{{document.createdBy.username}}</a></td>
             <td>{{document.lastModified}}</td>
             <td><a href="#">{{document.lastModifiedBy.username}}</a></td>
         </tr>
