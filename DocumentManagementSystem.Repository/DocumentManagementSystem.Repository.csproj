@@ -43,6 +43,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -51,11 +54,18 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=4.1.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.10.3\lib\net46\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.10.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.10.3\lib\net46\Unity.Container.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="DependencyExtension\DependencyExtensionDbContext.cs" />
     <Compile Include="Document.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
     </Compile>
@@ -81,6 +91,7 @@
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Implement\DocumentRepository.cs" />
+    <Compile Include="Interface\IDocumentContext.cs" />
     <Compile Include="Interface\IDocumentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs">
@@ -98,7 +109,9 @@
     <None Include="DocumentManagementSystem.edmx.diagram">
       <DependentUpon>DocumentManagementSystem.edmx</DependentUpon>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DocumentManagementSystem.Models\DocumentManagementSystem.Models.csproj">

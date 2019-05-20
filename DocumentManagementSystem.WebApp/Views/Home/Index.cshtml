@@ -85,7 +85,7 @@
             </div>
             <div class="row border border-warning listing-information-area">
                 <div class="col-sm-9 border border-primary listing" ng-controller="DocumentsListingController">
-                    <documents-list></documents-list>
+                    <documents-listing documents="documents" action-file="getInfoOfDocument" action-folder="getChildDocumentOfFolder"></documents-listing>
                 </div>
                 <div class="col-sm-3 border border-dark information-area" ng-controller="InformationController">
                     <information-document-tag info="document"></information-document-tag>

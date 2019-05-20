@@ -7,7 +7,7 @@
         document: Document; 
     }
 
-    interface IMyDocumentScope extends ng.IScope {
+    export interface IMyDocumentScope extends ng.IScope {
         documents: Document[];
         getChildDocumentOfFolder: (id) => void;
         getInfoOfDocument: (id) => void;
@@ -26,7 +26,7 @@
             this.$http.get<Document[]>('/api/documents/DocumentByFolderId/3')
                 .then((response: ng.IHttpPromiseCallbackArg<Document[]>) => {
                     this.$scope.documents = response.data;
-                });
+                 });
         }
 
         getChildDocumentOfFolder = (id) => {
