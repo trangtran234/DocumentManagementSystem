@@ -10,7 +10,7 @@ namespace DocumentManagementSystem.WebApp
         {
             bundles.Add(new ScriptBundle("~/bundles/libs").Include(
                       "~/Scripts/lib/angular/angular.js",
-                      "~/Scripts/lib/jQuery/dist/jquery.js",
+                      "~/Scripts/lib/jQuery/dist/jquery.min.js",
                       "~/Scripts/lib/bootstrap/dist/js/bootstrap.bundle.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Contents").Include(
