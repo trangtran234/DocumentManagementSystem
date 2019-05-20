@@ -7,6 +7,7 @@
         documents: DocumentTree[];
         getChildFolderOfTree: (id) => void;
         childDocuments: DocumentTree[];
+        onAddedNewFiles: () => void;
     }
 
     export class TreeViewController {
@@ -14,6 +15,9 @@
         constructor(private $scope: IMyDocumentScope, private $http: ng.IHttpService) {
             this.getFolders();
             $scope.getChildFolderOfTree = this.getChildFolderOfTree;
+            $scope.onAddedNewFiles = () => {
+                this.getChildFolderOfTree(3);
+            };
         }
 
         getFolders = () => {

@@ -18,7 +18,7 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(d => d.Created, opt => opt.MapFrom(src => ((DateTime)src.Created).ToString("yyyy-MM-dd")))
                                         .ForMember(d => d.LastModified, opt => opt.MapFrom(src => ((DateTime)src.LastModified).ToString("yyyy-MM-dd")))
                                         .ForMember(d => d.DocumentDescription, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentDescription)))
-                                        .ForMember(d => d.DocumentContent, opt => opt.MapFrom(src => src))
+                                        //.ForMember(d => d.DocumentContent, opt => opt.MapFrom(src => src))
                                         .ForMember(d => d.Tags, opt => opt.MapFrom(src => src.DocumentTags.Select(dt=> new Models.Tag() { Id = dt.Tag.Id, TagName = dt.Tag.TagName })));
                                         
                 cfg.CreateMap<Repository.Document, Models.DocumentContent>()
@@ -26,6 +26,9 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(d => d.Content, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentContent.Content)));
 
                 cfg.CreateMap<Repository.Document, Models.DocumentTreeViewDTO>();
+
+                cfg.CreateMap<Models.Document, Repository.Document>();
+                //.ForMember();
                 //lots more maps...here!
             });
 

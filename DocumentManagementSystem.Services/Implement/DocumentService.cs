@@ -54,5 +54,11 @@ namespace DocumentManagementSystem.Services
             IList<DocumentTreeViewDTO> documents = mapper.Map<List<DocumentTreeViewDTO>>(documentsRepo);
             return documents;
         }
+
+        public bool AddListDocument(List<Models.Document> listDocuments)
+        {
+            List<Repository.Document> listDocumentsRepo = mapper.Map<List<Repository.Document>>(listDocuments);
+            return documentRepository.AddListDocument(listDocumentsRepo);
+        }
     }
 }

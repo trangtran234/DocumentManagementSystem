@@ -14,5 +14,6 @@ namespace DocumentManagementSystem.Services
         IList<DocumentTreeViewDTO> GetFolders();
         IList<DocumentTreeViewDTO> GetFoldersByFolderId(int id);
         Document GetDocumentByDocumentId(int id);
+        bool AddListDocument(List<Models.Document> listDocuments);
     }
 }

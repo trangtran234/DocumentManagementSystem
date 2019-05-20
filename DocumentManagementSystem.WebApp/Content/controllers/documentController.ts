@@ -1,34 +1,46 @@
 ﻿module rootApp {
     'user strict';
-    import Document = rootApp.model.Document;
-
-    export interface IUploadDocumentScope extends ng.IScope {
-        filesList: Array<Document>;
-        uploadFile: (documentList) => void;
-        deleteDocumentInDialog: (id) => boolean;
-    }
-
     export class DocumentController {
         static $inject = ['$http', '$scope'];
         
         constructor(private $http: ng.IHttpService, private $scope: IUploadDocumentScope) {
-            $scope.uploadFile = this.uploadFile;
+            $scope.onSave = this.onSave;
+            $scope.uploadFiles = this.uploadFiles;
         }   
         
-        uploadFile = (documentList) => {
-            var myJSON = JSON.stringify(documentList);
+        onSave = () => {
+            
+            //reload the list
+        }
 
-            console.log("JSON: " + myJSON);
+        uploadFiles = () => {
 
-            this.$http.post('/api/upload/uploadDocuments', myJSON)
-                .then(
-                    function (response) {
-                        console.log("Success: " + response);
-                    },
-                    function (response) {
-                        console.log("Fail: " + response);
-                    }
-                );
+            console.log("uploadFiles: " + this.$scope.files);
+            //transformRequest: function () {
+            //    var formData = new FormData();
+            //    for (var i = 0; i < this.$scope.files.length; i++) {
+            //        formData.append("file" + i, this.$scope.files[i]);
+            //    }
+            //},
+
+            var formData = new FormData();
+            var x = this.$scope.files.length;
+            for (var i = 0; i < this.$scope.files.length; i++) {
+                formData.append('file', this.$scope.files);
+            }
+
+            this.$http({
+                url: '/api/upload/uploadDocuments',
+                method: 'POST',                
+                data: formData,
+                transformRequest: angular.identity
+            }).then(function (response) {
+                console.log('Success: ' + response);
+                this.$scope.onSave();
+            },
+                function (response) {
+                    console.log('Fail: ' + response);
+                });
 
         }
     }
