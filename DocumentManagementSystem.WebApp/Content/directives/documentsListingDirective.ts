@@ -4,7 +4,7 @@
         public restrict: string = "E";
         public templateUrl: string = '/Content/directives/documentsListing.html';
         public scope = {
-            documents: '=',
+            files: '=',
             getInfoOfDocument: '&actionFile',
             getChildDocumentOfFolder: '&actionFolder'
         }
