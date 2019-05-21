@@ -13,6 +13,7 @@ namespace DocumentManagementSystem.Repository
         IList<Document> GetFolders();
         IList<Document> GetFoldersByFolderId(int id);
         Document GetDocumentByDocumentId(int id);
-        bool AddListDocument(List<Document> listDocuments);
+        void AddListDocument(List<Document> listDocuments);
+        void AddDocumentContent(List<DocumentContent> documentContent);
     }
 }

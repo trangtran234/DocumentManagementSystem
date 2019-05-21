@@ -28,7 +28,19 @@ namespace DocumentManagementSystem.Services.Automapper
 
                 cfg.CreateMap<Repository.Document, Models.DocumentTreeViewDTO>();
 
-                cfg.CreateMap<Models.Document, Repository.Document>();
+                cfg.CreateMap<Models.Document, Repository.Document>()
+                                        .ForMember(repo => repo.CreateBy, model => model.MapFrom(src => src.CreateByID))
+                                        .ForMember(repo => repo.LastModifiedBy, model => model.MapFrom(src => src.LastModifiedByID))
+                                        .ForMember(repo => repo.DocumentName, model => model.MapFrom(src => src.DocumentName))
+                                        .ForMember(repo => repo.DocumentType, model => model.MapFrom(src => src.DocumentType))
+                                        .ForMember(repo => repo.DocumentSize, model => model.MapFrom(src => src.DocumentSize))
+                                        .ForMember(repo => repo.DocumentDescription, model => model.MapFrom(src => src.DocumentDescription))
+                                        .ForMember(repo => repo.DocumentContentId, model => model.MapFrom(src => src.DocumentContentId))
+                                        .ForMember(repo => repo.Id, model => model.Ignore())
+                                        .ForMember(repo => repo.DocumentContent, model => model.Ignore())
+                                        .ForMember(repo => repo.Account, model => model.Ignore())
+                                        .ForMember(repo => repo.Account1, model => model.Ignore());
+                cfg.CreateMap<Models.DocumentContent, Repository.DocumentContent>();
                 //.ForMember();
                 //lots more maps...here!
             });

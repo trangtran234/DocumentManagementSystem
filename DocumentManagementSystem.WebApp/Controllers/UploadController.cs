@@ -21,74 +21,66 @@ namespace DocumentManagementSystem.WebApp.Controllers
     public class UploadController : ApiController
     {
         private IDocumentService documentServices;
+        private const int LIMITED_FILE_SIZE = 20480;
 
         public UploadController(IDocumentService documentServices)
         {
             this.documentServices = documentServices;
         }
 
-        //[Route("uploadDocuments")]
-        //[HttpPost]
-        //public HttpResponseMessage UploadFiles(object[] message)
-        //{
-        //    List<Document> listDocuments = new List<Document>();
-        //    for(int i =0; i < message.Count(); i++)
-        //    {
-        //        dynamic json = JObject.Parse(message[i].ToString());
-
-        //        Document document = new Document();
-        //        document.DocumentName = json.documentName;
-        //        document.DocumentSize = json.documentSize;
-        //        document.DocumentType = json.documentType;
-        //        document.Created = json.created;
-        //        document.LastModified = json.created;
-
-        //        BinaryFormatter bf = new BinaryFormatter();
-        //        MemoryStream ms = new MemoryStream();
-        //        bf.Serialize(ms, json.documentContent);
-        //        document.DocumentContent = ms.ToArray();
-
-        //        //document.DocumentContent = (byte[])json.documentContent;
-        //        //document.DocumentContent = json.documentContent;
-
-        //        listDocuments.Add(document);
-        //    }
-
-        //    documentServices.AddListDocument(listDocuments);
-
-        //    HttpResponseMessage result = new HttpResponseMessage();
-        //    return result;
-        //}
-
         [HttpPost]
         [Route("uploadDocuments")]
         public async Task<HttpResponseMessage> Post()
         {
-            //if (!Request.Content.IsMimeMultipartContent())
-            //{
-            //    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-            //}
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            List<Document> listDocument = new List<Document>();
+            List<Document> listLimitedSize = new List<Document>();
 
             var root = HttpContext.Current.Server.MapPath("~/App_Data/Uploadfiles");
             Directory.CreateDirectory(root);
             var provider = new MultipartFormDataStreamProvider(root);
-            var result = await Request.Content.ReadAsMultipartAsync(provider);
+            var result = await Request.Content.ReadAsMultipartAsync(provider);           
 
-
-            //var model = result.FormData["jsonData"];
-            //if (model == null)
-            //{
-            //    throw new HttpResponseException(HttpStatusCode.BadRequest);
-            //}
-            //TODO: Do something with the JSON data.  
-
-            //get the posted files  
             foreach (var file in result.FileData)
             {
-                //TODO: Do something with uploaded file.  
+                Document document = new Document();
+                byte[] buff = null;
+
+                FileStream fs = new FileStream(file.LocalFileName, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                long numBytes = new FileInfo(file.LocalFileName).Length;
+                buff = br.ReadBytes((int)numBytes);
+
+                document.DocumentContent = File.ReadAllBytes(file.LocalFileName);
+                document.DocumentName = file.Headers.ContentDisposition.FileName.Replace("\"", string.Empty); ;
+                //document.DocumentType = file.Headers.ContentType.MediaType;
+                document.DocumentSize = document.DocumentContent.Length;
+                document.CreateByID = 1;
+                document.LastModifiedByID = 1;
+                
+               
+                if (document.DocumentSize > LIMITED_FILE_SIZE)
+                {
+                    listLimitedSize.Add(document);
+                }
+                listDocument.Add(document);
+
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, "success!");
+            if(listLimitedSize.Count !=0)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Check File Size " + listLimitedSize);
+            }
+
+            if (documentServices.AddListDocument(listDocument))
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, "success");
+            }
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
     }
 }

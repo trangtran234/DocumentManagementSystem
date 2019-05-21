@@ -57,8 +57,27 @@ namespace DocumentManagementSystem.Services
 
         public bool AddListDocument(List<Models.Document> listDocuments)
         {
+            List<Models.DocumentContent> listContents = new List<Models.DocumentContent>();
+            foreach (Models.Document document in listDocuments)
+            {                
+                if (document.DocumentContent != null)
+                {
+                    Models.DocumentContent content = new Models.DocumentContent();
+
+                    content.Id = Guid.NewGuid();
+                    document.DocumentContentId = content.Id;
+                    content.Content = document.DocumentContent;
+                    listContents.Add(content);
+                }
+            }
+            
             List<Repository.Document> listDocumentsRepo = mapper.Map<List<Repository.Document>>(listDocuments);
-            return documentRepository.AddListDocument(listDocumentsRepo);
+            List<Repository.DocumentContent> listContentsRepo = mapper.Map<List<Repository.DocumentContent>>(listContents);
+
+            documentRepository.AddDocumentContent(listContentsRepo);
+            documentRepository.AddListDocument(listDocumentsRepo);
+
+            return true;
         }
     }
 }
