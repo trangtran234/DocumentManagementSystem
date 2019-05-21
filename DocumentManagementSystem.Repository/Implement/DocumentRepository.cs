@@ -41,20 +41,24 @@ namespace DocumentManagementSystem.Repository
             return documents;
         }
 
-        public bool AddListDocument(List<Document> listDocuments)
+        public void AddListDocument(List<Document> listDocuments)
         {
             foreach(Document document in listDocuments)
             {
                 context.Documents.Add(document);
-                if(document.DocumentContent != null)
-                {
-                    context.DocumentContents.Add(document.DocumentContent);
-                }
+                
             }
-            
-            context.SaveChanges();
-            return true;
 
+            context.SaveChanges();
+        }
+
+        public void AddDocumentContent(List<DocumentContent> listContents)
+        {
+            foreach(DocumentContent content in listContents)
+            {
+                context.DocumentContents.Add(content);
+            }
+            context.SaveChanges();
         }
     }
 }
