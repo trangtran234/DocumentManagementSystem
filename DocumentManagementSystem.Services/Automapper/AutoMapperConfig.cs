@@ -19,7 +19,8 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(d => d.LastModified, opt => opt.MapFrom(src => ((DateTime)src.LastModified).ToString("yyyy-MM-dd")))
                                         .ForMember(d => d.DocumentDescription, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentDescription)))
                                         //.ForMember(d => d.DocumentContent, opt => opt.MapFrom(src => src))
-                                        .ForMember(d => d.Tags, opt => opt.MapFrom(src => src.DocumentTags.Select(dt=> new Models.Tag() { Id = dt.Tag.Id, TagName = dt.Tag.TagName })));
+                                        .ForMember(d => d.DocumentContent, opt => opt.Ignore())
+                                        .ForMember(d => d.Tags, opt => opt.MapFrom(src => src.DocumentTags.Select(dt => new Models.Tag() { Id = dt.Tag.Id, TagName = dt.Tag.TagName })));
                                         
                 cfg.CreateMap<Repository.Document, Models.DocumentContent>()
                                         .ForMember(d => d.Id, opt => opt.MapFrom(src => src.DocumentContent.Id))

@@ -9,15 +9,17 @@
 
 namespace DocumentManagementSystem.Repository
 {
+    using DocumentManagementSystem.Repository.Interface;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DocumentManagementSystemEntities : DbContext
+    public class DocumentManagementSystemEntities : DbContext, IDocumentContext
     {
-        public DocumentManagementSystemEntities()
-            : base("name=DocumentManagementSystemEntities")
+        public DocumentManagementSystemEntities(string connectionString)
+            : base(connectionString)
         {
+            Database.SetInitializer<DocumentManagementSystemEntities>(null);
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -38,6 +40,11 @@ namespace DocumentManagementSystem.Repository
             // Make sure the provider assembly is available to the running application. 
             // See http://go.microsoft.com/fwlink/?LinkId=260882 for more information.
             var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+        }
+
+        void IDocumentContext.SaveChanges()
+        {
+            base.SaveChanges();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentManagementSystem.Repository.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,18 @@ namespace DocumentManagementSystem.Repository
 {
     public class DocumentRepository : IDocumentRepository
     {
-        private DocumentManagementSystemEntities context = new DocumentManagementSystemEntities();
+        private IDocumentContext context;
+
+        public DocumentRepository(IDocumentContext context)
+        {
+            this.context = context;
+        }
+
+        public IList<Document> GetDocumentByParentId(int id)
+        {
+            var documents = context.Documents.Where(d => d.ParentId == id).ToList();
+            return documents;
+        }
 
         public IList<Document> GetAllDocuments()
         {
@@ -24,13 +36,8 @@ namespace DocumentManagementSystem.Repository
         public IList<Document> GetFolders()
         {
             const string folderType = "folder";
-            IList<Document> documents = context.Documents.Where(d => d.DocumentType == folderType).ToList();
-            return documents;
-        }
-
-        public IList<Document> GetDocumentByParentId(int id)
-        {
-            IList<Document> documents = context.Documents.Where(d => d.ParentId == id).ToList();
+            const int id = -1;
+            IList<Document> documents = context.Documents.Where(d => d.DocumentType == folderType && d.ParentId == id).ToList();
             return documents;
         }
 
@@ -43,18 +50,17 @@ namespace DocumentManagementSystem.Repository
 
         public bool AddListDocument(List<Document> listDocuments)
         {
-            foreach(Document document in listDocuments)
+            foreach (Document document in listDocuments)
             {
                 context.Documents.Add(document);
-                if(document.DocumentContent != null)
+                if (document.DocumentContent != null)
                 {
                     context.DocumentContents.Add(document.DocumentContent);
                 }
             }
-            
+
             context.SaveChanges();
             return true;
-
         }
     }
 }
