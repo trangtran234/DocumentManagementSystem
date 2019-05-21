@@ -17,7 +17,7 @@ namespace DocumentManagementSystem.Models
         public string LastModified { get; set; }
         public virtual Account CreatedBy { get; set; }
         public virtual Account LastModifiedBy { get; set; }
-        public virtual DocumentContent DocumentContent { get; set; }
+        public byte[] DocumentContent { get; set; }
         public virtual List<Tag> Tags { get; set; }
     }
 }

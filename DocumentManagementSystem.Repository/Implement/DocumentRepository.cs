@@ -40,5 +40,21 @@ namespace DocumentManagementSystem.Repository
             IList<Document> documents = context.Documents.Where(d => d.ParentId == id && d.DocumentType == folderType).ToList();
             return documents;
         }
+
+        public bool AddListDocument(List<Document> listDocuments)
+        {
+            foreach(Document document in listDocuments)
+            {
+                context.Documents.Add(document);
+                if(document.DocumentContent != null)
+                {
+                    context.DocumentContents.Add(document.DocumentContent);
+                }
+            }
+            
+            context.SaveChanges();
+            return true;
+
+        }
     }
 }
