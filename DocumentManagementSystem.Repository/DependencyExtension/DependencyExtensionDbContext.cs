@@ -6,15 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Unity.Extension;
 using Unity.Injection;
+using Unity.Lifetime;
 
 namespace DocumentManagementSystem.Repository.DependencyExtension
 {
-    public class DependencyExtensionDbContext : UnityContainerExtension
+    public class DependencyExtensionDbContext
     {
-        protected override void Initialize()
-        {
-            //Container.RegisterType<IDocumentContext, DocumentManagementSystemEntities>(new PerRequestLifetimeManager(),
-            //    new InjectionConstructor("name=DocumentManagementSystemEntities"));
-        }
     }
 }

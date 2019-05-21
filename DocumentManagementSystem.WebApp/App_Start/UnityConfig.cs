@@ -4,6 +4,11 @@ using DocumentManagementSystem.WebApp.DependencyExtension;
 using Unity;
 using Unity.WebApi;
 
+using DocumentManagementSystem.Repository.Interface;
+using DocumentManagementSystem.Repository;
+using Unity.Injection;
+using Unity.Lifetime;
+
 namespace DocumentManagementSystem.WebApp
 {
     public static class UnityConfig
@@ -15,6 +20,7 @@ namespace DocumentManagementSystem.WebApp
             container.AddExtension(new DependencyExtensionRepository());
             container.AddExtension(new DependencyExtensionServices());
             container.AddExtension(new DependencyExtensionAutoMapper());
+            container.RegisterType<IDocumentContext, DocumentManagementSystemEntities>(new PerThreadLifetimeManager(), new InjectionConstructor("name=DocumentManagementSystemEntities"));
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

@@ -13,11 +13,11 @@
     export class TreeViewController {
         static $inject = ['$scope', '$http'];
         constructor(private $scope: IMyDocumentScope, private $http: ng.IHttpService) {
-            this.getFolders();
-            $scope.getChildFolderOfTree = this.getChildFolderOfTree;
-            $scope.onAddedNewFiles = () => {
-                this.getChildFolderOfTree(3);
-            };
+            //this.getFolders();
+            //$scope.getChildFolderOfTree = this.getChildFolderOfTree;
+            //$scope.onAddedNewFiles = () => {
+            //    this.getChildFolderOfTree(3);
+            //};
         }
 
         getFolders = () => {

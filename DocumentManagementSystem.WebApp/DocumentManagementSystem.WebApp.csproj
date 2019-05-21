@@ -201,7 +201,8 @@
     <Content Include="bin\DocumentManagementSystem.WebApp.dll" />
     <Content Include="bin\DocumentManagementSystem.WebApp.pdb" />
     <Content Include="Content\directives\add-document.html" />
-    <Content Include="Content\directives\informationDocumentTag.html" />
+    <Content Include="Content\directives\documentTreeView.html" />
+    <Content Include="Content\directives\informationDocument.html" />
     <Content Include="Content\directives\documentsListing.html" />
     <Content Include="Content\directives\user-login.html" />
     <Content Include="Content\rootApp.js" />
@@ -458,6 +459,7 @@
     <TypeScriptCompile Include="Content\controllers\documentsListingController.ts" />
     <TypeScriptCompile Include="Content\controllers\treeViewController.ts" />
     <TypeScriptCompile Include="Content\directives\documentDirective.ts" />
+    <TypeScriptCompile Include="Content\directives\documentTreeViewDirective.ts" />
     <TypeScriptCompile Include="Content\directives\informationDirective.ts" />
     <TypeScriptCompile Include="Content\directives\documentsListingDirective.ts" />
     <TypeScriptCompile Include="Content\directives\userLoginDirective.ts" />
@@ -498,7 +500,9 @@
     <Content Include="node_modules\%40types\sizzle\LICENSE" />
     <Content Include="node_modules\%40types\sizzle\package.json" />
     <Content Include="node_modules\%40types\sizzle\README.md" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\lib\angular\.bower.json" />
     <Content Include="Scripts\lib\angular\angular.min.js.gzip" />
     <Content Include="Scripts\lib\angular\angular.min.js.map" />
@@ -769,6 +773,10 @@
     <ProjectReference Include="..\DocumentManagementSystem.Models\DocumentManagementSystem.Models.csproj">
       <Project>{54ac05e1-f58a-4a92-ac0c-da1bc46c82b2}</Project>
       <Name>DocumentManagementSystem.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DocumentManagementSystem.Repository\DocumentManagementSystem.Repository.csproj">
+      <Project>{0be8a9ce-f7b3-49de-af10-5dbd48a4fc9a}</Project>
+      <Name>DocumentManagementSystem.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\DocumentManagementSystem.Services\DocumentManagementSystem.Services.csproj">
       <Project>{6f354e66-8c0e-41c7-97cc-8100516497de}</Project>
