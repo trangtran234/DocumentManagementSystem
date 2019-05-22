@@ -14,14 +14,14 @@
         public restrict: string = "E";
         public templateUrl: string = '/Content/directives/add-document.html';
         public scope: {
-            onSave:'&'
+            onSave: '&'
         }
-        static $inject = ['$http'];
-        constructor(private $http: ng.IHttpService) {}
+
+        constructor(private $http: ng.IHttpService, private $rootScope: ng.IRootScopeService) { }
 
         public static Factory(): ng.IDirectiveFactory {
-            const directive = ($http: ng.IHttpService) => new DocumentDirective($http);
-            directive.$inject = ['$http'];
+            const directive = ($http: ng.IHttpService, $rootScope: ng.IRootScopeService) => new DocumentDirective($http, $rootScope);
+            directive.$inject = ['$http', '$rootScope'];
             return directive;
         }
 
@@ -30,6 +30,8 @@
             element: ng.IAugmentedJQuery,
             attributes: ng.IAttributes
         ) => {
+
+            var rootScope = this.$rootScope;
             scope.filesList = [];
             scope.files = [];
             element.bind("change", function (changeEvent: Event) {
@@ -37,7 +39,7 @@
 
                 for (var i = 0; i < fs.length; i++) {
 
-                    var document: Document = {};                    
+                    var document: Document = {};
 
                     document.id = Math.floor((Math.random() * 100) + 1);
                     document.documentName = fs[i].name;
@@ -49,18 +51,37 @@
                     scope.files.push(fs[i]);
                 }
                 scope.$apply();
-                
+
             });
 
             scope.deleteDocumentInDialog = (id) => {
                 console.log("Document Id " + id);
-                for (var i = 0; i < scope.filesList.length; i++) {
-                    if (scope.filesList[i].id === id) {
-                        scope.filesList.splice(i, 1);
-                        scope.files.splice(i, 1);
+                //for (var i = 0; i < scope.filesList.length; i++) {
+                //    if (scope.filesList[i].id === id) {
+                //        scope.filesList.splice(i, 1);
+                //        scope.files.splice(i, 1);
+                //    }
+                //}
+
+                this.$http({
+                    url: '/api/upload/deleteDocument?id=' + id,
+                    method: 'DELETE',
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    },
+                }).then(function (response) {
+                    for (var i = 0; i < scope.filesList.length; i++) {
+                        if (scope.filesList[i].id === id) {
+                            scope.filesList.splice(i, 1);
+                            scope.files.splice(i, 1);
+                        }
                     }
-                }
-            };
+                },
+                    function (response) {
+                        console.log('Fail: ' + response);
+                    });
+            }
 
             scope.uploadFiles = () => {
 
@@ -85,14 +106,33 @@
                         'Content-Type': undefined
                     },
                 }).then(function (response) {
-                    console.log('Success: ' + response);
+
+                    scope.filesList = [];
+                    var parentId = 21;
+                    angular.forEach(response.data, function (value, key) {
+                        var document: Document = {};
+
+                        document.id = value.id;
+                        document.documentName = value.documentName + '.' + value.documentType;
+                        document.documentSize = value.documentSize;
+                        document.statusUpload = 0
+                        scope.filesList.push(document);
+                    });
+
+                    scope.$apply;
+                    rootScope.$broadcast('uploadSuccess', parentId) 
                     scope.onSave();
+
                 },
                     function (response) {
                         console.log('Fail: ' + response);
                     });
+                //$('#addDocument').modal('hide');    
+            }
+
+            scope.onSave = () => {
 
             }
         }
-    }  
+    }
 }

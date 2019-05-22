@@ -49,5 +49,43 @@ namespace DocumentManagementSystem.WebApp.Controllers
             IList<DocumentTreeViewDTO> documents = documentServices.GetFoldersByFolderId(id);
             return documents;
         }
+
+        public void GetTreeView(List<DocumentTreeViewDTO> list, DocumentTreeViewDTO current, ref List<DocumentTreeViewDTO> returnList)
+        {
+            var childs = list.Where(c => c.ParentId == current.Id).ToList();
+            current.Childrens = new List<DocumentTreeViewDTO>();
+            current.Childrens.AddRange(childs);
+            foreach(var item in childs)
+            {
+                GetTreeView(list, item, ref returnList);
+            }
+        }
+
+        public List<DocumentTreeViewDTO> BuildTree(List<DocumentTreeViewDTO> list)
+        {
+            List<DocumentTreeViewDTO> returnList = new List<DocumentTreeViewDTO>();
+            var topLevels = list.Where(a => a.ParentId == -1);
+            returnList.AddRange(topLevels);
+            foreach (var item in topLevels)
+            {
+                GetTreeView(list, item, ref returnList);
+            }
+
+            return returnList;
+        }
+
+        [Route("FolderStructure")]
+        [HttpGet]
+        public IList<DocumentTreeViewDTO> GetFileStructure()
+        {
+            List<DocumentTreeViewDTO> list = documentServices.GetFolders();
+
+            List<DocumentTreeViewDTO> treelist = new List<DocumentTreeViewDTO>();
+            if (list.Count() > 0)
+            {
+                treelist = BuildTree(list);
+            }
+            return treelist;
+        }
     }
 }

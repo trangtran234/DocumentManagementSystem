@@ -15,15 +15,15 @@ namespace DocumentManagementSystem.Repository
             this.context = context;
         }
 
-        public IList<Document> GetDocumentByParentId(int id)
+        public List<Document> GetDocumentByParentId(int id)
         {
             var documents = context.Documents.Where(d => d.ParentId == id).ToList();
             return documents;
         }
 
-        public IList<Document> GetAllDocuments()
+        public List<Document> GetAllDocuments()
         {
-            IList<Document> documents = context.Documents.Select(d => d).ToList();
+            List<Document> documents = context.Documents.Select(d => d).ToList();
             return documents;
         }
 
@@ -33,18 +33,24 @@ namespace DocumentManagementSystem.Repository
             return document;
         }
 
-        public IList<Document> GetFolders()
+        public List<Document> GetFolders()
         {
             const string folderType = "folder";
             const int id = -1;
-            IList<Document> documents = context.Documents.Where(d => d.DocumentType == folderType && d.ParentId == id).ToList();
+            List<Document> documents = context.Documents.Where(d => d.DocumentType == folderType && d.ParentId == id).ToList();
             return documents;
         }
 
-        public IList<Document> GetFoldersByFolderId(int id)
+        public List<Document> GetFoldersByFolderId(int id)
         {
             const string folderType = "folder";
-            IList<Document> documents = context.Documents.Where(d => d.ParentId == id && d.DocumentType == folderType).ToList();
+            List<Document> documents = context.Documents.Where(d => d.ParentId == id && d.DocumentType == folderType).ToList();
+            return documents;
+        }
+
+        public List<Document> GetDocumentsTop(int top)
+        {
+            List<Document> documents = context.Documents.Select(d => d).OrderByDescending(f => f.Id).Take(top).ToList();
             return documents;
         }
 
@@ -53,19 +59,43 @@ namespace DocumentManagementSystem.Repository
             foreach (Document document in listDocuments)
             {
                 context.Documents.Add(document);
-                
-            }
 
+            }
             context.SaveChanges();
         }
 
         public void AddDocumentContent(List<DocumentContent> listContents)
         {
-            foreach(DocumentContent content in listContents)
+            foreach (DocumentContent content in listContents)
             {
                 context.DocumentContents.Add(content);
             }
             context.SaveChanges();
+        }
+
+        public void DeleteDocument(int id)
+        {
+            var document = context.Documents.SingleOrDefault(d => d.Id == id);
+            context.Documents.Remove(document);
+            context.SaveChanges();
+        }
+
+        public void DeleteDocumentContent(Guid id)
+        {
+            var content = context.DocumentContents.SingleOrDefault(c => c.Id == id);
+            context.DocumentContents.Remove(content);
+            context.SaveChanges();
+        }
+
+        public Guid FindDocumentContent(int id)
+        {
+            var contents = context.Documents.Where(d => d.Id == id).Select(c => new { contentId = c.DocumentContentId });
+            foreach (var content in contents)
+            {
+                return content.contentId;
+            }
+
+            return Guid.Empty;
         }
     }
 }

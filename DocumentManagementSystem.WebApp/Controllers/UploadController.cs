@@ -12,8 +12,6 @@ using System.Web;
 using System.Web.Http;
 using DocumentManagementSystem.Models;
 using DocumentManagementSystem.Services;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace DocumentManagementSystem.WebApp.Controllers
 {
@@ -21,7 +19,6 @@ namespace DocumentManagementSystem.WebApp.Controllers
     public class UploadController : ApiController
     {
         private IDocumentService documentServices;
-        private const int LIMITED_FILE_SIZE = 20480;
 
         public UploadController(IDocumentService documentServices)
         {
@@ -43,7 +40,7 @@ namespace DocumentManagementSystem.WebApp.Controllers
             var root = HttpContext.Current.Server.MapPath("~/App_Data/Uploadfiles");
             Directory.CreateDirectory(root);
             var provider = new MultipartFormDataStreamProvider(root);
-            var result = await Request.Content.ReadAsMultipartAsync(provider);           
+            var result = await Request.Content.ReadAsMultipartAsync(provider);
 
             foreach (var file in result.FileData)
             {
@@ -56,14 +53,14 @@ namespace DocumentManagementSystem.WebApp.Controllers
                 buff = br.ReadBytes((int)numBytes);
 
                 document.DocumentContent = File.ReadAllBytes(file.LocalFileName);
-                document.DocumentName = file.Headers.ContentDisposition.FileName.Replace("\"", string.Empty); ;
-                //document.DocumentType = file.Headers.ContentType.MediaType;
+                document.DocumentName = file.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
                 document.DocumentSize = document.DocumentContent.Length;
                 document.CreateByID = 1;
                 document.LastModifiedByID = 1;
-                
-               
-                if (document.DocumentSize > LIMITED_FILE_SIZE)
+                document.ParentId = 21;
+
+
+                if (document.DocumentSize > Common.LIMITED_FILE_SIZE)
                 {
                     listLimitedSize.Add(document);
                 }
@@ -71,16 +68,25 @@ namespace DocumentManagementSystem.WebApp.Controllers
 
             }
 
-            if(listLimitedSize.Count !=0)
+            if (listLimitedSize.Count != 0)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Check File Size " + listLimitedSize);
             }
 
-            if (documentServices.AddListDocument(listDocument))
+            List<Document> listDocumentsSuccess = documentServices.AddListDocument(listDocument);
+            if (listDocumentsSuccess.Count != 0)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, "success");
+                return Request.CreateResponse(HttpStatusCode.OK, listDocumentsSuccess);
             }
             return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
+        [HttpDelete]
+        [Route("deleteDocument")]
+        public HttpResponseMessage DeleteDocument(int id)
+        {
+            documentServices.DeleteDocument(id);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

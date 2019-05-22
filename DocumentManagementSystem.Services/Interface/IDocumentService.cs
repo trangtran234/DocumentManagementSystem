@@ -9,11 +9,12 @@ namespace DocumentManagementSystem.Services
 {
     public interface IDocumentService
     {
-        IList<Document> GetAllDocument();
-        IList<Document> GetDocumentByParentId(int id);
-        IList<DocumentTreeViewDTO> GetFolders();
-        IList<DocumentTreeViewDTO> GetFoldersByFolderId(int id);
+        List<Document> GetAllDocument();
+        List<Document> GetDocumentByParentId(int id);
+        List<DocumentTreeViewDTO> GetFolders();
+        List<DocumentTreeViewDTO> GetFoldersByFolderId(int id);
         Document GetDocumentByDocumentId(int id);
-        bool AddListDocument(List<Models.Document> listDocuments);
+        List<Models.Document> AddListDocument(List<Models.Document> listDocuments);
+        void DeleteDocument(int id);
     }
 }

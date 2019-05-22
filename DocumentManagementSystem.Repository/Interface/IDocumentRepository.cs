@@ -8,12 +8,16 @@ namespace DocumentManagementSystem.Repository
 {
     public interface IDocumentRepository
     {
-        IList<Document> GetAllDocuments();
-        IList<Document> GetDocumentByParentId(int id);
-        IList<Document> GetFolders();
-        IList<Document> GetFoldersByFolderId(int id);
+        List<Document> GetAllDocuments();
+        List<Document> GetDocumentByParentId(int id);
+        List<Document> GetFolders();
+        List<Document> GetFoldersByFolderId(int id);
         Document GetDocumentByDocumentId(int id);
         void AddListDocument(List<Document> listDocuments);
         void AddDocumentContent(List<DocumentContent> documentContent);
+        List<Document> GetDocumentsTop(int top);
+        void DeleteDocument(int id);
+        void DeleteDocumentContent(Guid id);
+        Guid FindDocumentContent(int id);
     }
 }

@@ -8,8 +8,6 @@ namespace DocumentManagementSystem.Models
 {
     public partial class DocumentTreeViewDTO
     {
-        public int Id { get; set; }
-        public string DocumentName { get; set; }
-        public int ParentId { get; set; }
+        public List<DocumentTreeViewDTO> Childrens { get; set; }
     }
 }

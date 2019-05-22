@@ -22,5 +22,6 @@ namespace DocumentManagementSystem.Models
         public int CreateByID { get; set; }
         public int LastModifiedByID { get; set; }
         public System.Guid DocumentContentId { get; set; }
+        public int ParentId { get; set; }
     }
 }
