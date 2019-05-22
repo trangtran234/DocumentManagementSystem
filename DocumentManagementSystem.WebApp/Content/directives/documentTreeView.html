@@ -52,8 +52,14 @@
         </div>
     </div>
 </div>-->
+
 <div>
-    <ul>
-        <li ng-repeat="document in documentsTree" ng-click="getChildDocumentIntoListing(document.id)">{{document.documentName}}</li>
+    <ul class="list-inline">
+        <li ng-repeat="document in documentsTree" ng-click="getChildDocumentIntoListing(document.id)">
+            <ul class="list-inline">
+                <li class="list-inline-item"><i class="fas fa-hdd fa-lg"></i></li>
+                <li class="list-inline-item">{{document.documentName}}</li>
+            </ul>
+        </li>
     </ul>
 </div>

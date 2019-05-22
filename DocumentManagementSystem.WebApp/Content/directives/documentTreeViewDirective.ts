@@ -9,6 +9,8 @@
         childDocuments: DocumentTree[];
         onAddedNewFiles: () => void;
         getChildDocumentIntoListing: (id) => void;
+
+        treeId: number;
     }
 
     export class documentTreeViewDirective implements ng.IDirective {
@@ -28,7 +30,7 @@
             element: ng.IAugmentedJQuery,
             attributes: ng.IAttributes,
         ) => {
-            this.$http.get<DocumentTree[]>('/api/documents/Folders')
+            this.$http.get<DocumentTree[]>('/api/documents/FolderStructure')
                 .then((response: ng.IHttpPromiseCallbackArg<DocumentTree[]>) => {
                     scope.documentsTree = response.data;
                 });

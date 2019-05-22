@@ -3,5 +3,6 @@
         id?: number;
         documentName?: string;
         parentId?: number;
+        childrens?: DocumentTree[];
     }
 }

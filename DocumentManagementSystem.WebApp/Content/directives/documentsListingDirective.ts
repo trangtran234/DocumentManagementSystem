@@ -5,6 +5,7 @@
 
     export interface IMyDocumentScope extends ng.IScope {
         documents: Document[];
+        getChildDocument: (id) => void;
         getChildDocumentOfFolder: (id) => void;
         getInfoOfDocument: (id) => void;
     }
@@ -33,17 +34,22 @@
         ) => {
             var http = this.$http;
             scope.$on('rootScope:id', function (event, data) {
-                http.get<Document[]>('/api/documents/DocumentByFolderId/' + data)
-                    .then((response: ng.IHttpPromiseCallbackArg<Document[]>) => {
-                        scope.documents = response.data;
-                    });
+                scope.getChildDocument(data);
             });
 
-            scope.getChildDocumentOfFolder = (id) => {
-                this.$http.get<Document[]>('/api/documents/DocumentByFolderId/' + id)
+            scope.$on('uploadSuccess', function (event, data) {
+                scope.getChildDocument(data);
+            });
+
+            scope.getChildDocument = (id) => {
+                http.get<Document[]>('/api/documents/DocumentByFolderId/' + id)
                     .then((response: ng.IHttpPromiseCallbackArg<Document[]>) => {
                         scope.documents = response.data;
                     });
+            }
+
+            scope.getChildDocumentOfFolder = (id) => {
+                scope.getChildDocument(id);
                 this.$http.get<Document>('/api/documents/DocumentById/' + id)
                     .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
                         var document = response.data;

@@ -32,8 +32,7 @@
             <td ng-switch-when="folder"><i class="fas fa-folder fa-lg"></i></td>
             <td ng-if="document.documentType !== 'folder'" ng-click="getInfoOfDocument(document.id)"><a href="#">{{document.documentName}}</a></td>
             <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)"><a href="#">{{document.documentName}}</a></td>
-            <td ng-if="document.tags.length === 0"></td>
-            <td ng-if="document.tags.length !== 0">
+            <td>
                 <div>
                     <span class="badge badge-dark" ng-repeat="tag in document.tags">{{tag.tagName}}</span>
                 </div>
