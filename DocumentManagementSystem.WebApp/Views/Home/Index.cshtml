@@ -16,25 +16,22 @@
 <body ng-app="rootApp" >
     <div class="row border border-dark content">
         <div class="col-sm-3 left-layout">
-            <div class="row border border-dark user-login">
-                <ul class="list-inline">
-                    <li class="list-inline-item"><i class="fas fa-user-circle fa-3x align-middle"></i></li>
-                    <li class="list-inline-item font-weight-bold align-middle">Momo</li>
-                </ul>
+            <div class="row align-items-center border border-primary user-login" >
+                <user-login></user-login>
             </div>
-            <div class="row border border-dark left-navigation">
+            <div class="row border border-secondary left-navigation">
                 <document-tree-view></document-tree-view>
             </div>
-            <div class="row border border-dark action-1"></div>
-            <div class="row border border-dark action-2"></div>
+            <div class="row border border-success action-1"></div>
+            <div class="row border border-danger action-2"></div>
         </div>
-        <div class="col-sm-9 border border-dark right-layout">
-            <div class="row border border-dark header"></div>
-            <div class="row @*border border-success*@ action-button">
+        <div class="col-sm-9 border border-warning right-layout">
+            <div class="row border border-info header"></div>
+            <div class="row border border-success action-button">
                 <add-document document="document" onSave="onAddedNewFiles"></add-document>
             </div>
-            <div class="row @*border border-warning*@ listing-information-area">
-                <div class="col-sm-9 @*border border-primary*@ listing">
+            <div class="row border border-warning listing-information-area">
+                <div class="col-sm-9 border border-primary listing">
                     <documents-listing></documents-listing>
                 </div>
                 <div class="col-sm-3 border border-dark information-area">
