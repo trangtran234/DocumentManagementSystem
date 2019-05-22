@@ -36,7 +36,7 @@
                 http.get<Document[]>('/api/documents/DocumentByFolderId/' + data)
                     .then((response: ng.IHttpPromiseCallbackArg<Document[]>) => {
                         scope.documents = response.data;
-                });
+                    });
             });
 
             scope.getChildDocumentOfFolder = (id) => {

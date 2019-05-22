@@ -1,4 +1,4 @@
-﻿<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAdd" data-toggle="dropdown">
+﻿<button class="btn btn-dark font-weight-bold dropdown-toggle" type="button" id="dropdownAdd" data-toggle="dropdown">
     Add
 </button>
 <div class="dropdown-menu" aria-labelledby="dropdownAdd">
@@ -15,7 +15,7 @@
 
             <div class="modal-body">
                 <div class="custom-file mb-3">
-                    <input type="file" multiple class="custom-file-input" id="addFile" ng-model="addFile" required/>
+                    <input type="file" multiple class="custom-file-input" id="addFile" ng-model="addFile" required />
                     <label class="custom-file-label" for="addFile">Select file(s) to upload</label>
                 </div>
 
@@ -38,8 +38,8 @@
                                 <div ng-switch-when="1"><i class="fas fa-exclamation-triangle"></i></div>
                             </td>
                             <td ng-click="deleteDocumentInDialog(file.id)"><i class="fa fa-trash" aria-hidden="true"></i></td>
-                            
-                        </tr>                   
+
+                        </tr>
                     </tbody>
                 </table>
 
