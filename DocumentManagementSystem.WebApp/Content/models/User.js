@@ -1,7 +1,13 @@
-var User = /** @class */ (function () {
-    function User(userName) {
-        this.userName = userName;
-    }
-    return User;
-}());
-//# sourceMappingURL=User.js.map
+var rootApp;
+(function (rootApp) {
+    var model;
+    (function (model) {
+        var User = /** @class */ (function () {
+            function User() {
+            }
+            return User;
+        }());
+        model.User = User;
+    })(model = rootApp.model || (rootApp.model = {}));
+})(rootApp || (rootApp = {}));
+//# sourceMappingURL=user.js.map

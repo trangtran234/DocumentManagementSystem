@@ -7,6 +7,7 @@
   height: 800px;
   padding-left: 2em;
   padding-right: 2em;
+  padding-top: 2em;
 }
 .left-layout {
   height: 100%;
@@ -17,13 +18,17 @@
   float: right;
 }
 .user-login {
-  height: 5%;
+  height: 10%;
+  padding-left: 1em;
+}
+.user-login .fa-user-circle {
+  padding-top: 15px;
 }
 .left-navigation {
   height: 55%;
 }
 .action-1 {
-  height: 35%;
+  height: 30%;
 }
 .action-2 {
   height: 5%;
@@ -34,7 +39,8 @@
 }
 .action-button {
   height: 10%;
-  padding-top: 2em;
+  padding-top: 20px;
+  padding-left: 15px;
 }
 .listing-information-area {
   height: 80%;
@@ -43,7 +49,12 @@
   height: 100%;
 }
 .listing .mx-auto {
-  width: 150px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.listing .checkbox input {
+  height: 20px;
+  width: 20px;
 }
 .information-area {
   height: 100%;

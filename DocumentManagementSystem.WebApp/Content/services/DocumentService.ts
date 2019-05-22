@@ -5,10 +5,10 @@
 
     export interface IDocumentService {
         uploadFile(document: Document): ng.IPromise<Document>;
+        getDocumentIntoListView(): ng.IPromise<ng.IHttpResponse<Document[]>>;
     };
 
     export class DocumentService implements IDocumentService {
-
         static $inject = ['$http'];
         constructor(private $http: ng.IHttpService) {
 
@@ -21,7 +21,9 @@
                 });
         }
 
-        
+        getDocumentIntoListView(): ng.IPromise<ng.IHttpResponse<Document[]>> {
+            return this.$http.get<Document[]>('/api/documents/DocumentByFolderId/3');
+        }
     }
 
     factory.$inject = ['$http'];
