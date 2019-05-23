@@ -1,65 +1,60 @@
-﻿<!--<div id="accordion">
-    <div class="card" ng-repeat="document in documents">
-        <div class="card-header">
-            <a class="card-link" data-toggle="collapse" href="#{{document.id}}">
-                {{document.documentName}}
-            </a>
-        </div>
-        <div id="{{document.id}}" class="collapse show" data-parent="#accordion">
-            <div class="card-body">
-                Collapse Item
-            </div>
-        </div>
-    </div>
-</div>-->
-<!--<div>
-    <div id="accordion">
-        <div class="card">
-            <div class="card-header">
-                <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                    Collapsible Group Item #1
-                </a>
-            </div>
-            <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header">
-                <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-                    Collapsible Group Item #2
-                </a>
-            </div>
-            <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header">
-                <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-                    Collapsible Group Item #3
-                </a>
-            </div>
-            <div id="collapseThree" class="collapse" data-parent="#accordion">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-
-<div>
-    <ul class="list-inline">
-        <li ng-repeat="document in documentsTree" ng-click="getChildDocumentIntoListing(document.id)">
-            <ul class="list-inline">
+﻿<div id="accordion">
+    <div ng-repeat="document in documentsTree">
+        <div id="{{document.id}}">
+            <ul>
                 <li class="list-inline-item"><i class="fas fa-hdd fa-lg"></i></li>
-                <li class="list-inline-item">{{document.documentName}}</li>
+                <li class="list-inline-item">
+                    <a class="collapsed text-dark" role="button" data-toggle="collapse" href="#collapse-{{document.id}}" aria-expanded="false" aria-controls="collapse-3" ng-click="getChildDocumentIntoListing(document.id)">{{document.documentName}}</a>
+                </li>
             </ul>
-        </li>
-    </ul>
+        </div>
+        <div id="collapse-{{document.id}}" class="collapse" data-parent="#accordion" aria-labelledby="{{document.id}}">
+            <div class="card-body">
+                <div id="accordion-1">
+                    <div ng-repeat="child in document.childrens" id="{{child.id}}">
+                        <div>
+                            <ul>
+                                <li class="list-inline-item"><i class="fas fa-folder fa-lg"></i></li>
+                                <li class="list-inline-item">
+                                    <a class="collapsed mb-0 text-dark" role="button" data-toggle="collapse" href="#collapse-{{child.id}}" aria-expanded="false" aria-controls="{{child.id}}" ng-click="getChildDocumentIntoListing(child.id)">{{child.documentName}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="collapse-{{child.id}}" class="collapse" data-parent="#accordion-1" aria-labelledby="{{child.id}}">
+                            <div class="card-body">
+                                <div id="accordion-1-1">
+                                    <div ng-repeat="childchild in child.childrens">
+                                        <div id="{{childchild.id}}">
+                                            <ul>
+                                                <li class="list-inline-item"><i class="fas fa-folder fa-lg"></i></li>
+                                                <li class="list-inline-item">
+                                                    <a class="collapsed text-dark" role="button" data-toggle="collapse" href="#collapse-{{childchild.id}}" aria-expanded="false" aria-controls="{{childchild.id}}" ng-click="getChildDocumentIntoListing(childchild.id)">{{childchild.documentName}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div id="collapse-{{childchild.id}}" class="collapse" data-parent="#accordion-1-1" aria-labelledby="{{childchild.id}}">
+                                            <div class="card-body padding-1-1-1">
+                                                <div id="accordion-1-1-1">
+                                                    <div ng-repeat="childlevel3 in childchild.childrens">
+                                                        <div id="{{childlevel3.id}}">
+                                                            <ul>
+                                                                <li class="list-inline-item"><i class="fas fa-folder fa-lg"></i></li>
+                                                                <li class="list-inline-item">
+                                                                    <a class="collapsed text-dark" role="button" data-toggle="collapse" href="#collapse-{{childlevel3.id}}" aria-expanded="false" aria-controls="{{childlevel3.id}}" ng-click="getChildDocumentIntoListing(childlevel3.id)">{{childlevel3.documentName}}</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

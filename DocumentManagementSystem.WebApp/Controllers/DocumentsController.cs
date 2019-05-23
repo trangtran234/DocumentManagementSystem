@@ -50,7 +50,7 @@ namespace DocumentManagementSystem.WebApp.Controllers
             return documents;
         }
 
-        public void GetTreeView(List<DocumentTreeViewDTO> list, DocumentTreeViewDTO current, ref List<DocumentTreeViewDTO> returnList)
+        private void GetTreeView(List<DocumentTreeViewDTO> list, DocumentTreeViewDTO current, ref List<DocumentTreeViewDTO> returnList)
         {
             var childs = list.Where(c => c.ParentId == current.Id).ToList();
             current.Childrens = new List<DocumentTreeViewDTO>();
@@ -61,10 +61,10 @@ namespace DocumentManagementSystem.WebApp.Controllers
             }
         }
 
-        public List<DocumentTreeViewDTO> BuildTree(List<DocumentTreeViewDTO> list)
+        private List<DocumentTreeViewDTO> BuildTree(List<DocumentTreeViewDTO> list)
         {
             List<DocumentTreeViewDTO> returnList = new List<DocumentTreeViewDTO>();
-            var topLevels = list.Where(a => a.ParentId == -1);
+            var topLevels = list.Where(a => a.ParentId == 0);
             returnList.AddRange(topLevels);
             foreach (var item in topLevels)
             {

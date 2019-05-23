@@ -1,23 +1,18 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Document Management System</title>
+    <title>Document Management System</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     @Scripts.Render("~/bundles/libs")
     @Scripts.Render("~/bundles/Contents")
     @Styles.Render("~/Content/css")
-
 </head>
 <body ng-app="rootApp">
     <div class="row border border-dark content">
-        <div class="col-sm-3 left-layout">
-            <div class="row border border-dark user-login">
+        <div class="col-sm-3 border border-dark left-layout">
+            <div class="row user-login">
                 <ul class="list-inline">
                     <li class="list-inline-item"><i class="fas fa-user-circle fa-3x align-middle"></i></li>
                     <li class="list-inline-item font-weight-bold align-middle">Momo</li>
@@ -26,16 +21,18 @@
             <div class="row border border-dark left-navigation">
                 <document-tree-view></document-tree-view>
             </div>
-            <div class="row border border-dark action-1"></div>
-            <div class="row border border-dark action-2"></div>
+            <div class="row action-1"></div>
+            <div class="row action-2"></div>
         </div>
         <div class="col-sm-9 border border-dark right-layout">
-            <div class="row border border-dark header"></div>
-            <div class="row @*border border-success*@ action-button">
+            <div class="row border border-dark header">
+                <h2>Precio Vietnam</h2>
+            </div>
+            <div class="row action-button">
                 <add-document document="document" onSave="onAddedNewFiles"></add-document>
             </div>
-            <div class="row @*border border-warning*@ listing-information-area">
-                <div class="col-sm-9 @*border border-primary*@ listing">
+            <div class="row listing-information-area">
+                <div class="col-sm-9  listing">
                     <documents-listing></documents-listing>
                 </div>
                 <div class="col-sm-3 border border-dark information-area">
@@ -44,5 +41,6 @@
             </div>
         </div>
     </div>
+    
 </body>
 </html>

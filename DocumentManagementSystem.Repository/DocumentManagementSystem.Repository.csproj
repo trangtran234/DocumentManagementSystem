@@ -65,6 +65,7 @@
     <Compile Include="Account.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Common\Helper.cs" />
     <Compile Include="DependencyExtension\DependencyExtensionDbContext.cs" />
     <Compile Include="Document.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>

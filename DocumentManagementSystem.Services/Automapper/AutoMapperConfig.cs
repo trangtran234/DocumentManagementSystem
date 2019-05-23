@@ -18,7 +18,7 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(d => d.Created, opt => opt.MapFrom(src => ((DateTime)src.Created).ToString("yyyy-MM-dd")))
                                         .ForMember(d => d.LastModified, opt => opt.MapFrom(src => ((DateTime)src.LastModified).ToString("yyyy-MM-dd")))
                                         .ForMember(d => d.DocumentDescription, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentDescription)))
-                                        //.ForMember(d => d.DocumentContent, opt => opt.MapFrom(src => src))
+                                        .ForMember(d => d.DocumentName, opt => opt.MapFrom(src => src.DocumentType.Contains("folder")? src.DocumentName: src.DocumentName + "." + src.DocumentType))
                                         .ForMember(d => d.DocumentContent, opt => opt.Ignore())
                                         .ForMember(d => d.Tags, opt => opt.MapFrom(src => src.DocumentTags.Select(dt => new Models.Tag() { Id = dt.Tag.Id, TagName = dt.Tag.TagName })));
                                         
