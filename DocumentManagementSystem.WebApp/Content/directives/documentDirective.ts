@@ -102,7 +102,7 @@
             scope.uploadFiles = () => {               
 
                 for (var i = 0; i < scope.filesList.length; i++) {
-                    if (scope.filesList[i].documentSize > 20480) {
+                    if (scope.filesList[i].documentSize > 1048576) {
                         alert("Maximum size 20MB: " + scope.filesList[i].documentName);
                         return;
                     }

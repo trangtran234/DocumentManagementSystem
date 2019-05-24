@@ -39,9 +39,9 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(repo => repo.ParentId, model => model.MapFrom(src => src.ParentId))
                                         .ForMember(repo => repo.DocumentTermsID, model => model.MapFrom(src => src.TermId))
                                         .ForMember(repo => repo.Id, model => model.Ignore())
-                                        .ForMember(repo => repo.DocumentContent, model => model.Ignore())
-                                        .ForMember(repo => repo.Account, model => model.Ignore())
-                                        .ForMember(repo => repo.Account1, model => model.Ignore());
+                                        .ForMember(repo => repo.DocumentContent, model => model.Ignore());
+                                        //.ForMember(repo => repo.Account, model => model.Ignore())
+                                        //.ForMember(repo => repo.Account1, model => model.Ignore());
                 cfg.CreateMap<Models.DocumentContent, Repository.DocumentContent>();
                 cfg.CreateMap<Repository.DocumentTerm, Repository.DocumentTerm>();
                 //.ForMember();

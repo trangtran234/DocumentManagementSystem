@@ -14,6 +14,7 @@ namespace DocumentManagementSystem.Repository.Interface
         DbSet<DocumentTag> DocumentTags { get; set; }
         DbSet<Tag> Tags { get; set; }
         DbSet<DocumentContent> DocumentContents { get; set; }
+        DbSet<DocumentTerm> DocumentTerms { get; set; }
 
         void SaveChanges();
     }
