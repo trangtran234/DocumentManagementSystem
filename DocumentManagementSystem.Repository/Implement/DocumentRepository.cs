@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentManagementSystem.Repository.Common;
 namespace DocumentManagementSystem.Repository
 {
     public class DocumentRepository : IDocumentRepository
@@ -35,16 +36,13 @@ namespace DocumentManagementSystem.Repository
 
         public List<Document> GetFolders()
         {
-            const string folderType = "folder";
-            const int id = -1;
-            List<Document> documents = context.Documents.Where(d => d.DocumentType == folderType && d.ParentId == id).ToList();
+            List<Document> documents = context.Documents.Where(d => d.DocumentType == Helper.DocumentType.folder.ToString()).ToList();
             return documents;
         }
 
         public List<Document> GetFoldersByFolderId(int id)
         {
-            const string folderType = "folder";
-            List<Document> documents = context.Documents.Where(d => d.ParentId == id && d.DocumentType == folderType).ToList();
+            List<Document> documents = context.Documents.Where(d => d.ParentId == id && d.DocumentType == Helper.DocumentType.folder.ToString()).ToList();
             return documents;
         }
 

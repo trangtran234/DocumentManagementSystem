@@ -1,8 +1,11 @@
 ﻿module rootApp {
     'use strict';
 
+    import Document = rootApp.model.Document;
+
     interface IMyDocumentScope extends ng.IScope {
         document: Document;
+        isVisible: boolean;
     }
 
     export class InformationDirective implements ng.IDirective {
@@ -22,8 +25,12 @@
             element: ng.IAugmentedJQuery,
             attributes: ng.IAttributes
         ) => {
+            scope.isVisible = false;
             scope.$on('rootScope:documentInfo', function (event, data) {
                 scope.document = data;
+            });
+            scope.$on('rootScope:isVisible', function (event, data) {
+                scope.isVisible = data;
             });
         };
     }

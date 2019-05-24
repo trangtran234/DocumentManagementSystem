@@ -1,4 +1,41 @@
-﻿<ul>
-    <li>Name: {{document.documentName}}</li>
-    <li>Description: {{document.documentDescription}}</li>
-</ul>
+﻿<div class="container">
+    <br>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active text-dark" data-toggle="tab" href="#home">Info</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" data-toggle="tab" href="#versions">Versions</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" data-toggle="tab" href="#history">History</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="home" class="container tab-pane active" ng-show="isVisible">
+            <br>
+            <h6>Name</h6>
+            <p>{{document.documentName}}</p>
+            <br>
+            <h6>Tags</h6>
+            <div>
+                <span class="badge badge-dark" ng-repeat="tag in document.tags">{{tag.tagName}}</span>
+            </div>
+            <br>
+            <h6>Description</h6>
+            <p>{{document.documentDescription}}</p>
+            <br>
+            <h6>File Type {{document.documentType}}</h6>
+            <h6>File Size {{document.documentSize}} KB</h6>
+            <br>
+            <em><h7>Created by <u><a href="#">{{document.createdBy.username}}</a></u> at {{document.created}}</h7></em>
+            <br>
+            <em><h7>Last modified by <u><a href="#">{{document.lastModifiedBy.username}}</a></u> at {{document.lastModified}}</h7></em>
+        </div>
+        <div id="versions" class="container tab-pane fade"></div>
+        <div id="history" class="container tab-pane fade"></div>
+    </div>
+</div>
