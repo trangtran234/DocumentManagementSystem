@@ -15,51 +15,63 @@
 
             <div class="modal-body">
                 <div class="custom-file mb-3">
-                    <input type="file" multiple class="custom-file-input" id="addFile" ng-model="addFile" required />
+                    <input type="file" multiple class="custom-file-input" id="addFile" required ng-click="changeFiles()" />
                     <label class="custom-file-label" for="addFile">Select file(s) to upload</label>
                 </div>
 
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">File Name</th>
-                            <th scope="col">Size</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
+                            <th scope="col" class="documentName">File Name</th>
+                            <th scope="col" class="documentSize">Size</th>
+                            <th scope="col" class="documentStatus"></th>
+                            <th scope="col" class="documentDeleteIcon"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="file in filesList">
-                            <td>{{file.documentName}}</td>
-                            <td>{{file.documentSize}}</td>
-                            <td ng-switch="file.statusUpload">
+                            <td class="documentName">{{file.documentName}}</td>
+                            <td class="documentSize">{{file.documentSize}}</td>
+                            <td ng-switch="file.statusUpload" class="documentStatus">
                                 <div ng-switch-when="-1"><i class="fas fa-spinner"></i></div>
                                 <div ng-switch-when="0"><i class="fa fa-check" aria-hidden="true"></i></div>
                                 <div ng-switch-when="1"><i class="fas fa-exclamation-triangle"></i></div>
                             </td>
-                            <td ng-click="deleteDocumentInDialog(file.id)"><i class="fas fa-times"></i></td>
+                            <td ng-click="deleteDocumentInDialog(file.id)" class="documentDeleteIcon"><i class="fas fa-times"></i></td>
 
                         </tr>
                     </tbody>
                 </table>
+                <table id="tableTypeTag">
+                    <thead>
+                        <tr>
+                            <th>Document types</th>
+                            <th><label for="tags">Tags</label></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <select name="singleSelect" id="singleSelect" ng-model="data.singleSelect" class="form-control">
+                                    <option value="">Terms of Reference</option>
+                                    <option ng-repeat="document in documentTerms" value="{{document.id}}">{{document.term}}</option>
+                                </select>
 
-                <div class="input-group mb-3">
-                    Document types
-                    <input type="text" class="form-control" placeholder="Term of Reference" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Select</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="tags">Tags</label>
-                    <input type="text" id="tags" />
-                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" id="tags" />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" ng-click="uploadFiles()">Upload</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-light" ng-click="uploadFiles()">Upload</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
             </div>
 
         </div>

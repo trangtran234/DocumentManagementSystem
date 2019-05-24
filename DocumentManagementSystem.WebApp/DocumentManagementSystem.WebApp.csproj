@@ -186,6 +186,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\DocumentTermsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="DependencyExtension\DependencyExtensionServices.cs" />
@@ -198,16 +199,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\DocumentManagementSystem.WebApp.dll" />
-    <Content Include="bin\DocumentManagementSystem.WebApp.pdb" />
     <Content Include="Content\directives\add-document.html" />
     <Content Include="Content\directives\documentTreeView.html" />
     <Content Include="Content\directives\informationDocument.html" />
     <Content Include="Content\directives\documentsListing.html" />
     <Content Include="Content\directives\user-login.html" />
-    <Content Include="Content\rootApp.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="node_modules\popper.js\dist\esm\popper-utils.js" />
+    <Content Include="node_modules\popper.js\dist\esm\popper-utils.min.js" />
+    <Content Include="node_modules\popper.js\dist\esm\popper.js" />
+    <Content Include="node_modules\popper.js\dist\esm\popper.min.js" />
+    <Content Include="node_modules\popper.js\dist\popper-utils.js" />
+    <Content Include="node_modules\popper.js\dist\popper-utils.min.js" />
+    <Content Include="node_modules\popper.js\dist\popper.js" />
+    <Content Include="node_modules\popper.js\dist\popper.min.js" />
+    <Content Include="node_modules\popper.js\dist\umd\popper-utils.js" />
+    <Content Include="node_modules\popper.js\dist\umd\popper-utils.min.js" />
+    <Content Include="node_modules\popper.js\dist\umd\popper.js" />
+    <Content Include="node_modules\popper.js\dist\umd\popper.min.js" />
     <Content Include="Scripts\lib\angular\angular-csp.css" />
     <Content Include="Scripts\lib\angular\angular.js" />
     <Content Include="Scripts\lib\angular\angular.min.js" />
@@ -241,12 +251,14 @@
     <TypeScriptCompile Include="Content\directives\documentsListingDirective.ts" />
     <TypeScriptCompile Include="Content\directives\userLoginDirective.ts" />
     <TypeScriptCompile Include="Content\models\document.ts" />
+    <TypeScriptCompile Include="Content\models\documentTerm.ts" />
     <TypeScriptCompile Include="Content\models\documentTree.ts" />
     <TypeScriptCompile Include="Content\models\tag.ts" />
     <TypeScriptCompile Include="Content\models\user.ts" />
     <TypeScriptCompile Include="Content\services\documentService.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\jqlite.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery\dist\jquery.slim.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery\JQuery.d.ts" />
@@ -254,6 +266,7 @@
     <TypeScriptCompile Include="node_modules\%40types\jquery\legacy.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery\misc.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\sizzle\index.d.ts" />
+    <TypeScriptCompile Include="node_modules\popper.js\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -271,12 +284,31 @@
     <Content Include="node_modules\%40types\angular\LICENSE" />
     <Content Include="node_modules\%40types\angular\package.json" />
     <Content Include="node_modules\%40types\angular\README.md" />
+    <Content Include="node_modules\%40types\bootstrap\LICENSE" />
+    <Content Include="node_modules\%40types\bootstrap\package.json" />
+    <Content Include="node_modules\%40types\bootstrap\README.md" />
     <Content Include="node_modules\%40types\jquery\LICENSE" />
     <Content Include="node_modules\%40types\jquery\package.json" />
     <Content Include="node_modules\%40types\jquery\README.md" />
     <Content Include="node_modules\%40types\sizzle\LICENSE" />
     <Content Include="node_modules\%40types\sizzle\package.json" />
     <Content Include="node_modules\%40types\sizzle\README.md" />
+    <Content Include="node_modules\popper.js\dist\esm\popper-utils.js.map" />
+    <Content Include="node_modules\popper.js\dist\esm\popper-utils.min.js.map" />
+    <Content Include="node_modules\popper.js\dist\esm\popper.js.map" />
+    <Content Include="node_modules\popper.js\dist\esm\popper.min.js.map" />
+    <Content Include="node_modules\popper.js\dist\popper-utils.js.map" />
+    <Content Include="node_modules\popper.js\dist\popper-utils.min.js.map" />
+    <Content Include="node_modules\popper.js\dist\popper.js.map" />
+    <Content Include="node_modules\popper.js\dist\popper.min.js.map" />
+    <Content Include="node_modules\popper.js\dist\umd\popper-utils.js.map" />
+    <Content Include="node_modules\popper.js\dist\umd\popper-utils.min.js.map" />
+    <Content Include="node_modules\popper.js\dist\umd\popper.js.map" />
+    <Content Include="node_modules\popper.js\dist\umd\popper.min.js.map" />
+    <Content Include="node_modules\popper.js\dist\umd\poppper.js.flow" />
+    <Content Include="node_modules\popper.js\index.js.flow" />
+    <Content Include="node_modules\popper.js\package.json" />
+    <Content Include="node_modules\popper.js\README.md" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

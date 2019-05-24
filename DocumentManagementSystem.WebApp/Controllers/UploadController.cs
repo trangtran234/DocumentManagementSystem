@@ -42,6 +42,9 @@ namespace DocumentManagementSystem.WebApp.Controllers
             var provider = new MultipartFormDataStreamProvider(root);
             var result = await Request.Content.ReadAsMultipartAsync(provider);
 
+            var parentID = HttpContext.Current.Request.Form["parentID"];
+            var termID = HttpContext.Current.Request.Form["termID"];
+
             foreach (var file in result.FileData)
             {
                 Document document = new Document();
@@ -57,8 +60,8 @@ namespace DocumentManagementSystem.WebApp.Controllers
                 document.DocumentSize = document.DocumentContent.Length;
                 document.CreateByID = 1;
                 document.LastModifiedByID = 1;
-                document.ParentId = 21;
-
+                document.ParentId = Convert.ToInt16(parentID);
+                document.TermId = Convert.ToInt16(termID);               
 
                 if (document.DocumentSize > Common.LIMITED_FILE_SIZE)
                 {

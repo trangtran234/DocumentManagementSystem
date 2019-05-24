@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="6ddd6b71ee124b159706191ce86d9cc7" Name="Diagram1">
         <EntityTypeShape EntityType="DocumentManagementSystemModel.Account" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="DocumentManagementSystemModel.Document" Width="1.5" PointX="4.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DocumentManagementSystemModel.Document" Width="2.375" PointX="3.5" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DocumentManagementSystemModel.DocumentTag" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DocumentManagementSystemModel.Tag" Width="1.5" PointX="8.125" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DocumentManagementSystemModel.DocumentContent" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
@@ -15,6 +15,8 @@
         <AssociationConnector Association="DocumentManagementSystemModel.FK__Document__Docume__2B3F6F97" ManuallyRouted="false" />
         <AssociationConnector Association="DocumentManagementSystemModel.FK__DocumentT__Docum__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="DocumentManagementSystemModel.FK__DocumentT__TagId__300424B4" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DocumentManagementSystemModel.DocumentTerm" Width="1.5" PointX="6" PointY="7.625" />
+        <AssociationConnector Association="DocumentManagementSystemModel.FK__Document__Docume__37A5467C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
