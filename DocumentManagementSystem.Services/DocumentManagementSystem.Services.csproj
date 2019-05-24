@@ -71,7 +71,6 @@
     <Compile Include="Automapper\AutoMapperConfig.cs" />
     <Compile Include="Automapper\IAutoMapperConfig.cs" />
     <Compile Include="Common\Common.cs" />
-    <Compile Include="DependencyExtension\DependencyExtensionAutoMapper.cs" />
     <Compile Include="DependencyExtension\DependencyExtensionRepository.cs" />
     <Compile Include="Implement\DocumentService.cs" />
     <Compile Include="Implement\DocumentTermService.cs" />

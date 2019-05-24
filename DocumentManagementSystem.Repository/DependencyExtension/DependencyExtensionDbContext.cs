@@ -10,7 +10,11 @@ using Unity.Lifetime;
 
 namespace DocumentManagementSystem.Repository.DependencyExtension
 {
-    public class DependencyExtensionDbContext
+    public class DependencyExtensionDbContext : UnityContainerExtension
     {
+        protected override void Initialize()
+        {
+            
+        }
     }
 }
