@@ -4,5 +4,6 @@
         documentName?: string;
         parentId?: number;
         childrens?: DocumentTree[];
+        isExpanded?: boolean;
     }
 }

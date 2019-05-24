@@ -15,7 +15,7 @@
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div id="home" class="container tab-pane active">
+        <div id="home" class="container tab-pane active" ng-show="isVisible">
             <br>
             <h6>Name</h6>
             <p>{{document.documentName}}</p>
@@ -29,11 +29,11 @@
             <p>{{document.documentDescription}}</p>
             <br>
             <h6>File Type {{document.documentType}}</h6>
-            <h6>File Size {{document.documentSize}}</h6>
+            <h6>File Size {{document.documentSize}} KB</h6>
             <br>
-            <h7>Created by <a href="#">{{document.createdBy.username}}</a> at {{document.created}}</h7>
+            <em><h7>Created by <u><a href="#">{{document.createdBy.username}}</a></u> at {{document.created}}</h7></em>
             <br>
-            <h7>Last modified by <a href="#">{{document.lastModifiedBy.username}}</a> at {{document.lastModified}}</h7>
+            <em><h7>Last modified by <u><a href="#">{{document.lastModifiedBy.username}}</a></u> at {{document.lastModified}}</h7></em>
         </div>
         <div id="versions" class="container tab-pane fade"></div>
         <div id="history" class="container tab-pane fade"></div>

@@ -9,6 +9,7 @@
         childDocuments: DocumentTree[];
         onAddedNewFiles: () => void;
         getChildDocumentIntoListing: (id) => void;
+        toggleButton: (document: DocumentTree) => void;
 
         treeId: number;
     }
@@ -41,6 +42,15 @@
 
             scope.onAddedNewFiles = () => {
                 scope.getChildDocumentIntoListing(3);
+            }
+
+            scope.toggleButton = (document: DocumentTree) => {
+                if (document.isExpanded === true) {
+                    document.isExpanded = false;
+                }
+                else {
+                    document.isExpanded = true;
+                }
             }
         };
     }

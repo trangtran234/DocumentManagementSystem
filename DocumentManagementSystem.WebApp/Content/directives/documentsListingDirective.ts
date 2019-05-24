@@ -54,6 +54,8 @@
                     .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
                         var document = response.data;
                         this.$rootScope.$broadcast('rootScope:documentInfo', document)
+                        var isVisible = true;
+                        this.$rootScope.$broadcast('rootScope:isVisible', isVisible);
                     });
             }
 
@@ -62,6 +64,8 @@
                     .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
                         var document = response.data;
                         this.$rootScope.$broadcast('rootScope:documentInfo', document)
+                        var isVisible = true;
+                        this.$rootScope.$broadcast('rootScope:isVisible', isVisible);
                     });
             }
         }
