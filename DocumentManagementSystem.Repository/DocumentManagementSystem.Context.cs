@@ -9,32 +9,33 @@
 
 namespace DocumentManagementSystem.Repository
 {
+    using DocumentManagementSystem.Repository.Interface;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using DocumentManagementSystem.Repository.Interface;
     
-    public class DocumentManagementSystemEntities : DbContext, IDocumentContext
+    public partial class DocumentManagementSystemEntities : DbContext, IDocumentContext
     {
         public DocumentManagementSystemEntities(string connectionString)
             : base(connectionString)
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
-        public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Document> Documents { get; set; }
-        public virtual DbSet<DocumentTag> DocumentTags { get; set; }
-        public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<DocumentContent> DocumentContents { get; set; }
 
         void IDocumentContext.SaveChanges()
         {
             base.SaveChanges();
         }
+
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
+        public virtual DbSet<DocumentTag> DocumentTags { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<DocumentContent> DocumentContents { get; set; }
+        public virtual DbSet<DocumentTerm> DocumentTerms { get; set; }
     }
 }

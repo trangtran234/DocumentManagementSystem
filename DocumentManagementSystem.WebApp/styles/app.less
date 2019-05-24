@@ -1,5 +1,6 @@
 ﻿@base: #D3D3D3;
 @width: 0.5;
+@paddingTag: 50px;
 
 .class {
     width: percentage(@width); // returns `50%`
@@ -85,18 +86,59 @@
 
 .modal-dialog {
     background-color: #ffffff;
-    border-radius: 10px
-}
-.input-group {
-    width: 50%;
-    float: left;
-    .form-control{
-        margin-left: 1rem;
+    border-radius: 10px;
+
+    .modal-header {
+        background-color: lighten(@base, 11%);
     }
 }
 
-.form-group {
-    width: 50%;
-    float: left;
-    padding-left: 5rem;
+#tableTypeTag {
+    width: 100%;
+
+    label {
+        padding-left: @paddingTag;
+        margin-bottom: 0px;
+    }
+
+    .form-group {
+        padding-left: @paddingTag;
+
+        input {
+            width: 100%;
+            height: 38px;
+            border-radius: 5px;
+            border-color: darken(@base, 10%);
+        }
+    }
+
+    th {
+        font-weight: normal;
+        padding-bottom: 5px;
+    }
+}
+
+.table {
+    background-color: lighten(@base, 15%);
+
+    .documentName {
+        width: 60%;
+    }
+
+    .documentSize {
+        width: 20%;
+        text-align: center;
+    }
+
+    .documentStatus {
+        width: 10%;
+        .fa-check{
+            color: forestgreen;
+        }
+    }
+
+    .documentDeleteIcon {
+        width: 10%;
+        color: red;
+    }
 }

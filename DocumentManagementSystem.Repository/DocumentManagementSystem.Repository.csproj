@@ -90,9 +90,14 @@
     <Compile Include="DocumentTag.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="DocumentTerm.cs">
+      <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Implement\DocumentRepository.cs" />
+    <Compile Include="Implement\DocumentTermRepository.cs" />
     <Compile Include="Interface\IDocumentContext.cs" />
     <Compile Include="Interface\IDocumentRepository.cs" />
+    <Compile Include="Interface\IDocumentTermRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
