@@ -8,7 +8,7 @@
         getChildDocument: (id) => void;
         getChildDocumentOfFolder: (id) => void;
         getInfoOfDocument: (id) => void;
-        editDocument: (document) => void;
+        editDocument: (id) => void;
     }
 
     export class DocumentsListingDirective implements ng.IDirective {
@@ -45,8 +45,8 @@
                 scope.getChildDocument(data);
             });
 
-            scope.editDocument = (document) => {
-                this.$rootScope.$broadcast('rootScope:edit', document);
+            scope.editDocument = (id) => {
+                this.$rootScope.$broadcast('rootScope:edit', id);
             }
 
             scope.getChildDocument = (id) => {

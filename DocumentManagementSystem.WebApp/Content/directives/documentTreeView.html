@@ -5,7 +5,9 @@
             <ul>
                 <li class="list-inline-item"><i class="fas fa-hdd fa-lg"></i></li>
                 <li class="list-inline-item">
-                    <a class="collapsed text-dark" role="button" data-toggle="collapse" href="#collapse-{{document.id}}" aria-expanded="false" aria-controls="collapse-3" ng-click="getChildDocumentIntoListing(document.id)">{{document.documentName}}</a>
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-{{document.id}}" aria-expanded="false" aria-controls="collapse-{{document.id}}" ng-click="getChildDocumentIntoListing(document.id); toggleButton(document)">
+                        {{document.documentName}}
+                    </button>
                 </li>
             </ul>
         </div>
@@ -18,7 +20,9 @@
                             <ul>
                                 <li class="list-inline-item"><i ng-class="{'fas fa-folder-open fa-lg' : child.isExpanded, 'fas fa-folder fa-lg' : !child.isExpanded}"></i></li>
                                 <li class="list-inline-item">
-                                    <a class="collapsed text-dark" role="button" data-toggle="collapse" href="#collapse-{{child.id}}" aria-expanded="false" aria-controls="{{child.id}}" ng-click="getChildDocumentIntoListing(child.id); toggleButton(child)">{{child.documentName}}</a>
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-{{child.id}}" aria-expanded="false" aria-controls="collapse-{{child.id}}" ng-click="getChildDocumentIntoListing(child.id); toggleButton(child)">
+                                        {{child.documentName}}
+                                    </button>
                                 </li>
                             </ul>
                         </div>
@@ -31,7 +35,9 @@
                                             <ul>
                                                 <li class="list-inline-item"><i ng-class="{'fas fa-folder-open fa-lg' : childchild.isExpanded, 'fas fa-folder fa-lg' : !childchild.isExpanded}"></i></li>
                                                 <li class="list-inline-item">
-                                                    <a class="collapsed text-dark" role="button" data-toggle="collapse" href="#collapse-{{childchild.id}}" aria-expanded="false" aria-controls="{{childchild.id}}" ng-click="getChildDocumentIntoListing(childchild.id); toggleButton(childchild)">{{childchild.documentName}}</a>
+                                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-{{childchild.id}}" aria-expanded="false" aria-controls="collapse-{{childchild.id}}" ng-click="getChildDocumentIntoListing(childchild.id); toggleButton(childchild)">
+                                                        {{childchild.documentName}}
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -44,7 +50,9 @@
                                                             <ul>
                                                                 <li class="list-inline-item"><i ng-class="{'fas fa-folder-open fa-lg' : childlevel3.isExpanded, 'fas fa-folder fa-lg' : !childlevel3.isExpanded}"></i></li>
                                                                 <li class="list-inline-item">
-                                                                    <a class="collapsed text-dark" role="button" data-toggle="collapse" href="#collapse-{{childlevel3.id}}" aria-expanded="false" aria-controls="{{childlevel3.id}}" ng-click="getChildDocumentIntoListing(childlevel3.id); toggleButton(childlevel3)">{{childlevel3.documentName}}</a>
+                                                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-{{childlevel3.id}}" aria-expanded="false" aria-controls="collapse-{{childlevel3.id}}" ng-click="getChildDocumentIntoListing(childlevel3.id); toggleButton(childlevel3)">
+                                                                        {{childlevel3.documentName}}
+                                                                    </button>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -64,3 +72,4 @@
         </div>
     </div>
 </div>
+
