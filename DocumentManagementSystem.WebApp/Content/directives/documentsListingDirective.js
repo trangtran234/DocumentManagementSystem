@@ -14,20 +14,25 @@ var rootApp;
             this.link = function (scope, element, attributes) {
                 var http = _this.$http;
                 scope.$on('rootScope:id', function (event, data) {
-                    http.get('/api/documents/DocumentByFolderId/' + data)
-                        .then(function (response) {
-                        scope.documents = response.data;
-                    });
+                    scope.getChildDocument(data);
                 });
-                scope.getChildDocumentOfFolder = function (id) {
-                    _this.$http.get('/api/documents/DocumentByFolderId/' + id)
+                scope.$on('uploadSuccess', function (event, data) {
+                    scope.getChildDocument(data);
+                });
+                scope.getChildDocument = function (id) {
+                    http.get('/api/documents/DocumentByFolderId/' + id)
                         .then(function (response) {
                         scope.documents = response.data;
                     });
+                };
+                scope.getChildDocumentOfFolder = function (id) {
+                    scope.getChildDocument(id);
                     _this.$http.get('/api/documents/DocumentById/' + id)
                         .then(function (response) {
                         var document = response.data;
                         _this.$rootScope.$broadcast('rootScope:documentInfo', document);
+                        var isVisible = true;
+                        _this.$rootScope.$broadcast('rootScope:isVisible', isVisible);
                     });
                 };
                 scope.getInfoOfDocument = function (id) {
@@ -35,6 +40,8 @@ var rootApp;
                         .then(function (response) {
                         var document = response.data;
                         _this.$rootScope.$broadcast('rootScope:documentInfo', document);
+                        var isVisible = true;
+                        _this.$rootScope.$broadcast('rootScope:isVisible', isVisible);
                     });
                 };
             };
