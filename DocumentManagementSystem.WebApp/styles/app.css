@@ -21,22 +21,11 @@
   height: 10%;
   padding-left: 1em;
 }
-.user-login ul {
+.user-login .fa-user-circle {
   padding-top: 15px;
 }
 .left-navigation {
   height: 55%;
-}
-.left-navigation div ul {
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-}
-.left-navigation .card-body {
-  padding-top: 0px;
-  padding-left: 35px;
-  padding-bottom: 0px;
 }
 .action-1 {
   height: 30%;
@@ -47,9 +36,6 @@
 .header {
   height: 10%;
   padding-left: 15px;
-}
-.header h2 {
-  margin-top: 15px;
 }
 .action-button {
   height: 10%;
@@ -72,55 +58,8 @@
 }
 .information-area {
   height: 100%;
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-top: 0px;
 }
 .modal-dialog {
   background-color: #ffffff;
   border-radius: 10px;
-}
-.modal-dialog .modal-header {
-  background-color: #efefef;
-}
-#tableTypeTag {
-  width: 100%;
-}
-#tableTypeTag label {
-  padding-left: 50px;
-  margin-bottom: 0px;
-}
-#tableTypeTag .form-group {
-  padding-left: 50px;
-  margin-bottom: 0px;
-}
-#tableTypeTag .form-group input {
-  width: 100%;
-  height: 38px;
-  border-radius: 5px;
-  border-color: #bababa;
-}
-#tableTypeTag th {
-  font-weight: normal;
-  padding-bottom: 5px;
-}
-.table {
-  background-color: #f9f9f9;
-}
-.table .documentName {
-  width: 60%;
-}
-.table .documentSize {
-  width: 20%;
-  text-align: center;
-}
-.table .documentStatus {
-  width: 10%;
-}
-.table .documentStatus .fa-check {
-  color: forestgreen;
-}
-.table .documentDeleteIcon {
-  width: 10%;
-  color: red;
 }
