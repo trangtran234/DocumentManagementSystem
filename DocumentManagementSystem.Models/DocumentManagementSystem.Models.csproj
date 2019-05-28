@@ -47,7 +47,7 @@
     <Compile Include="Account.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="DocumentContent.cs" />
-    <Compile Include="DocumentTerm.cs" />
+    <Compile Include="DocumentType.cs" />
     <Compile Include="DocumentTreeViewDTO.cs" />
     <Compile Include="DocumentTag.cs" />
     <Compile Include="ExtendModel\DocumentTreeViewDTO.cs" />

@@ -15,5 +15,6 @@
         tags?: Array<Tag>;
         statusUpload?: number;
         documentContent?: Uint8Array;
+        documentTypes?: Array<DocumentType>;
     }
 }

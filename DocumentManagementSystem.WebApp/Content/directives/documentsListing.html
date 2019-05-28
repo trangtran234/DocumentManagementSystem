@@ -4,7 +4,7 @@
             <th class="checkbox" scope="col"><input type="checkbox" ng-model="leader" /></th>
             <th scope="col"></th>
             <th scope="col">Title</th>
-            <th scope="col">Tags</th>
+            <th scope="col">Document Type</th>
             <th scope="col">Created</th>
             <th scope="col">Created By</th>
             <th scope="col">Last Modified</th>
@@ -34,7 +34,7 @@
             <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)"><a href="#">{{document.documentName}}</a></td>
             <td>
                 <div>
-                    <span class="badge badge-dark" ng-repeat="tag in document.tags">{{tag.tagName}}</span>
+                    <span class="badge badge-dark" ng-repeat="type in document.documentTypes">{{type.type}}</span>
                 </div>
             </td>
             <td>{{document.created}}</td>

@@ -33,9 +33,9 @@ namespace DocumentManagementSystem.Repository
 
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
-        public virtual DbSet<DocumentTag> DocumentTags { get; set; }
-        public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<DocumentContent> DocumentContents { get; set; }
-        public virtual DbSet<DocumentTerm> DocumentTerms { get; set; }
+        public virtual DbSet<DocumentTag> DocumentTags { get; set; }
+        public virtual DbSet<DocumentType> DocumentTypes { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
     }
 }

@@ -20,7 +20,8 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(d => d.DocumentDescription, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentDescription)))
                                         .ForMember(d => d.DocumentName, opt => opt.MapFrom(src => src.DocumentType.Contains("folder")? src.DocumentName: src.DocumentName + "." + src.DocumentType))
                                         .ForMember(d => d.DocumentContent, opt => opt.Ignore())
-                                        .ForMember(d => d.Tags, opt => opt.MapFrom(src => src.DocumentTags.Select(dt => new Models.Tag() { Id = dt.Tag.Id, TagName = dt.Tag.TagName })));
+                                        .ForMember(d => d.Tags, opt => opt.MapFrom(src => src.DocumentTags.Select(dt => new Models.Tag() { Id = dt.Tag.Id, TagName = dt.Tag.TagName })))
+                                        .ForMember(d => d.DocumentTypes, opt => opt.MapFrom(src => src.DocumentTypes.Select(dt => new Models.DocumentType() { Id = dt.Id, Type = dt.Type})));
                                         
                 cfg.CreateMap<Repository.Document, Models.DocumentContent>()
                                         .ForMember(d => d.Id, opt => opt.MapFrom(src => src.DocumentContent.Id))
@@ -37,13 +38,15 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(repo => repo.DocumentDescription, model => model.MapFrom(src => src.DocumentDescription))
                                         .ForMember(repo => repo.DocumentContentId, model => model.MapFrom(src => src.DocumentContentId))
                                         .ForMember(repo => repo.ParentId, model => model.MapFrom(src => src.ParentId))
-                                        .ForMember(repo => repo.DocumentTermsID, model => model.MapFrom(src => src.TermId))
+                                        .ForMember(repo => repo.DocumentTypes, model => model.Ignore())
                                         .ForMember(repo => repo.Id, model => model.Ignore())
-                                        .ForMember(repo => repo.DocumentContent, model => model.Ignore());
-                                        //.ForMember(repo => repo.Account, model => model.Ignore())
-                                        //.ForMember(repo => repo.Account1, model => model.Ignore());
+                                        .ForMember(repo => repo.DocumentContent, model => model.Ignore())                                    
+                                        .ForMember(repo => repo.Account, model => model.Ignore())
+                                        .ForMember(repo => repo.Account1, model => model.Ignore());
+
                 cfg.CreateMap<Models.DocumentContent, Repository.DocumentContent>();
-                cfg.CreateMap<Repository.DocumentTerm, Repository.DocumentTerm>();
+                cfg.CreateMap<Repository.DocumentType, Models.DocumentType>();
+                cfg.CreateMap<Models.DocumentType, Repository.DocumentType>();
                 //.ForMember();
                 //lots more maps...here!
             });

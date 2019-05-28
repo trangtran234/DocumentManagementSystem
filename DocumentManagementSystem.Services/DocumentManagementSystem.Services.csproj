@@ -74,9 +74,9 @@
     <Compile Include="DependencyExtension\DependencyExtensionAutoMapper.cs" />
     <Compile Include="DependencyExtension\DependencyExtensionRepository.cs" />
     <Compile Include="Implement\DocumentService.cs" />
-    <Compile Include="Implement\DocumentTermService.cs" />
+    <Compile Include="Implement\DocumentTypeService.cs" />
     <Compile Include="Interface\IDocumentService.cs" />
-    <Compile Include="Interface\IDocumentTermService.cs" />
+    <Compile Include="Interface\IDocumentTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -23,6 +23,7 @@ namespace DocumentManagementSystem.Models
         public int LastModifiedByID { get; set; }
         public System.Guid DocumentContentId { get; set; }
         public int ParentId { get; set; }
-        public int TermId { get; set; }
+
+        public virtual ICollection<DocumentType> DocumentTypes { get; set; }
     }
 }

@@ -12,6 +12,8 @@ using System.Web;
 using System.Web.Http;
 using DocumentManagementSystem.Models;
 using DocumentManagementSystem.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace DocumentManagementSystem.WebApp.Controllers
 {
@@ -35,7 +37,9 @@ namespace DocumentManagementSystem.WebApp.Controllers
             }
 
             List<Document> listDocument = new List<Document>();
-            List<Document> listLimitedSize = new List<Document>();
+            List<Document> listFail = new List<Document>();
+            List<Document> listSuccess = new List<Document>();
+            ICollection<DocumentType> documentTypes = new List<DocumentType>();
 
             var root = HttpContext.Current.Server.MapPath("~/App_Data/Uploadfiles");
             Directory.CreateDirectory(root);
@@ -43,7 +47,16 @@ namespace DocumentManagementSystem.WebApp.Controllers
             var result = await Request.Content.ReadAsMultipartAsync(provider);
 
             var parentID = HttpContext.Current.Request.Form["parentID"];
-            var termID = HttpContext.Current.Request.Form["termID"];
+            var typeID = HttpContext.Current.Request.Form["typeID"];
+            dynamic stuff = JsonConvert.DeserializeObject(typeID); 
+
+            foreach( var s in stuff)
+            {
+                DocumentType documentType = new DocumentType();
+                documentType.Id = s.id;
+                documentType.Type = s.type;
+                documentTypes.Add(documentType);
+            }
 
             foreach (var file in result.FileData)
             {
@@ -61,27 +74,30 @@ namespace DocumentManagementSystem.WebApp.Controllers
                 document.CreateByID = 1;
                 document.LastModifiedByID = 1;
                 document.ParentId = Convert.ToInt16(parentID);
-                document.TermId = Convert.ToInt16(termID);               
+                document.DocumentTypes = documentTypes;
 
-                if (document.DocumentSize > Common.LIMITED_FILE_SIZE)
-                {
-                    listLimitedSize.Add(document);
-                }
                 listDocument.Add(document);
 
             }
 
-            if (listLimitedSize.Count != 0)
+            foreach(Document document in listDocument)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Check File Size " + listLimitedSize);
+                bool flag = documentServices.AddDocument(document);
+                if (flag)
+                {
+                    listSuccess.Add(document);
+                }
+                else
+                {
+                    listFail.Add(document);
+                }
             }
 
-            List<Document> listDocumentsSuccess = documentServices.AddListDocument(listDocument);
-            if (listDocumentsSuccess.Count != 0)
+            if (listSuccess.Count != 0)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, listDocumentsSuccess);
+                return Request.CreateResponse(HttpStatusCode.OK, listSuccess);
             }
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.BadRequest, listFail);
         }
 
         [HttpDelete]
