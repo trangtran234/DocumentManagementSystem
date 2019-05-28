@@ -4,6 +4,7 @@
             <th class="checkbox" scope="col"><input type="checkbox" ng-model="leader" /></th>
             <th scope="col"></th>
             <th scope="col">Title</th>
+            <th scope="col"></th>
             <th scope="col">Tags</th>
             <th scope="col">Created</th>
             <th scope="col">Created By</th>
@@ -32,6 +33,19 @@
             <td ng-switch-when="folder"><i class="fas fa-folder fa-lg"></i></td>
             <td ng-if="document.documentType !== 'folder'" ng-click="getInfoOfDocument(document.id)"><a href="#">{{document.documentName}}</a></td>
             <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)"><a href="#">{{document.documentName}}</a></td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-dark font-weight-bold dropdown-toggle" type="button" id="dropdownMoreAction" data-toggle="dropdown">
+                        More
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMoreAction">
+                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#edit" ng-click="editDocument(document)">Edit</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#action1">Action 1</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#action2">Action 2</a>
+                    </div>
+                    <edit-document></edit-document>
+                </div>
+            </td>
             <td>
                 <div>
                     <span class="badge badge-dark" ng-repeat="tag in document.tags">{{tag.tagName}}</span>

@@ -36,24 +36,24 @@ namespace DocumentManagementSystem.WebApp.Controllers
 
         [Route("Folders")]
         [HttpGet]
-        public IList<DocumentTreeViewDTO> GetFolders()
+        public IList<DocumentTreeView> GetFolders()
         {
-            IList<DocumentTreeViewDTO> documents = documentServices.GetFolders();
+            IList<DocumentTreeView> documents = documentServices.GetFolders();
             return documents;
         }
 
         [Route("FolderByFolderId/{id:int}")]
         [HttpGet]
-        public IList<DocumentTreeViewDTO> GetFoldersByFolderId(int id)
+        public IList<DocumentTreeView> GetFoldersByFolderId(int id)
         {
-            IList<DocumentTreeViewDTO> documents = documentServices.GetFoldersByFolderId(id);
+            IList<DocumentTreeView> documents = documentServices.GetFoldersByFolderId(id);
             return documents;
         }
 
-        private void GetTreeView(List<DocumentTreeViewDTO> list, DocumentTreeViewDTO current, ref List<DocumentTreeViewDTO> returnList)
+        private void GetTreeView(List<DocumentTreeView> list, DocumentTreeView current, ref List<DocumentTreeView> returnList)
         {
             var childs = list.Where(c => c.ParentId == current.Id).ToList();
-            current.Childrens = new List<DocumentTreeViewDTO>();
+            current.Childrens = new List<DocumentTreeView>();
             current.Childrens.AddRange(childs);
             foreach(var item in childs)
             {
@@ -61,9 +61,9 @@ namespace DocumentManagementSystem.WebApp.Controllers
             }
         }
 
-        private List<DocumentTreeViewDTO> BuildTree(List<DocumentTreeViewDTO> list)
+        private List<DocumentTreeView> BuildTree(List<DocumentTreeView> list)
         {
-            List<DocumentTreeViewDTO> returnList = new List<DocumentTreeViewDTO>();
+            List<DocumentTreeView> returnList = new List<DocumentTreeView>();
             var topLevels = list.Where(a => a.ParentId == 0);
             returnList.AddRange(topLevels);
             foreach (var item in topLevels)
@@ -76,11 +76,11 @@ namespace DocumentManagementSystem.WebApp.Controllers
 
         [Route("FolderStructure")]
         [HttpGet]
-        public IList<DocumentTreeViewDTO> GetFileStructure()
+        public IList<DocumentTreeView> GetFileStructure()
         {
-            List<DocumentTreeViewDTO> list = documentServices.GetFolders();
+            List<DocumentTreeView> list = documentServices.GetFolders();
 
-            List<DocumentTreeViewDTO> treelist = new List<DocumentTreeViewDTO>();
+            List<DocumentTreeView> treelist = new List<DocumentTreeView>();
             if (list.Count() > 0)
             {
                 treelist = BuildTree(list);

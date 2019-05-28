@@ -8,6 +8,7 @@
         getChildDocument: (id) => void;
         getChildDocumentOfFolder: (id) => void;
         getInfoOfDocument: (id) => void;
+        editDocument: (document) => void;
     }
 
     export class DocumentsListingDirective implements ng.IDirective {
@@ -36,10 +37,17 @@
             scope.$on('rootScope:id', function (event, data) {
                 scope.getChildDocument(data);
             });
+            scope.$on('rootScope:treeviewId', function (event, data) {
+                scope.getChildDocument(data);
+            });
 
             scope.$on('uploadSuccess', function (event, data) {
                 scope.getChildDocument(data);
             });
+
+            scope.editDocument = (document) => {
+                this.$rootScope.$broadcast('rootScope:edit', document);
+            }
 
             scope.getChildDocument = (id) => {
                 http.get<Document[]>('/api/documents/DocumentByFolderId/' + id)
