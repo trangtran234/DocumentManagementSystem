@@ -19,7 +19,6 @@ namespace DocumentManagementSystem.WebApp
 
             container.AddExtension(new DependencyExtensionRepository());
             container.AddExtension(new DependencyExtensionServices());
-            container.AddExtension(new DependencyExtensionAutoMapper());
             container.RegisterType<IDocumentContext, DocumentManagementSystemEntities>(new PerThreadLifetimeManager(), new InjectionConstructor("name=DocumentManagementSystemEntities"));
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
