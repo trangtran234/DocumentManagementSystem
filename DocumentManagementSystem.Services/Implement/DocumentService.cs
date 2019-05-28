@@ -55,53 +55,57 @@ namespace DocumentManagementSystem.Services
             return documents;
         }
 
-        public List<Models.Document> AddListDocument(List<Models.Document> listDocuments)
-        {
-            List<Models.DocumentContent> listContents = new List<Models.DocumentContent>();
-            List<Models.Document> listInvalidData = new List<Models.Document>();
-            foreach (Models.Document document in listDocuments)
-            {
-                string[] arr = Common.GetDocumentTypes(document.DocumentName, ".");
-                document.DocumentName = arr[0];
-                document.DocumentType = arr[arr.Length - 1];
-
-                var currentDay = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                document.Created = currentDay;
-                document.LastModified = currentDay;
-
-                if (document.DocumentType == null || document.DocumentContent == null)
-                {
-                    listInvalidData.Add(document);
-                    return listInvalidData;
-                }
-                if (document.DocumentContent != null)
-                {
-                    Models.DocumentContent content = new Models.DocumentContent();
-
-                    content.Id = Guid.NewGuid();
-                    document.DocumentContentId = content.Id;
-                    content.Content = document.DocumentContent;
-                    listContents.Add(content);
-                }
-            }
-
-            List<Repository.Document> listDocumentsRepo = mapper.Map<List<Repository.Document>>(listDocuments);
-            List<Repository.DocumentContent> listContentsRepo = mapper.Map<List<Repository.DocumentContent>>(listContents);
-
-            documentRepository.AddDocumentContent(listContentsRepo);
-            documentRepository.AddListDocument(listDocumentsRepo);
-
-            List<Repository.Document> listDocumentsSuccess = documentRepository.GetDocumentsTop(listDocumentsRepo.Count());
-            List<Models.Document> listDocumentsModel = mapper.Map<List<Models.Document>>(listDocumentsSuccess);
-
-            return listDocumentsModel;
-        }
-
         public void DeleteDocument(int id)
         {
             Guid contentId = documentRepository.FindDocumentContent(id);
             documentRepository.DeleteDocument(id);
             documentRepository.DeleteDocumentContent(contentId);
+        }
+
+        public bool AddDocument(Models.Document document)
+        {
+            string[] arr = Common.GetDocumentTypes(document.DocumentName, ".");
+            document.DocumentName = arr[0];
+            document.DocumentType = arr[arr.Length - 1];
+
+            var currentDay = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            document.Created = currentDay;
+            document.LastModified = currentDay;
+
+            if (document.DocumentType != null 
+                && document.DocumentContent != null 
+                && document.DocumentSize <= Common.LIMITED_FILE_SIZE)
+            {
+                Models.DocumentContent content = new Models.DocumentContent();
+
+                content.Id = Guid.NewGuid();
+                document.DocumentContentId = content.Id;
+                content.Content = document.DocumentContent;
+
+                List<Models.DocumentType> types = new List<Models.DocumentType>();
+                foreach(Models.DocumentType dt in document.DocumentTypes)
+                {
+                    Models.DocumentType type = new Models.DocumentType();
+                    type.Id = dt.Id;
+                    type.Type = dt.Type;
+
+                    types.Add(type);
+                }
+
+                document.DocumentTypes = null;
+
+                Repository.DocumentContent contentRepository = mapper.Map<Repository.DocumentContent>(content);
+                Repository.Document documentRepo = mapper.Map<Repository.Document>(document);
+                List<Repository.DocumentType> typesRepository = mapper.Map<List<Repository.DocumentType>>(types);
+
+                if(documentRepository.AddDocumentContent(contentRepository) && documentRepository.AddDocument(documentRepo, typesRepository))
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            return false;
         }
     }
 }

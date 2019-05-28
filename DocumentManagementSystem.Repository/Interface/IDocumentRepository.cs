@@ -13,11 +13,11 @@ namespace DocumentManagementSystem.Repository
         List<Document> GetFolders();
         List<Document> GetFoldersByFolderId(int id);
         Document GetDocumentByDocumentId(int id);
-        void AddListDocument(List<Document> listDocuments);
-        void AddDocumentContent(List<DocumentContent> documentContent);
         List<Document> GetDocumentsTop(int top);
         void DeleteDocument(int id);
         void DeleteDocumentContent(Guid id);
         Guid FindDocumentContent(int id);
+        bool AddDocument(Document document, List<DocumentType> types);
+        bool AddDocumentContent(DocumentContent documentContent);
     }
 }

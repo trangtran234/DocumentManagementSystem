@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace DocumentManagementSystem.Repository
 {
-    public class DocumentTermRepository : IDocumentTermRepository
+    public class DocumentTypeRepository : IDocumentTypeRepository
     {
         private IDocumentContext context;
 
-        public DocumentTermRepository(IDocumentContext context)
+        public DocumentTypeRepository(IDocumentContext context)
         {
             this.context = context;
         }
 
-        public List<DocumentTerm> GetAllDocumentTerms()
+        public List<DocumentType> GetAllDocumentTypes()
         {
-            List<DocumentTerm> documentTerms = context.DocumentTerms.Select(d => d).ToList();
-            return documentTerms;
+            List<DocumentType> documentTypes = context.DocumentTypes.Select(d => d).ToList();
+            return documentTypes;
         }
     }
 }

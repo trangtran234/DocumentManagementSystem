@@ -2,12 +2,12 @@
     'use strict';
 
     import Document = rootApp.model.Document;
-    import DocumentTerm = rootApp.model.DocumentTerm;
+    import DocumentType = rootApp.model.DocumentType;
 
     export interface IUploadDocumentScope extends ng.IScope {
         filesList: Array<Document>;
         files: any;
-        documentTerms: Array<DocumentTerm>;
+        documentTypes: Array<DocumentType>;
         uploadFiles: () => void;
         deleteDocumentInDialog: (id) => void;
         onSave: () => void;
@@ -19,7 +19,6 @@
         public templateUrl: string = '/Content/directives/add-document.html';
         public scope: {
             onSave: '&';
-            data: '=singleSelect';
         }
 
         constructor(private $http: ng.IHttpService, private $rootScope: ng.IRootScopeService) { }
@@ -38,17 +37,20 @@
 
             var rootScope = this.$rootScope;
             scope.filesList = [];
-            scope.files = [];
+            scope.files = [];            
 
-            this.$http.get<DocumentTerm[]>('/api/documentterms/DocumentTerms')
-                .then((response: ng.IHttpPromiseCallbackArg<DocumentTerm[]>) => {
-                    scope.documentTerms = response.data;
+            this.$http.get<DocumentType[]>('/api/documenttypes/DocumentTypes')
+                .then((response: ng.IHttpPromiseCallbackArg<DocumentType[]>) => {
+                    scope.documentTypes = response.data;
                 });
 
             var parentID = null;
             scope.$on('rootScope:id', function (event, data) {
                 parentID = data;
             });
+            //scope.$on('rootScope:treeviewId', function (event, data) {
+            //    parentID = data;
+            //});
 
             scope.changeFiles = () => { 
 
@@ -79,7 +81,7 @@
 
             }
             scope.deleteDocumentInDialog = (id) => {
-                console.log("Document Id " + id);
+
                 for (var i = 0; i < scope.filesList.length; i++) {
                     if (scope.filesList[i].id === id) {
                         scope.filesList.splice(i, 1);
@@ -99,22 +101,32 @@
                 }
             };
 
-            scope.uploadFiles = () => {               
+            scope.uploadFiles = () => {
+                
+                let selectTypes: Array<DocumentType> = [];
+                var typeID = $('#typesSelect').val();
+                var arrayTypeID = typeID.toString().split(",");
 
-                for (var i = 0; i < scope.filesList.length; i++) {
-                    if (scope.filesList[i].documentSize > 1048576) {
-                        alert("Maximum size 20MB: " + scope.filesList[i].documentName);
-                        return;
-                    }
+                for (var i = 0; i < arrayTypeID.length; i++) {
+
+                    var documentType: DocumentType = {};
+                    documentType.id = JSON.parse(typeID[i]);
+
+                    for (var j = 0; j < scope.documentTypes.length; j++) {                       
+                        if (scope.documentTypes[j].id === documentType.id) {
+                            documentType.type = scope.documentTypes[j].type;
+                            selectTypes.push(documentType);
+                        }
+                    } 
+
                 }
-
-                var termID = $('#singleSelect').val();
+                
                 var formData = new FormData();
                 for (var i = 0; i < scope.files.length; i++) {
                     formData.append('file', scope.files[i]);                   
                 }
                 formData.append('parentID', parentID);
-                formData.append('termID', termID.toString());
+                formData.append('typeID', JSON.stringify(selectTypes));
 
                 if (parentID === null) {
                     alert("Please select folder.");
@@ -150,8 +162,8 @@
                             scope.safeApply(function () {
 
                                 scope.filesList = [];
-
-
+                                scope.files = [];
+                                typeID = null;
                             });
 
                             $('#addDocument').modal('hide');
@@ -160,7 +172,7 @@
                     },
                         function (response) {
                             console.log('Fail: ' + response);
-
+                            scope.files = [];
                         });
                 } 
             }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DocumentManagementSystem.Services
 {
-    public interface IDocumentTermService
+    public interface IDocumentTypeService
     {
-        List<Models.DocumentTerm> GetAllDocumentTerms();
+        List<Models.DocumentType> GetAllDocumentTerms();
     }
 }

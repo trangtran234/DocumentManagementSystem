@@ -14,7 +14,7 @@ namespace DocumentManagementSystem.Services
         List<DocumentTreeView> GetFolders();
         List<DocumentTreeView> GetFoldersByFolderId(int id);
         Document GetDocumentByDocumentId(int id);
-        List<Models.Document> AddListDocument(List<Models.Document> listDocuments);
         void DeleteDocument(int id);
+        bool AddDocument(Document document);
     }
 }

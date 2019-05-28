@@ -7,7 +7,7 @@
 </div>
 <div class="modal" id="addDocument">
     <div class="modal-dialog modal-xl">
-        <div class="modal-content" ng-controller="DocumentController">
+        <div class="modal-content">
 
             <div class="modal-header">
                 <h5>Upload documents</h5>
@@ -46,22 +46,15 @@
                     <thead>
                         <tr>
                             <th>Document types</th>
-                            <th><label for="tags">Tags</label></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
-                                <select name="singleSelect" id="singleSelect" ng-model="data.singleSelect" class="form-control">
+                                <select name="typesSelect" id="typesSelect" class="form-control" multiple>
                                     <option value="">Terms of Reference</option>
-                                    <option ng-repeat="document in documentTerms" value="{{document.id}}">{{document.term}}</option>
+                                    <option ng-repeat="type in documentTypes" value="{{type.id}}">{{type.type}}</option>
                                 </select>
-
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <input type="text" id="tags" />
-                                </div>
                             </td>
                         </tr>
                     </tbody>

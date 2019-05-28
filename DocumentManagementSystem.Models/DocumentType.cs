@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DocumentManagementSystem.Models
 {
-    public class DocumentTerm
+    public class DocumentType
     {
         public int Id { get; set; }
-        public string Term { get; set; }
+        public string Type { get; set; }
     }
 }

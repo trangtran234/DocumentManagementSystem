@@ -15,7 +15,7 @@ namespace DocumentManagementSystem.Services.DependencyExtension
         protected override void Initialize()
         {
             Container.RegisterType<IDocumentRepository, DocumentRepository>(new ContainerControlledLifetimeManager());
-            Container.RegisterType<IDocumentTermRepository, DocumentTermRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IDocumentTypeRepository, DocumentTypeRepository>(new ContainerControlledLifetimeManager());
         }
     }
 }

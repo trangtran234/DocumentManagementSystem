@@ -52,25 +52,6 @@ namespace DocumentManagementSystem.Repository
             return documents;
         }
 
-        public void AddListDocument(List<Document> listDocuments)
-        {
-            foreach (Document document in listDocuments)
-            {
-                context.Documents.Add(document);
-
-            }
-            context.SaveChanges();
-        }
-
-        public void AddDocumentContent(List<DocumentContent> listContents)
-        {
-            foreach (DocumentContent content in listContents)
-            {
-                context.DocumentContents.Add(content);
-            }
-            context.SaveChanges();
-        }
-
         public void DeleteDocument(int id)
         {
             var document = context.Documents.SingleOrDefault(d => d.Id == id);
@@ -94,6 +75,49 @@ namespace DocumentManagementSystem.Repository
             }
 
             return Guid.Empty;
+        }
+
+        public bool AddDocument(Document document, List<DocumentType> documentTypes)
+        {
+            try
+            {
+                //add instance to context
+                context.Documents.Add(document);
+                //attach instance to context
+                //context.Documents.Attach(document);
+
+                foreach (DocumentType documentType in documentTypes)
+                {
+                    DocumentType type = context.DocumentTypes.Find(documentType.Id);
+                    //attach instance to context
+                    context.DocumentTypes.Attach(type);
+                    
+
+                    //like previous method add instance to navigation property
+                    document.DocumentTypes.Add(type);
+                }
+
+                context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool AddDocumentContent(DocumentContent documentContent)
+        {
+            try
+            {
+                context.DocumentContents.Add(documentContent);
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

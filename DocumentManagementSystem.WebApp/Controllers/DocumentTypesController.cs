@@ -9,19 +9,19 @@ using System.Web.Http;
 
 namespace DocumentManagementSystem.WebApp.Controllers
 {
-    [RoutePrefix("api/documentterms")]
-    public class DocumentTermsController : ApiController
+    [RoutePrefix("api/documenttypes")]
+    public class DocumentTypesController : ApiController
     {
-        private IDocumentTermService documentTermService;
+        private IDocumentTypeService documentTermService;
 
-        public DocumentTermsController(DocumentTermService documentTermService)
+        public DocumentTypesController(DocumentTypeService documentTermService)
         {
             this.documentTermService = documentTermService;
         }
 
-        [Route("DocumentTerms")]
+        [Route("DocumentTypes")]
         [HttpGet]
-        public List<DocumentTerm> GetAllDocumentTerms()
+        public List<DocumentType> GetAllDocumentTerms()
         {
             return documentTermService.GetAllDocumentTerms();
         }

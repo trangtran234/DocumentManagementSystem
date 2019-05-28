@@ -15,8 +15,8 @@ namespace DocumentManagementSystem.WebApp.DependencyExtension
         protected override void Initialize()
         {
             Container.RegisterType<IDocumentService, DocumentService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IDocumentTypeService, DocumentTypeService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IAutoMapperConfig, AutoMapperConfig>(new ContainerControlledLifetimeManager());
-            Container.RegisterType<IDocumentTermService, DocumentTermService>(new ContainerControlledLifetimeManager());
         }
     }
 }
