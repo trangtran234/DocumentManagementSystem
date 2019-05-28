@@ -4,6 +4,7 @@
             <th class="checkbox" scope="col"><input type="checkbox" ng-model="leader" /></th>
             <th scope="col"></th>
             <th scope="col">Title</th>
+            <th scope="col"></th>
             <th scope="col">Document Type</th>
             <th scope="col">Created</th>
             <th scope="col">Created By</th>
@@ -38,7 +39,7 @@
                         More
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMoreAction">
-                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#edit" ng-click="editDocument(document)">Edit</a>
+                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#edit" ng-click="editDocument(document.id)">Edit</a>
                         <a class="dropdown-item" data-toggle="modal" data-target="#action1">Action 1</a>
                         <a class="dropdown-item" data-toggle="modal" data-target="#action2">Action 2</a>
                     </div>

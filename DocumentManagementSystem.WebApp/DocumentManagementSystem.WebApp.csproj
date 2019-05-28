@@ -740,7 +740,6 @@
     <TypeScriptCompile Include="Content\models\tag.ts" />
     <TypeScriptCompile Include="Content\models\user.ts" />
     <TypeScriptCompile Include="Content\services\documentService.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\angular-route\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\jqlite.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\bootstrap\index.d.ts" />
@@ -794,9 +793,6 @@
     <Content Include="node_modules\popper.js\index.js.flow" />
     <Content Include="node_modules\popper.js\package.json" />
     <Content Include="node_modules\popper.js\README.md" />
-    <Content Include="node_modules\%40types\angular-route\LICENSE" />
-    <Content Include="node_modules\%40types\angular-route\package.json" />
-    <Content Include="node_modules\%40types\angular-route\README.md" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -810,12 +806,6 @@
     <Content Include="Scripts\lib\less\.bower.json" />
     <Content Include="Scripts\lib\less\bower.json" />
     <Content Include="styles\app.less" />
-    <Content Include="Scripts\lib\angular-route\.bower.json" />
-    <Content Include="Scripts\lib\angular-route\angular-route.min.js.map" />
-    <Content Include="Scripts\lib\angular-route\bower.json" />
-    <Content Include="Scripts\lib\angular-route\LICENSE.md" />
-    <Content Include="Scripts\lib\angular-route\package.json" />
-    <Content Include="Scripts\lib\angular-route\README.md" />
     <Content Include="Scripts\lib\bootstrap\.bower.json" />
     <Content Include="Scripts\lib\bootstrap\.browserslistrc" />
     <Content Include="Scripts\lib\bootstrap\.editorconfig" />

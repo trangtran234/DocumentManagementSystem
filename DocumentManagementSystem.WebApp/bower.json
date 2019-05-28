@@ -3,8 +3,9 @@
   "private": true,
   "dependencies": {
     "angular": "1.7.8",
-    "bootstrap": "v4.3.1",
     "less": "v3.9.0",
-    "jQuery": "3.4.0"
+    "jQuery": "3.4.0",
+    "bootstrap": "v4.3.1",
+    "angular-route": "v1.7.8"
   }
 }
