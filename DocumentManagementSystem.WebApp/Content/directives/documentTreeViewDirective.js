@@ -9,7 +9,7 @@ var rootApp;
             this.restrict = "E";
             this.templateUrl = '/Content/directives/documentTreeView.html';
             this.link = function (scope, element, attributes) {
-                _this.$http.get('/api/documents/Folders')
+                _this.$http.get('/api/documents/FolderStructure')
                     .then(function (response) {
                     scope.documentsTree = response.data;
                 });
@@ -18,6 +18,14 @@ var rootApp;
                 };
                 scope.onAddedNewFiles = function () {
                     scope.getChildDocumentIntoListing(3);
+                };
+                scope.toggleButton = function (document) {
+                    if (document.isExpanded === true) {
+                        document.isExpanded = false;
+                    }
+                    else {
+                        document.isExpanded = true;
+                    }
                 };
             };
         }
