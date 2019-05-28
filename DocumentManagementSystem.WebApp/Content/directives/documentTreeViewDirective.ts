@@ -14,14 +14,14 @@
         treeId: number;
     }
 
-    export class documentTreeViewDirective implements ng.IDirective {
+    export class DocumentTreeViewDirective implements ng.IDirective {
         public restrict: string = "E";
         public templateUrl: string = '/Content/directives/documentTreeView.html';
 
         constructor(private $http: ng.IHttpService, private $rootScope: ng.IRootScopeService) { }
 
         public static Factory() {
-            const directive = ($http: ng.IHttpService, $rootScope: ng.IRootScopeService) => new documentTreeViewDirective($http, $rootScope);
+            const directive = ($http: ng.IHttpService, $rootScope: ng.IRootScopeService) => new DocumentTreeViewDirective($http, $rootScope);
             directive.$inject = ['$http', '$rootScope'];
             return directive;
         }

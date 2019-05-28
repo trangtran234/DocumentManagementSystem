@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace DocumentManagementSystem.Models
 {
-    public partial class DocumentTreeViewDTO
+    public class DocumentTreeView
     {
         public int Id { get; set; }
         public string DocumentName { get; set; }
         public int ParentId { get; set; }
+        public List<DocumentTreeView> Childrens { get; set; }
     }
 }

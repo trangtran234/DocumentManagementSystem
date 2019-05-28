@@ -48,9 +48,8 @@
     <Compile Include="Document.cs" />
     <Compile Include="DocumentContent.cs" />
     <Compile Include="DocumentType.cs" />
-    <Compile Include="DocumentTreeViewDTO.cs" />
+    <Compile Include="DocumentTreeView.cs" />
     <Compile Include="DocumentTag.cs" />
-    <Compile Include="ExtendModel\DocumentTreeViewDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs" />
   </ItemGroup>

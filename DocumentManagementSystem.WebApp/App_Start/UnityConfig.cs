@@ -8,6 +8,7 @@ using DocumentManagementSystem.Repository.Interface;
 using DocumentManagementSystem.Repository;
 using Unity.Injection;
 using Unity.Lifetime;
+using DocumentManagementSystem.Repository.DependencyExtension;
 
 namespace DocumentManagementSystem.WebApp
 {
@@ -18,8 +19,8 @@ namespace DocumentManagementSystem.WebApp
 			var container = new UnityContainer();
 
             container.AddExtension(new DependencyExtensionRepository());
-            container.AddExtension(new DependencyExtensionServices());
-            container.RegisterType<IDocumentContext, DocumentManagementSystemEntities>(new PerThreadLifetimeManager(), new InjectionConstructor("name=DocumentManagementSystemEntities"));
+            container.AddExtension(new DependencyExtensionService());
+            container.AddExtension(new DependencyExtensionWebApp());
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

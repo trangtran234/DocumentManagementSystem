@@ -16,9 +16,15 @@ var rootApp;
                 scope.$on('rootScope:id', function (event, data) {
                     scope.getChildDocument(data);
                 });
+                scope.$on('rootScope:treeviewId', function (event, data) {
+                    scope.getChildDocument(data);
+                });
                 scope.$on('uploadSuccess', function (event, data) {
                     scope.getChildDocument(data);
                 });
+                scope.editDocument = function (document) {
+                    _this.$rootScope.$broadcast('rootScope:edit', document);
+                };
                 scope.getChildDocument = function (id) {
                     http.get('/api/documents/DocumentByFolderId/' + id)
                         .then(function (response) {

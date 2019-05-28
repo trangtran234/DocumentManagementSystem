@@ -1,5 +1,6 @@
-﻿<div id="accordion">
-    <div ng-repeat="document in documentsTree">
+﻿<div class="card-body" ng-repeat="document in documentsTree">
+    <div id="accordion-{{document.id}}">
+        <!--node-->
         <div id="{{document.id}}">
             <ul>
                 <li class="list-inline-item"><i class="fas fa-hdd fa-lg"></i></li>
@@ -8,22 +9,24 @@
                 </li>
             </ul>
         </div>
-        <div id="collapse-{{document.id}}" class="collapse" data-parent="#accordion" aria-labelledby="{{document.id}}">
-            <div class="card-body">
-                <div id="accordion-1">
-                    <div ng-repeat="child in document.childrens" id="{{child.id}}">
+        <div id="collapse-{{document.id}}" class="collapse" data-parent="#accordion-{{document.id}}" aria-labelledby="{{document.id}}">
+            <!--nodeChild-->
+            <div class="card-body" ng-repeat="child in document.childrens">
+                <div id="accordion-{{child.id}}">
+                    <div id="{{child.id}}">
                         <div>
                             <ul>
                                 <li class="list-inline-item"><i ng-class="{'fas fa-folder-open fa-lg' : child.isExpanded, 'fas fa-folder fa-lg' : !child.isExpanded}"></i></li>
                                 <li class="list-inline-item">
-                                    <a class="collapsed mb-0 text-dark" role="button" data-toggle="collapse" href="#collapse-{{child.id}}" aria-expanded="false" aria-controls="{{child.id}}" ng-click="getChildDocumentIntoListing(child.id); toggleButton(child)">{{child.documentName}}</a>
+                                    <a class="collapsed text-dark" role="button" data-toggle="collapse" href="#collapse-{{child.id}}" aria-expanded="false" aria-controls="{{child.id}}" ng-click="getChildDocumentIntoListing(child.id); toggleButton(child)">{{child.documentName}}</a>
                                 </li>
                             </ul>
                         </div>
-                        <div id="collapse-{{child.id}}" class="collapse" data-parent="#accordion-1" aria-labelledby="{{child.id}}">
-                            <div class="card-body">
-                                <div id="accordion-1-1">
-                                    <div ng-repeat="childchild in child.childrens">
+                        <div id="collapse-{{child.id}}" class="collapse" data-parent="#accordion-{{child.id}}" aria-labelledby="{{child.id}}">
+                            <!--nodeChild-->
+                            <div class="card-body" ng-repeat="childchild in child.childrens">
+                                <div id="accordion-{{childchild.id}}">
+                                    <div>
                                         <div id="{{childchild.id}}">
                                             <ul>
                                                 <li class="list-inline-item"><i ng-class="{'fas fa-folder-open fa-lg' : childchild.isExpanded, 'fas fa-folder fa-lg' : !childchild.isExpanded}"></i></li>
@@ -32,10 +35,11 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div id="collapse-{{childchild.id}}" class="collapse" data-parent="#accordion-1-1" aria-labelledby="{{childchild.id}}">
-                                            <div class="card-body padding-1-1-1">
-                                                <div id="accordion-1-1-1">
-                                                    <div ng-repeat="childlevel3 in childchild.childrens">
+                                        <div id="collapse-{{childchild.id}}" class="collapse" data-parent="#accordion-{{childchild.id}}" aria-labelledby="{{childchild.id}}">
+                                            <!--nodeChild-->
+                                            <div class="card-body" ng-repeat="childlevel3 in childchild.childrens">
+                                                <div id="accordion-{{childlevel3.id}}">
+                                                    <div>
                                                         <div id="{{childlevel3.id}}">
                                                             <ul>
                                                                 <li class="list-inline-item"><i ng-class="{'fas fa-folder-open fa-lg' : childlevel3.isExpanded, 'fas fa-folder fa-lg' : !childlevel3.isExpanded}"></i></li>
@@ -43,6 +47,8 @@
                                                                     <a class="collapsed text-dark" role="button" data-toggle="collapse" href="#collapse-{{childlevel3.id}}" aria-expanded="false" aria-controls="{{childlevel3.id}}" ng-click="getChildDocumentIntoListing(childlevel3.id); toggleButton(childlevel3)">{{childlevel3.documentName}}</a>
                                                                 </li>
                                                             </ul>
+                                                        </div>
+                                                        <div id="collapse-{{childlevel3.id}}" class="collapse" data-parent="#accordion-{{childlevel3.id}}" aria-labelledby="{{childlevel3.id}}">
                                                         </div>
                                                     </div>
                                                 </div>
