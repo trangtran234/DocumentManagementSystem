@@ -87,5 +87,17 @@ namespace DocumentManagementSystem.WebApp.Controllers
             }
             return treelist;
         }
+
+        [Route("UpdateDocument")]
+        [HttpPost]
+        public HttpResponseMessage EditDocument(Document document)
+        {
+            bool isOk = documentServices.UpdateDocument(document);
+            if (isOk)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
     }
 }

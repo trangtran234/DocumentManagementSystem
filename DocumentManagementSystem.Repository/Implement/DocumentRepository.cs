@@ -119,5 +119,49 @@ namespace DocumentManagementSystem.Repository
             }
             return true;
         }
+
+        private void DeleteDocumentTypeByDocumentId(int id)
+        {
+            var document = context.Documents.Include("DocumentTypes").SingleOrDefault(d => d.Id == id);
+            if (document != null)
+            {
+                foreach (var type in document.DocumentTypes.ToList())
+                {
+                    document.DocumentTypes.Remove(type);
+                }
+                context.SaveChanges();
+            }
+        }
+
+        public bool UpdateDocument(Document document)
+        {
+            DeleteDocumentTypeByDocumentId(document.Id);
+
+            try
+            {
+                var documentDB = context.Documents.Find(document.Id);
+                documentDB.LastModified = document.LastModified;
+                documentDB.LastModifiedBy = Helper.FAKE_USERID_TO_EDIT;
+                //attach instance to context
+                context.Documents.Attach(documentDB);
+                foreach (var documentType in document.DocumentTypes.ToList())
+                {
+                    DocumentType type = context.DocumentTypes.Find(documentType.Id);
+                    //attach instance to context
+                    context.DocumentTypes.Attach(type);
+
+                    //like previous method add instance to navigation property
+                    documentDB.DocumentTypes.Add(type);
+                }
+                context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
+            return true;
+        }
     }
 }

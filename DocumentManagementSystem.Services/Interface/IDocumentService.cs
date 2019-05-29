@@ -16,5 +16,6 @@ namespace DocumentManagementSystem.Services
         Document GetDocumentByDocumentId(int id);
         void DeleteDocument(int id);
         bool AddDocument(Document document);
+        bool UpdateDocument(Document document);
     }
 }

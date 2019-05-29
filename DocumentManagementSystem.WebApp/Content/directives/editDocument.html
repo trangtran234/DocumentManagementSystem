@@ -20,8 +20,8 @@
                         <tr>
                             <td>{{document.documentName}}</td>
                             <td>
-                                <select class="form-control" multiple>
-                                    <option ng-repeat="type in documentTypes" value="{{type.id}}">{{type.type}}</option>
+                                <select class="form-control" multiple ng-model="document.documentTypes"
+                                    ng-options="type as type.type for type in documentTypes track by type.id">
                                 </select>
                             </td>
                             <td>{{document.createdBy.username}}</td>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="">Save</button>
+                <button type="button" class="btn btn-primary" ng-click="saveDocument()">Save</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
             </div>
         </div>

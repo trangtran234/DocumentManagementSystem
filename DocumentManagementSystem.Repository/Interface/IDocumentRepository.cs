@@ -19,5 +19,6 @@ namespace DocumentManagementSystem.Repository
         Guid FindDocumentContent(int id);
         bool AddDocument(Document document, List<DocumentType> types);
         bool AddDocumentContent(DocumentContent documentContent);
+        bool UpdateDocument(Document document);
     }
 }

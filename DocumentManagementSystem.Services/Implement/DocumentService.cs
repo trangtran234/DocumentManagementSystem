@@ -107,5 +107,13 @@ namespace DocumentManagementSystem.Services
 
             return false;
         }
+
+        public bool UpdateDocument(Models.Document document)
+        {
+            var currentDay = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            document.LastModified = currentDay;
+            Repository.Document documentRepo = mapper.Map<Repository.Document>(document);
+            return documentRepository.UpdateDocument(documentRepo);
+        }
     }
 }
