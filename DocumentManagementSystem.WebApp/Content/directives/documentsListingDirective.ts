@@ -9,6 +9,9 @@
         getChildDocumentOfFolder: (id) => void;
         getInfoOfDocument: (id) => void;
         editDocument: (id) => void;
+        sort: (key) => void;
+        propertyName : any;
+        reverse: any; 
     }
 
     export class DocumentsListingDirective implements ng.IDirective {
@@ -75,6 +78,11 @@
                         var isVisible = true;
                         this.$rootScope.$broadcast('rootScope:isVisible', isVisible);
                     });
+            }
+
+            scope.sort = (key) => {
+                scope.propertyName = key;
+                scope.reverse = !scope.reverse;
             }
         }
     };

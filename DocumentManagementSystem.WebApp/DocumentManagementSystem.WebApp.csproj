@@ -739,7 +739,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <TypeScriptCompile Include="Content\configure-routes.ts" />
     <TypeScriptCompile Include="Content\controllers\documentController.ts" />
-    <TypeScriptCompile Include="Content\controllers\recycleBinController.ts" />
     <TypeScriptCompile Include="Content\directives\documentDirective.ts" />
     <TypeScriptCompile Include="Content\directives\documentTreeViewDirective.ts" />
     <TypeScriptCompile Include="Content\directives\editDocumentDirective.ts" />
@@ -753,6 +752,7 @@
     <TypeScriptCompile Include="Content\models\tag.ts" />
     <TypeScriptCompile Include="Content\models\user.ts" />
     <TypeScriptCompile Include="Content\services\documentService.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\angular-route\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\jqlite.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\bootstrap\index.d.ts" />
@@ -806,6 +806,9 @@
     <Content Include="node_modules\popper.js\index.js.flow" />
     <Content Include="node_modules\popper.js\package.json" />
     <Content Include="node_modules\popper.js\README.md" />
+    <Content Include="node_modules\%40types\angular-route\LICENSE" />
+    <Content Include="node_modules\%40types\angular-route\package.json" />
+    <Content Include="node_modules\%40types\angular-route\README.md" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

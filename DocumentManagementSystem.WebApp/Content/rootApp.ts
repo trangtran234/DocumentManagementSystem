@@ -8,20 +8,19 @@
         .directive('editDocument', EditDocumentDirective.Factory());
 
     angular.module('controllerModule', ['directiveModule'])
-        .controller('DocumentController', DocumentController)
-        .controller('RecycleBinController', RecycleBinController);
+        .controller('DocumentController', DocumentController);
 
-    //angular.module('routeModule', []).config(ConfigureRoutes);
-
-    angular.module('routeModule', ['ngRoute']).config(['$routeProvider',
-        function routes($routeProvider: ng.route.IRouteProvider) { 
+    angular.module('routeModule', ['ngRoute']).config(['$routeProvider','$locationProvider',
+        function routes($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider) { 
+            $locationProvider.hashPrefix('');
             $routeProvider
                 .when('/', {
                     templateUrl: 'Content/controllers/home.html',
                     controller: 'DocumentController'
                 })
-                .when('/RecycleBin', {
+                .when('/recycleBin', {
                     templateUrl: 'Content/controllers/recycle-bin.html',
+                    controller: 'DocumentController'
                 })
                 .otherwise({
                     redirectTo: '/'
