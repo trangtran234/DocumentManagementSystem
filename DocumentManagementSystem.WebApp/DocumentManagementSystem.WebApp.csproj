@@ -199,10 +199,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\controllers\recycle-bin.html" />
     <Content Include="Content\directives\add-document.html" />
     <Content Include="Content\directives\angular.treeview.js" />
     <Content Include="Content\directives\documentTreeView.html" />
-    <Content Include="Content\directives\home.html" />
+    <Content Include="Content\controllers\home.html" />
     <Content Include="Content\directives\editDocument.html" />
     <Content Include="Content\directives\informationDocument.html" />
     <Content Include="Content\directives\documentsListing.html" />
@@ -221,6 +222,14 @@
     <Content Include="node_modules\popper.js\dist\umd\popper-utils.min.js" />
     <Content Include="node_modules\popper.js\dist\umd\popper.js" />
     <Content Include="node_modules\popper.js\dist\umd\popper.min.js" />
+    <Content Include="Scripts\angulartreeview\angular.treeview.js" />
+    <Content Include="Scripts\angulartreeview\img\file.png" />
+    <Content Include="Scripts\angulartreeview\img\folder-closed.png" />
+    <Content Include="Scripts\angulartreeview\img\folder.png" />
+    <Content Include="Scripts\angulartreeview\img\jsfiddle01.png" />
+    <Content Include="Scripts\angulartreeview\img\jsfiddle02.png" />
+    <Content Include="Scripts\angulartreeview\img\preview.png" />
+    <Content Include="Scripts\angulartreeview\treeviewApp.js" />
     <Content Include="Scripts\lib\angular-route\angular-route.js" />
     <Content Include="Scripts\lib\angular-route\angular-route.min.js" />
     <Content Include="Scripts\lib\angular-route\index.js" />
@@ -743,6 +752,7 @@
     <TypeScriptCompile Include="Content\models\tag.ts" />
     <TypeScriptCompile Include="Content\models\user.ts" />
     <TypeScriptCompile Include="Content\services\documentService.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\angular-route\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\jqlite.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\bootstrap\index.d.ts" />
@@ -796,6 +806,9 @@
     <Content Include="node_modules\popper.js\index.js.flow" />
     <Content Include="node_modules\popper.js\package.json" />
     <Content Include="node_modules\popper.js\README.md" />
+    <Content Include="node_modules\%40types\angular-route\LICENSE" />
+    <Content Include="node_modules\%40types\angular-route\package.json" />
+    <Content Include="node_modules\%40types\angular-route\README.md" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -809,6 +822,12 @@
     <Content Include="Scripts\lib\less\.bower.json" />
     <Content Include="Scripts\lib\less\bower.json" />
     <Content Include="styles\app.less" />
+    <Content Include="Scripts\lib\angular-route\.bower.json" />
+    <Content Include="Scripts\lib\angular-route\angular-route.min.js.map" />
+    <Content Include="Scripts\lib\angular-route\bower.json" />
+    <Content Include="Scripts\lib\angular-route\LICENSE.md" />
+    <Content Include="Scripts\lib\angular-route\package.json" />
+    <Content Include="Scripts\lib\angular-route\README.md" />
     <Content Include="Scripts\lib\bootstrap\.bower.json" />
     <Content Include="Scripts\lib\bootstrap\.browserslistrc" />
     <Content Include="Scripts\lib\bootstrap\.editorconfig" />

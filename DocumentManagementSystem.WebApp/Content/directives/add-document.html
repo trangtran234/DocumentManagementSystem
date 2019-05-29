@@ -51,9 +51,10 @@
                     <tbody>
                         <tr>
                             <td>
-                                <select name="typesSelect" id="typesSelect" class="form-control" multiple>
-                                    <option value="">Terms of Reference</option>
-                                    <option ng-repeat="type in documentTypes" value="{{type.id}}">{{type.type}}</option>
+                                <select id="typesSelect" class="form-control" multiple ng-model="typesSelect" 
+                                        ng-options="type as type.type for type in documentTypes track by type.id">
+                                    <!--<option value="">Terms of Reference</option>
+                                    <option ng-repeat="type in documentTypes" value="{{type}}">{{type.type}}</option>-->
                                 </select>
                             </td>
                         </tr>

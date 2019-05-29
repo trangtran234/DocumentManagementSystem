@@ -8,11 +8,13 @@
         filesList: Array<Document>;
         files: any;
         documentTypes: Array<DocumentType>;
+        typesSelect: Array<DocumentType>;
         uploadFiles: () => void;
         deleteDocumentInDialog: (id) => void;
         onSave: () => void;
         changeFiles: () => void;
-        safeApply: (any) => void;
+        safeApply: (any) => void; 
+        getDocumentTypes: () => void;
     }
     export class DocumentDirective implements ng.IDirective {
         public restrict: string = "E";
@@ -101,32 +103,16 @@
                 }
             };
 
-            scope.uploadFiles = () => {
-                
-                let selectTypes: Array<DocumentType> = [];
-                var typeID = $('#typesSelect').val();
-                var arrayTypeID = typeID.toString().split(",");
-
-                for (var i = 0; i < arrayTypeID.length; i++) {
-
-                    var documentType: DocumentType = {};
-                    documentType.id = JSON.parse(typeID[i]);
-
-                    for (var j = 0; j < scope.documentTypes.length; j++) {                       
-                        if (scope.documentTypes[j].id === documentType.id) {
-                            documentType.type = scope.documentTypes[j].type;
-                            selectTypes.push(documentType);
-                        }
-                    } 
-
-                }
+            scope.uploadFiles = () => {               
                 
                 var formData = new FormData();
                 for (var i = 0; i < scope.files.length; i++) {
                     formData.append('file', scope.files[i]);                   
                 }
                 formData.append('parentID', parentID);
-                formData.append('typeID', JSON.stringify(selectTypes));
+
+                formData.append('typeID', JSON.stringify(scope.typesSelect.map((type) => { return type.id; })));
+                
 
                 if (parentID === null) {
                     alert("Please select folder.");
@@ -163,7 +149,7 @@
 
                                 scope.filesList = [];
                                 scope.files = [];
-                                typeID = null;
+                                scope.typesSelect = [];
                             });
 
                             $('#addDocument').modal('hide');

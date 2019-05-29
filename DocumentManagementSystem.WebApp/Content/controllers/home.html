@@ -9,7 +9,10 @@
         <div class="row border border-dark left-navigation">
             <document-tree-view></document-tree-view>
         </div>
-        <div class="row border border-dark action-1"></div>
+        <div class="row border border-dark action-1">
+            <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+            <a href="#/recycleBin">Recycle bin</a>
+        </div>
         <div class="row border border-dark action-2"></div>
     </div>
     <div class="col-sm-9 border border-dark right-layout">
@@ -17,7 +20,7 @@
             <h2>Precio Vietnam</h2>
         </div>
         <div class="row border border-dark action-button">
-            <add-document document="document" onSave="onAddedNewFiles"></add-document>
+            <add-document document="document"></add-document>
         </div>
         <div class="row border border-dark listing-information-area">
             <div class="col-sm-9 listing">

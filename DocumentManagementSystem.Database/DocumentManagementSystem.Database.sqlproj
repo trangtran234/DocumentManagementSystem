@@ -7,7 +7,7 @@
     <Name>DocumentManagementSystem.Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{9bba06f4-7e57-4db5-b3ff-2fb8c6f95e4e}</ProjectGuid>
+    <ProjectGuid>{9c6baa25-0025-4602-9f00-a8f57482d963}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -70,9 +70,8 @@
     <Build Include="dbo\Tables\Tag.sql" />
     <Build Include="dbo\Tables\Document.sql" />
     <Build Include="dbo\Tables\DocumentTag.sql" />
+    <Build Include="dbo\Tables\DocumentType.sql" />
+    <Build Include="dbo\Tables\DocumentDocumentType.sql" />
     <Build Include="Storage\FileStreamGroup1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="dev.publish.xml" />
   </ItemGroup>
 </Project>

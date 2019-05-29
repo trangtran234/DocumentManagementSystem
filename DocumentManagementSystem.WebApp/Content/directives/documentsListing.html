@@ -3,16 +3,26 @@
         <tr>
             <th class="checkbox" scope="col"><input type="checkbox" ng-model="leader" /></th>
             <th scope="col"></th>
-            <th scope="col">Title</th>
+            <th scope="col" ng-click="sort('documentName')">Title
+                <span class="sortorder" ng-show="propertyName =='documentName'" ng-class="{reverse: reverse}"></span>
+            </th>
             <th scope="col"></th>
             <th scope="col">Document Type</th>
-            <th scope="col">Created</th>
-            <th scope="col">Created By</th>
-            <th scope="col">Last Modified</th>
-            <th scope="col">Last Modified By</th>
+            <th scope="col" ng-click="sort('created')">Created
+                <span class="sortorder" ng-show="propertyName =='created'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th scope="col" ng-click="sort('createdBy')">Created By
+                <span class="sortorder" ng-show="propertyName =='createdBy'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th scope="col" ng-click="sort('lastModified')">Last Modified
+                <span class="sortorder" ng-show="propertyName =='lastModified'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th scope="col" ng-click="sort('lastModifiedBy')">Last Modified By
+                <span class="sortorder" ng-show="propertyName =='lastModifiedBy'" ng-class="{reverse: reverse}"></span>
+            </th>
         </tr>
     </thead>
-    <tbody ng-repeat="document in documents">
+    <tbody ng-repeat="document in documents | orderBy:propertyName:reverse">
         <tr ng-switch="document.documentType">
             <td class="checkbox"><input type="checkbox" ng-checked="leader" /></td>
             <td ng-switch-when="jpg"><i class="fas fa-file-image fa-lg"></i></td>

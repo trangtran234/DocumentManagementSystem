@@ -13,7 +13,7 @@ using System.Web.Http;
 using DocumentManagementSystem.Models;
 using DocumentManagementSystem.Services;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
 
 namespace DocumentManagementSystem.WebApp.Controllers
 {
@@ -47,14 +47,14 @@ namespace DocumentManagementSystem.WebApp.Controllers
             var result = await Request.Content.ReadAsMultipartAsync(provider);
 
             var parentID = HttpContext.Current.Request.Form["parentID"];
-            var typeID = HttpContext.Current.Request.Form["typeID"];
-            dynamic stuff = JsonConvert.DeserializeObject(typeID); 
+            var typeID = HttpContext.Current.Request.Form["typeID"];            
 
-            foreach( var s in stuff)
+            var typeIds = JsonConvert.DeserializeObject<int[]>(typeID);
+
+            foreach (int id in typeIds)
             {
                 DocumentType documentType = new DocumentType();
-                documentType.Id = s.id;
-                documentType.Type = s.type;
+                documentType.Id = id;
                 documentTypes.Add(documentType);
             }
 
