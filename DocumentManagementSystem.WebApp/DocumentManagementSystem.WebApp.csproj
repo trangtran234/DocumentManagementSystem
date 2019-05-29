@@ -221,6 +221,9 @@
     <Content Include="node_modules\popper.js\dist\umd\popper-utils.min.js" />
     <Content Include="node_modules\popper.js\dist\umd\popper.js" />
     <Content Include="node_modules\popper.js\dist\umd\popper.min.js" />
+    <Content Include="Scripts\lib\angular-route\angular-route.js" />
+    <Content Include="Scripts\lib\angular-route\angular-route.min.js" />
+    <Content Include="Scripts\lib\angular-route\index.js" />
     <Content Include="Scripts\lib\angular\angular-csp.css" />
     <Content Include="Scripts\lib\angular\angular.js" />
     <Content Include="Scripts\lib\angular\angular.min.js" />
@@ -1087,6 +1090,12 @@
     <Content Include="Scripts\lib\jQuery\test\data\support\csp.log" />
     <Content Include="Scripts\lib\jQuery\test\node_smoke_tests\.eslintrc.json" />
     <Content Include="Scripts\lib\jQuery\test\promises_aplus_adapters\.eslintrc.json" />
+    <Content Include="Scripts\lib\angular-route\.bower.json" />
+    <Content Include="Scripts\lib\angular-route\angular-route.min.js.map" />
+    <Content Include="Scripts\lib\angular-route\bower.json" />
+    <Content Include="Scripts\lib\angular-route\LICENSE.md" />
+    <Content Include="Scripts\lib\angular-route\package.json" />
+    <Content Include="Scripts\lib\angular-route\README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DocumentManagementSystem.Models\DocumentManagementSystem.Models.csproj">
