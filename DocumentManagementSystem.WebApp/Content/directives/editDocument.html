@@ -3,7 +3,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5>Edit document</h5>
+                <h5>Edit Document</h5>
             </div>
 
             <div class="modal-body">
@@ -21,14 +21,34 @@
                             <td>{{document.documentName}}</td>
                             <td>
                                 <select class="form-control" multiple ng-model="document.documentTypes"
-                                    ng-options="type as type.type for type in documentTypes track by type.id">
-                                </select>
+                                        ng-options="type as type.type for type in documentTypes track by type.id"></select>
                             </td>
                             <td>{{document.createdBy.username}}</td>
                             <td>{{document.lastModifiedBy.username}}</td>
                         </tr>
                     </tbody>
                 </table>
+
+                <form>
+                    <div class="form-group">
+                        <label for="documentName">Document Name</label>
+                        <input type="text" class="form-control" id="documentName" placeholder="{{document.documentName}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="documentTypes">Document Types</label>
+                        <select class="form-control" multiple ng-model="document.documentTypes" 
+                                ng-options="type as type.type for type in documentTypes track by type.id">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="createdBy">Created By</label>
+                        <input type="text" class="form-control" id="createdBy" placeholder="{{document.createdBy.username}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastModifiedBy">Last Modified By</label>
+                        <input type="text" class="form-control" id="lastModifiedBy" placeholder="{{document.lastModifiedBy.username}}" readonly>
+                    </div>
+                </form>     
             </div>
 
             <div class="modal-footer">

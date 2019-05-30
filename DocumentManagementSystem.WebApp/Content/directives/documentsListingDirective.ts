@@ -37,8 +37,10 @@
             attributes: ng.IAttributes,
         ) => {
             var http = this.$http;
+            var parentId = null;
             scope.$on('rootScope:id', function (event, data) {
-                scope.getChildDocument(data);
+                parentId = data;
+                scope.getChildDocument(parentId);
             });
             scope.$on('rootScope:treeviewId', function (event, data) {
                 scope.getChildDocument(data);
@@ -50,7 +52,12 @@
 
             scope.editDocument = (id) => {
                 this.$rootScope.$broadcast('rootScope:edit', id);
+                this.$rootScope.$broadcast('rootScope:parentId', parentId);
             }
+
+            scope.$on('rootScope:successEditDocument', function (event, data) {
+                scope.getChildDocument(data);
+            });
 
             scope.getChildDocument = (id) => {
                 http.get<Document[]>('/api/documents/DocumentByFolderId/' + id)

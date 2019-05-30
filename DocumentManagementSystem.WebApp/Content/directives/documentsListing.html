@@ -45,8 +45,8 @@
             <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)"><a href="">{{document.documentName}}</a></td>
             <td>
                 <div class="dropdown">
-                    <button class="btn btn-dark font-weight-bold dropdown-toggle" type="button" id="dropdownMoreAction" data-toggle="dropdown">
-                        More
+                    <button class="btn-light" type="button" id="dropdownMoreAction" data-toggle="dropdown">
+                        <i class="fas fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMoreAction">
                         <a href="" class="dropdown-item" data-toggle="modal" data-target="#edit" ng-click="editDocument(document.id)">Edit</a>

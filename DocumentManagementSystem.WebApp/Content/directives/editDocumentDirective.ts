@@ -32,17 +32,16 @@
         ) => {
             var http = this.$http;
             var rootScope = this.$rootScope;
-
-            //var parentID = null;
-            //scope.$on('rootScope:id', function (event, data) {
-            //    parentID = data;
-            //});
+            var parentID = null;
 
             var listeningDocumentId = scope.$on('rootScope:edit', function (event, data) {
                 http.get<Document>('/api/documents/DocumentById/' + data)
                     .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
                         scope.document = response.data;
                     });
+                scope.$on('rootScope:parentId', function (event, data) {
+                    parentID = data;
+                });
             });
 
             scope.$on('$destroy', function () {
@@ -52,16 +51,11 @@
             scope.saveDocument = () => {
                  http.post('/api/documents/UpdateDocument', scope.document)
                      .then(function (response) {
-                         var parentID = null;
-                         scope.$on('rootScope:id', function (event, data) {
-                             parentID = data;
-                         });
                          rootScope.$broadcast('rootScope:successEditDocument', parentID);
                          setTimeout(function () {
                             $('#edit').modal('hide');
                          }, 1000) 
-                     })
-                     ;
+                     });
             }
         }
     }
