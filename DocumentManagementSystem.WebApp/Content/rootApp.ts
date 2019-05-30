@@ -8,7 +8,8 @@
         .directive('editDocument', EditDocumentDirective.Factory());
 
     angular.module('controllerModule', ['directiveModule'])
-        .controller('DocumentController', DocumentController);
+        .controller('DocumentController', DocumentController)
+        .controller('RecycleBinController', RecycleBinController);
 
     angular.module('routeModule', ['ngRoute']).config(['$routeProvider','$locationProvider',
         function routes($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider) { 
@@ -20,7 +21,7 @@
                 })
                 .when('/recycleBin', {
                     templateUrl: 'Content/controllers/recycle-bin.html',
-                    controller: 'DocumentController'
+                    controller: 'RecycleBinController'
                 })
                 .otherwise({
                     redirectTo: '/'

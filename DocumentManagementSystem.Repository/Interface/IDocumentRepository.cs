@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,5 +21,6 @@ namespace DocumentManagementSystem.Repository
         bool AddDocument(Document document, List<DocumentType> types);
         bool AddDocumentContent(DocumentContent documentContent);
         bool UpdateDocument(Document document);
+        List<Document> LazyLoadDocument(Expression<Func<Document, string>> sort, bool desc, int page, int pageSize, out int totalRecords);
     }
 }

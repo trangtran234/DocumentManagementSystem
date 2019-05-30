@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DocumentManagementSystem.Repository.Common;
+using System.Linq.Expressions;
+
 namespace DocumentManagementSystem.Repository
 {
     public class DocumentRepository : IDocumentRepository
@@ -160,6 +162,22 @@ namespace DocumentManagementSystem.Repository
             }
 
             return true;
+        }
+
+        public List<Document> LazyLoadDocument(Expression<Func<Document, string>> sort, bool desc, int page, int pageSize, out int totalRecords)
+        {
+            List<Document> documents = new List<Document>();
+            totalRecords = context.Documents.Count();
+            int skipRows = (page - 1) * pageSize;
+            if (desc)
+            {
+                documents = context.Documents.OrderByDescending(sort).Skip(skipRows).Take(pageSize).ToList();
+            }
+            else
+            {
+                documents = context.Documents.OrderBy(sort).Skip(skipRows).Take(pageSize).ToList();
+            }
+            return documents;
         }
 
         private bool AddDocumentHistory(int documentId, int actionId)

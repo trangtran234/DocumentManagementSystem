@@ -12,6 +12,11 @@
         sort: (propertyName) => void;
         propertyName : any;
         reverse: any;
+
+        currentPage: number;
+        pageSize: number;
+        numberOfPages: () => void;
+        documentsLength: number;
         document: Document;
     }
 
@@ -22,13 +27,22 @@
         //    documentTypes: '='
         //}
 
-        constructor(private $http: ng.IHttpService, private $rootScope: ng.IRootScopeService, private $uibModal: ng.ui.bootstrap.IModalService) {
+        constructor(private $http: ng.IHttpService,
+            private $rootScope: ng.IRootScopeService,
+            private orderBy: ng.IFilterOrderBy,
+            private $filter: ng.FilterFactory,
+            private $uibModal: ng.ui.bootstrap.IModalService) {
 
         }
 
         public static Factory(): ng.IDirectiveFactory {
-            const directive = ($http: ng.IHttpService, $rootScope: ng.IRootScopeService, $uibModal: ng.ui.bootstrap.IModalService) => new DocumentsListingDirective($http, $rootScope, $uibModal);
-            directive.$inject = ['$http', '$rootScope', '$uibModal'];
+            const directive = ($http: ng.IHttpService,
+                $rootScope: ng.IRootScopeService,
+                orderBy: ng.IFilterOrderBy,
+                $filter: ng.FilterFactory,
+                $uibModal: ng.ui.bootstrap.IModalService) => new DocumentsListingDirective($http, $rootScope, orderBy, $filter, $uibModal);
+
+            directive.$inject = ['$http', '$rootScope', 'orderByFilter', '$filter', '$uibModal'];
             return directive;
         }
 
@@ -40,6 +54,7 @@
             var http = this.$http;
             var parentId = null;
             scope.$on('rootScope:id', function (event, data) {
+                scope.documents = [];
                 parentId = data;
                 scope.getChildDocument(parentId);
             });
@@ -84,6 +99,7 @@
                 http.get<Document[]>('/api/documents/DocumentByFolderId/' + id)
                     .then((response: ng.IHttpPromiseCallbackArg<Document[]>) => {
                         scope.documents = response.data;
+                        scope.documentsLength = scope.documents.length;
                     });
             }
 
@@ -111,7 +127,25 @@
             scope.sort = (propertyName) => {
                 scope.reverse = (scope.propertyName === propertyName) ? !scope.reverse : false;
                 scope.propertyName = propertyName;
+                scope.documents = this.orderBy(scope.documents, scope.propertyName, scope.reverse);
             }
+
+            scope.currentPage = 0;
+            scope.pageSize = 5;
+
+            scope.numberOfPages = () => {              
+                return Math.ceil(scope.documentsLength / scope.pageSize);
+            }
+
+            this.$filter('limitTo')(scope.documents, scope.pageSize, function () {
+                return function (input, start) {
+                    start = +start;
+                    return input.slice(start);
+                }
+            })
+
         }
+
+        
     };
 }
