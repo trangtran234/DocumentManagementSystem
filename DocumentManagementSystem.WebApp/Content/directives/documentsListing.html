@@ -1,28 +1,33 @@
 ﻿<table class="table table-hover">
-    <thead class="thead-dark">
+    <thead class="thead-light">
         <tr>
             <th class="checkbox" scope="col"><input type="checkbox" ng-model="leader" /></th>
             <th scope="col"></th>
-            <th scope="col" ng-click="sort('documentName')">Title
+            <th scope="col" ng-click="sort('documentName')">
+                Title
                 <span class="sortorder" ng-show="propertyName === 'documentName'" ng-class="{reverse: reverse}"></span>
             </th>
             <th scope="col"></th>
             <th scope="col">Document Type</th>
-            <th scope="col" ng-click="sort('created')">Created
+            <th scope="col" ng-click="sort('created')">
+                Created
                 <span class="sortorder" ng-show="propertyName === 'created'" ng-class="{reverse: reverse}"></span>
             </th>
-            <th scope="col" ng-click="sort('createdBy')">Created By
-                <span class="sortorder" ng-show="propertyName === 'createdBy'" ng-class="{reverse: reverse}"></span>
+            <th scope="col" ng-click="sort('createdBy.username')">
+                Created By
+                <span class="sortorder" ng-show="propertyName === 'createdBy.username'" ng-class="{reverse: reverse}"></span>
             </th>
-            <th scope="col" ng-click="sort('lastModified')">Last Modified
+            <th scope="col" ng-click="sort('lastModified')">
+                Last Modified
                 <span class="sortorder" ng-show="propertyName === 'lastModified'" ng-class="{reverse: reverse}"></span>
             </th>
-            <th scope="col" ng-click="sort('lastModifiedBy')">Last Modified By
-                <span class="sortorder" ng-show="propertyName === 'lastModifiedBy'" ng-class="{reverse: reverse}"></span>
+            <th scope="col" ng-click="sort('lastModifiedBy.username')">
+                Last Modified By
+                <span class="sortorder" ng-show="propertyName === 'lastModifiedBy.username'" ng-class="{reverse: reverse}"></span>
             </th>
         </tr>
     </thead>
-    <tbody ng-repeat="document in documents | orderBy:propertyName:reverse">
+    <tbody ng-repeat="document in documents | limitTo:pageSize:currentPage*pageSize">
         <tr ng-switch="document.documentType">
             <td class="checkbox"><input type="checkbox" ng-checked="leader" /></td>
             <td ng-switch-when="jpg"><i class="fas fa-file-image fa-lg"></i></td>
@@ -68,3 +73,11 @@
         </tr>
     </tbody>
 </table>
+
+<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+    Previous
+</button>
+{{currentPage+1}}/{{numberOfPages()}}
+<button ng-disabled="currentPage >= documents.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+    Next
+</button>
