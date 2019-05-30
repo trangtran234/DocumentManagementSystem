@@ -11,23 +11,24 @@
         editDocument: (id) => void;
         sort: (propertyName) => void;
         propertyName : any;
-        reverse: any; 
+        reverse: any;
+        document: Document;
     }
 
     export class DocumentsListingDirective implements ng.IDirective {
         public restrict: string = "E";
         public templateUrl: string = '/Content/directives/documentsListing.html';
         //public scope = {
-        //    documents: '='
+        //    documentTypes: '='
         //}
 
-        constructor(private $http: ng.IHttpService, private $rootScope: ng.IRootScopeService) {
+        constructor(private $http: ng.IHttpService, private $rootScope: ng.IRootScopeService, private $uibModal: ng.ui.bootstrap.IModalService) {
 
         }
 
         public static Factory(): ng.IDirectiveFactory {
-            const directive = ($http: ng.IHttpService, $rootScope: ng.IRootScopeService) => new DocumentsListingDirective($http, $rootScope);
-            directive.$inject = ['$http', '$rootScope'];
+            const directive = ($http: ng.IHttpService, $rootScope: ng.IRootScopeService, $uibModal: ng.ui.bootstrap.IModalService) => new DocumentsListingDirective($http, $rootScope, $uibModal);
+            directive.$inject = ['$http', '$rootScope', '$uibModal'];
             return directive;
         }
 
@@ -50,9 +51,29 @@
                 scope.getChildDocument(data);
             });
 
+
             scope.editDocument = (id) => {
                 this.$rootScope.$broadcast('rootScope:edit', id);
                 this.$rootScope.$broadcast('rootScope:parentId', parentId);
+
+                http.get<Document>('/api/documents/DocumentById/' + id)
+                    .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
+                        scope.document = response.data;
+                    });
+
+                var modalInstance: ng.ui.bootstrap.IModalServiceInstance = this.$uibModal.open({
+                    scope: scope,
+                    templateUrl: '/Content/directives/editDocument.html',
+                    controller: 'ModalInstanceController',
+                    resolve: {
+                        id: function () {
+                            return id;
+                        },
+                        parentId: function () {
+                            return parentId;
+                        }
+                    }
+                });
             }
 
             scope.$on('rootScope:successEditDocument', function (event, data) {

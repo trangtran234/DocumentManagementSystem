@@ -1,5 +1,4 @@
-﻿using DocumentManagementSystem.Repository.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +8,9 @@ namespace DocumentManagementSystem.Repository
 {
     public class DocumentRepository : IDocumentRepository
     {
-        private IDocumentContext context;
+        private DocumentManagementSystemEntities context;
 
-        public DocumentRepository(IDocumentContext context)
+        public DocumentRepository(DocumentManagementSystemEntities context)
         {
             this.context = context;
         }
@@ -157,10 +156,21 @@ namespace DocumentManagementSystem.Repository
             }
             catch(Exception e)
             {
-                Console.WriteLine(e.Message);
                 return false;
             }
 
+            return true;
+        }
+
+        private bool AddDocumentHistory(int documentId, int actionId)
+        {
+            DocumentHistory documentHistory = new DocumentHistory
+            {
+                DocumentId = documentId,
+                ActionId = actionId,
+                UserId = Helper.FAKE_USERID_TO_ADD_HISTORY,
+                Date = DateTime.Now
+            };
             return true;
         }
     }

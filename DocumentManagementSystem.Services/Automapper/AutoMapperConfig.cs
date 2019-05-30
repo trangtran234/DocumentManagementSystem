@@ -15,8 +15,6 @@ namespace DocumentManagementSystem.Services.Automapper
                 cfg.CreateMap<Repository.Document, Models.Document>()
                                         .ForMember(d => d.CreatedBy, opt => opt.MapFrom(src => src.Account))
                                         .ForMember(d => d.LastModifiedBy, opt => opt.MapFrom(src => src.Account1))
-                                        .ForMember(d => d.Created, opt => opt.MapFrom(src => ((DateTime)src.Created).ToString("yyyy-MM-dd")))
-                                        .ForMember(d => d.LastModified, opt => opt.MapFrom(src => ((DateTime)src.LastModified).ToString("yyyy-MM-dd")))
                                         .ForMember(d => d.DocumentDescription, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentDescription)))
                                         .ForMember(d => d.DocumentName, opt => opt.MapFrom(src => src.DocumentType.Contains("folder")? src.DocumentName: src.DocumentName + "." + src.DocumentType))
                                         .ForMember(d => d.DocumentContent, opt => opt.Ignore())
@@ -40,7 +38,7 @@ namespace DocumentManagementSystem.Services.Automapper
                                         .ForMember(repo => repo.ParentId, model => model.MapFrom(src => src.ParentId))
                                         .ForMember(repo => repo.DocumentTypes, model => model.Ignore())
                                         .ForMember(repo => repo.Id, model => model.Ignore())
-                                        .ForMember(repo => repo.DocumentContent, model => model.Ignore())                                    
+                                        .ForMember(repo => repo.DocumentContent, model => model.Ignore())
                                         .ForMember(repo => repo.Account, model => model.Ignore())
                                         .ForMember(repo => repo.Account1, model => model.Ignore());
 

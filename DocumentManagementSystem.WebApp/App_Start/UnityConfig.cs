@@ -3,8 +3,6 @@ using DocumentManagementSystem.Services.DependencyExtension;
 using DocumentManagementSystem.WebApp.DependencyExtension;
 using Unity;
 using Unity.WebApi;
-
-using DocumentManagementSystem.Repository.Interface;
 using DocumentManagementSystem.Repository;
 using Unity.Injection;
 using Unity.Lifetime;

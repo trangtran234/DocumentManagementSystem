@@ -91,6 +91,9 @@
     <Compile Include="DocumentContent.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="DocumentHistory.cs">
+      <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="DocumentManagementSystem.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -114,7 +117,6 @@
     </Compile>
     <Compile Include="Implement\DocumentRepository.cs" />
     <Compile Include="Implement\DocumentTypeRepository.cs" />
-    <Compile Include="Interface\IDocumentContext.cs" />
     <Compile Include="Interface\IDocumentRepository.cs" />
     <Compile Include="Interface\IDocumentTypeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

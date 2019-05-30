@@ -61,9 +61,9 @@
                     <span class="badge badge-dark" ng-repeat="type in document.documentTypes">{{type.type}}</span>
                 </div>
             </td>
-            <td>{{document.created}}</td>
+            <td>{{document.created | date:'yyyy-MM-dd HH:mm:ss'}}</td>
             <td><a href="">{{document.createdBy.username}}</a></td>
-            <td>{{document.lastModified}}</td>
+            <td>{{document.lastModified | date:'yyyy-MM-dd HH:mm:ss'}}</td>
             <td><a href="">{{document.lastModifiedBy.username}}</a></td>
         </tr>
     </tbody>

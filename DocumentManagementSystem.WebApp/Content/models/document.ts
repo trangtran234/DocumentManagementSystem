@@ -8,8 +8,8 @@
         documentType?: string;
         documentSize?: number;
         documentDescription?: string;
-        created?: string;
-        lastModified?: string;
+        created?: Date;
+        lastModified?: Date;
         createdBy?: User;
         lastModifiedBy?: User;
         tags?: Array<Tag>;

@@ -1,7 +1,6 @@
 ﻿module rootApp {
     'use strict';
     import Document = rootApp.model.Document;
-    import DocumentType = rootApp.model.DocumentType;
 
     interface IEditScope extends ng.IScope {
         document: Document;
@@ -53,7 +52,8 @@
                      .then(function (response) {
                          rootScope.$broadcast('rootScope:successEditDocument', parentID);
                          setTimeout(function () {
-                            $('#edit').modal('hide');
+                             $('#edit').modal('hide');
+                             $(".modal-backdrop").remove();
                          }, 1000) 
                      });
             }
