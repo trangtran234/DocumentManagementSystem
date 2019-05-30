@@ -9,7 +9,7 @@
         getChildDocumentOfFolder: (id) => void;
         getInfoOfDocument: (id) => void;
         editDocument: (id) => void;
-        sort: (key) => void;
+        sort: (propertyName) => void;
         propertyName : any;
         reverse: any; 
     }
@@ -87,9 +87,9 @@
                     });
             }
 
-            scope.sort = (key) => {
-                scope.propertyName = key;
-                scope.reverse = !scope.reverse;
+            scope.sort = (propertyName) => {
+                scope.reverse = (scope.propertyName === propertyName) ? !scope.reverse : false;
+                scope.propertyName = propertyName;
             }
         }
     };
