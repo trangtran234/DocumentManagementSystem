@@ -4,12 +4,12 @@
     angular.module('directiveModule', []).directive('addDocument', DocumentDirective.Factory())
         .directive('documentsListing', DocumentsListingDirective.Factory())
         .directive('informationDocument', InformationDirective.Factory())
-        .directive('documentTreeView', DocumentTreeViewDirective.Factory())
-        .directive('editDocument', EditDocumentDirective.Factory());
+        .directive('documentTreeView', DocumentTreeViewDirective.Factory());
 
     angular.module('controllerModule', ['directiveModule'])
         .controller('DocumentController', DocumentController)
-        .controller('RecycleBinController', RecycleBinController);
+        .controller('RecycleBinController', RecycleBinController)
+        .controller('ModalInstanceController', ModalInstanceController);
 
     angular.module('routeModule', ['ngRoute']).config(['$routeProvider','$locationProvider',
         function routes($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider) { 

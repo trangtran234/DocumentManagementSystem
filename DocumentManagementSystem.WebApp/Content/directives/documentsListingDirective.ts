@@ -17,15 +17,14 @@
         pageSize: number;
         numberOfPages: () => void;
         documentsLength: number;
-        document: Document;
     }
 
     export class DocumentsListingDirective implements ng.IDirective {
         public restrict: string = "E";
         public templateUrl: string = '/Content/directives/documentsListing.html';
-        //public scope = {
-        //    documentTypes: '='
-        //}
+        public scope = {
+            documentTypes: '='
+        }
 
         constructor(private $http: ng.IHttpService,
             private $rootScope: ng.IRootScopeService,
@@ -66,17 +65,10 @@
                 scope.getChildDocument(data);
             });
 
-
             scope.editDocument = (id) => {
-                this.$rootScope.$broadcast('rootScope:edit', id);
-                this.$rootScope.$broadcast('rootScope:parentId', parentId);
 
-                http.get<Document>('/api/documents/DocumentById/' + id)
-                    .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
-                        scope.document = response.data;
-                    });
-
-                var modalInstance: ng.ui.bootstrap.IModalServiceInstance = this.$uibModal.open({
+                var modalInstance = this.$uibModal.open({
+                    animation: false,
                     scope: scope,
                     templateUrl: '/Content/directives/editDocument.html',
                     controller: 'ModalInstanceController',
@@ -89,7 +81,7 @@
                         }
                     }
                 });
-            }
+            };
 
             scope.$on('rootScope:successEditDocument', function (event, data) {
                 scope.getChildDocument(data);

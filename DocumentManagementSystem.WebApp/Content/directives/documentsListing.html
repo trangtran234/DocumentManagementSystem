@@ -49,7 +49,9 @@
             <td ng-if="document.documentType !== 'folder'" ng-click="getInfoOfDocument(document.id)"><a href="">{{document.documentName}}</a></td>
             <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)"><a href="">{{document.documentName}}</a></td>
             <td>
-                <div class="dropdown">
+                <button class="btn btn-info" ng-click="editDocument(document.id)">edit</button>
+
+                <!--<div class="dropdown">
                     <button class="btn-light" type="button" id="dropdownMoreAction" data-toggle="dropdown">
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
@@ -58,8 +60,7 @@
                         <a class="dropdown-item" data-toggle="modal" data-target="#action1">Action 1</a>
                         <a class="dropdown-item" data-toggle="modal" data-target="#action2">Action 2</a>
                     </div>
-                    <edit-document document-types="documentTypes"></edit-document>
-                </div>
+                </div>-->
             </td>
             <td>
                 <div>

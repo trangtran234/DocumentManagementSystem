@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DocumentManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DocumentManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="Id" />
@@ -44,6 +44,16 @@
           <Property Name="DocumentId" Type="int" Nullable="false" />
           <Property Name="DocumentTypeId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="DocumentHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentId" Type="int" Nullable="false" />
+          <Property Name="ActionId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="DocumentTag">
           <Key>
             <PropertyRef Name="Id" />
@@ -66,7 +76,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TagName" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__Document__Create__2C3393D0">
+        <Association Name="FK__Document__Create__2D27B809">
           <End Role="Account" Type="Self.Account" Multiplicity="1" />
           <End Role="Document" Type="Self.Document" Multiplicity="*" />
           <ReferentialConstraint>
@@ -78,7 +88,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Document__Docume__2B3F6F97">
+        <Association Name="FK__Document__Docume__2E1BDC42">
           <End Role="DocumentContent" Type="Self.DocumentContent" Multiplicity="1" />
           <End Role="Document" Type="Self.Document" Multiplicity="*" />
           <ReferentialConstraint>
@@ -90,7 +100,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Document__LastMo__2D27B809">
+        <Association Name="FK__Document__LastMo__2F10007B">
           <End Role="Account" Type="Self.Account" Multiplicity="1" />
           <End Role="Document" Type="Self.Document" Multiplicity="*" />
           <ReferentialConstraint>
@@ -126,7 +136,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DocumentT__Docum__2F10007B">
+        <Association Name="FK__DocumentH__Docum__3E52440B">
+          <End Role="Document" Type="Self.Document" Multiplicity="1" />
+          <End Role="DocumentHistory" Type="Self.DocumentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentHistory">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DocumentH__UserI__3F466844">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="DocumentHistory" Type="Self.DocumentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentHistory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DocumentT__Docum__300424B4">
           <End Role="Document" Type="Self.Document" Multiplicity="1" />
           <End Role="DocumentTag" Type="Self.DocumentTag" Multiplicity="*" />
           <ReferentialConstraint>
@@ -138,7 +172,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DocumentT__TagId__300424B4">
+        <Association Name="FK__DocumentT__TagId__30F848ED">
           <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
           <End Role="DocumentTag" Type="Self.DocumentTag" Multiplicity="*" />
           <ReferentialConstraint>
@@ -155,18 +189,19 @@
           <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentContent" EntityType="Self.DocumentContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentDocumentType" EntityType="Self.DocumentDocumentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentHistory" EntityType="Self.DocumentHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTag" EntityType="Self.DocumentTag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Document__Create__2C3393D0" Association="Self.FK__Document__Create__2C3393D0">
+          <AssociationSet Name="FK__Document__Create__2D27B809" Association="Self.FK__Document__Create__2D27B809">
             <End Role="Account" EntitySet="Account" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
-          <AssociationSet Name="FK__Document__Docume__2B3F6F97" Association="Self.FK__Document__Docume__2B3F6F97">
+          <AssociationSet Name="FK__Document__Docume__2E1BDC42" Association="Self.FK__Document__Docume__2E1BDC42">
             <End Role="DocumentContent" EntitySet="DocumentContent" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
-          <AssociationSet Name="FK__Document__LastMo__2D27B809" Association="Self.FK__Document__LastMo__2D27B809">
+          <AssociationSet Name="FK__Document__LastMo__2F10007B" Association="Self.FK__Document__LastMo__2F10007B">
             <End Role="Account" EntitySet="Account" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
@@ -178,17 +213,24 @@
             <End Role="DocumentType" EntitySet="DocumentType" />
             <End Role="DocumentDocumentType" EntitySet="DocumentDocumentType" />
           </AssociationSet>
-          <AssociationSet Name="FK__DocumentT__Docum__2F10007B" Association="Self.FK__DocumentT__Docum__2F10007B">
+          <AssociationSet Name="FK__DocumentH__Docum__3E52440B" Association="Self.FK__DocumentH__Docum__3E52440B">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="DocumentHistory" EntitySet="DocumentHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DocumentH__UserI__3F466844" Association="Self.FK__DocumentH__UserI__3F466844">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="DocumentHistory" EntitySet="DocumentHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DocumentT__Docum__300424B4" Association="Self.FK__DocumentT__Docum__300424B4">
             <End Role="Document" EntitySet="Document" />
             <End Role="DocumentTag" EntitySet="DocumentTag" />
           </AssociationSet>
-          <AssociationSet Name="FK__DocumentT__TagId__300424B4" Association="Self.FK__DocumentT__TagId__300424B4">
+          <AssociationSet Name="FK__DocumentT__TagId__30F848ED" Association="Self.FK__DocumentT__TagId__30F848ED">
             <End Role="Tag" EntitySet="Tag" />
             <End Role="DocumentTag" EntitySet="DocumentTag" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DocumentManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -201,6 +243,7 @@
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Documents" Relationship="Self.FK__Document__Create__2C3393D0" FromRole="Account" ToRole="Document" />
           <NavigationProperty Name="Documents1" Relationship="Self.FK__Document__LastMo__2D27B809" FromRole="Account" ToRole="Document" />
+          <NavigationProperty Name="DocumentHistories" Relationship="DocumentManagementSystemModel.FK__DocumentH__UserI__3F466844" FromRole="Account" ToRole="DocumentHistory" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
@@ -222,6 +265,7 @@
           <NavigationProperty Name="DocumentContent" Relationship="Self.FK__Document__Docume__2B3F6F97" FromRole="Document" ToRole="DocumentContent" />
           <NavigationProperty Name="DocumentTags" Relationship="Self.FK__DocumentT__Docum__2F10007B" FromRole="Document" ToRole="DocumentTag" />
           <NavigationProperty Name="DocumentTypes" Relationship="Self.DocumentDocumentType" FromRole="Document" ToRole="DocumentType" />
+          <NavigationProperty Name="DocumentHistories" Relationship="DocumentManagementSystemModel.FK__DocumentH__Docum__3E52440B" FromRole="Document" ToRole="DocumentHistory" />
         </EntityType>
         <EntityType Name="DocumentContent">
           <Key>
@@ -352,7 +396,52 @@
             <End Role="Document" EntitySet="Documents" />
             <End Role="DocumentType" EntitySet="DocumentTypes" />
           </AssociationSet>
+          <EntitySet Name="DocumentHistories" EntityType="DocumentManagementSystemModel.DocumentHistory" />
+          <AssociationSet Name="FK__DocumentH__UserI__3F466844" Association="DocumentManagementSystemModel.FK__DocumentH__UserI__3F466844">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="DocumentHistory" EntitySet="DocumentHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DocumentH__Docum__3E52440B" Association="DocumentManagementSystemModel.FK__DocumentH__Docum__3E52440B">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="DocumentHistory" EntitySet="DocumentHistories" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DocumentHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentId" Type="Int32" Nullable="false" />
+          <Property Name="ActionId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Account" Relationship="DocumentManagementSystemModel.FK__DocumentH__UserI__3F466844" FromRole="DocumentHistory" ToRole="Account" />
+          <NavigationProperty Name="Document" Relationship="DocumentManagementSystemModel.FK__DocumentH__Docum__3E52440B" FromRole="DocumentHistory" ToRole="Document" />
+        </EntityType>
+        <Association Name="FK__DocumentH__UserI__3F466844">
+          <End Type="DocumentManagementSystemModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="DocumentManagementSystemModel.DocumentHistory" Role="DocumentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentHistory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DocumentH__Docum__3E52440B">
+          <End Type="DocumentManagementSystemModel.Document" Role="Document" Multiplicity="1" />
+          <End Type="DocumentManagementSystemModel.DocumentHistory" Role="DocumentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentHistory">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -426,6 +515,17 @@
               <ScalarProperty Name="Id" ColumnName="DocumentTypeId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="DocumentHistories">
+            <EntityTypeMapping TypeName="DocumentManagementSystemModel.DocumentHistory">
+              <MappingFragment StoreEntitySet="DocumentHistory">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ActionId" ColumnName="ActionId" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,4 +1,4 @@
-﻿<div class="modal" id="edit">
+﻿<!--<div class="modal" id="edit">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
 
@@ -10,11 +10,10 @@
                 <form>
                     <div class="form-group">
                         <label for="documentTypes">Document Types</label>
-                        <select class="form-control" multiple ng-model="document.documentTypes" 
-                                ng-options="type as type.type for type in documentTypes track by type.id">
-                        </select>
+                        <select class="form-control" multiple ng-model="document.documentTypes"
+                                ng-options="type as type.type for type in documentTypes track by type.id"></select>
                     </div>
-                </form>     
+                </form>
             </div>
 
             <div class="modal-footer justify-content-between">
@@ -27,9 +26,37 @@
 
                 <div>
                     <button type="button" class="btn btn-primary" ng-click="saveDocument()">Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-light" ng-click="close()">Close</button>
                 </div>
             </div>
         </div>
+    </div>
+</div>-->
+
+<div class="modal-header">
+    <h5>Edit Document</h5>
+</div>
+
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="documentTypes">Document Types</label>
+            <select class="form-control" multiple ng-model="document.documentTypes"
+                    ng-options="type as type.type for type in documentTypes track by type.id"></select>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer justify-content-between">
+    <div>
+        <br>
+        <h7>Created By <u><a href="">{{document.createdBy.username}}</a></u> at {{document.created | date:'yyyy-MM-dd HH:mm:ss'}}</h7>
+        <br>
+        <h7>Last Modified By <u><a href="">{{document.lastModifiedBy.username}}</a></u> at {{document.lastModified | date:'yyyy-MM-dd HH:mm:ss'}}</h7>
+    </div>
+
+    <div>
+        <button type="button" class="btn btn-primary" ng-click="saveDocument()">Save</button>
+        <button type="button" class="btn btn-light" ng-click="close()">Close</button>
     </div>
 </div>
