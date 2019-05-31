@@ -8,3 +8,12 @@ H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\obj\Deb
 H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\obj\Debug\DocumentManagementSystem.Models.dll
 H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\obj\Debug\DocumentManagementSystem.Models.pdb
 H:\Training\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\obj\Debug\DocumentManagementSystem.Models.csprojAssemblyReference.cache
+D:\HangNguyen\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\bin\Debug\DocumentManagementSystem.Models.dll
+D:\HangNguyen\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\bin\Debug\DocumentManagementSystem.Models.pdb
+D:\HangNguyen\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\bin\Debug\AutoMapper.dll
+D:\HangNguyen\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\bin\Debug\AutoMapper.pdb
+D:\HangNguyen\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\bin\Debug\AutoMapper.xml
+D:\HangNguyen\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\obj\Debug\DocumentManagementSystem.Models.csproj.CoreCompileInputs.cache
+D:\HangNguyen\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\obj\Debug\DocumentManagementSystem.Models.csproj.CopyComplete
+D:\HangNguyen\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\obj\Debug\DocumentManagementSystem.Models.dll
+D:\HangNguyen\DMS\DocumentManagementSystem\DocumentManagementSystem.Models\obj\Debug\DocumentManagementSystem.Models.pdb
