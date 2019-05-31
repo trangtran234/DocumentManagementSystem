@@ -27,7 +27,7 @@
             </th>
         </tr>
     </thead>
-    <tbody ng-repeat="document in documents | limitTo:pageSize:currentPage*pageSize">
+    <tbody ng-repeat="document in documents">
         <tr ng-switch="document.documentType">
             <td class="checkbox"><input type="checkbox" ng-checked="leader" /></td>
             <td ng-switch-when="jpg"><i class="fas fa-file-image fa-lg"></i></td>
@@ -78,6 +78,6 @@
     Previous
 </button>
 {{currentPage+1}}/{{numberOfPages()}}
-<button ng-disabled="currentPage >= documents.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+<button ng-disabled="currentPage >= documentsLength/pageSize - 1" ng-click="currentPage=currentPage+1">
     Next
 </button>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 using DocumentManagementSystem.Models;
 using DocumentManagementSystem.Services;
 
@@ -98,6 +99,24 @@ namespace DocumentManagementSystem.WebApp.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
+        [Route("LazyLoadDocuments/{desc:bool}/{page:int}/{pageSize:int}/{parentId:int}")]
+        [HttpGet]
+        public HttpResponseMessage LazyLoadDocuments(bool desc, int page, int pageSize, int parentId)
+        {
+            int totalRecords;
+
+            List<Document> documents = documentServices.LazyLoadDocuments(desc, page, pageSize, parentId, out totalRecords);
+            Console.WriteLine("Lenght: " + totalRecords);
+
+            var json = new JavaScriptSerializer().Serialize(new
+            {
+                documents ,
+                totalRecords
+            });
+
+            return Request.CreateResponse(HttpStatusCode.OK, json);
         }
     }
 }

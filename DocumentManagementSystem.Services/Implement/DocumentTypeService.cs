@@ -21,7 +21,7 @@ namespace DocumentManagementSystem.Services
             this.mapper = mapper.GetMapper();
         }
 
-        public List<Models.DocumentType> GetAllDocumentTerms()
+        public List<Models.DocumentType> GetAllDocumentTypes()
         {
 
             List<Repository.DocumentType> documentTypeRepo = documentTypeRepository.GetAllDocumentTypes();
