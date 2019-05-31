@@ -72,6 +72,7 @@
                     scope: scope,
                     templateUrl: '/Content/directives/editDocument.html',
                     controller: 'ModalInstanceController',
+                    size: 'lg',
                     resolve: {
                         id: function () {
                             return id;

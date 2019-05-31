@@ -40,10 +40,6 @@
                 this.$rootScope.$broadcast('rootScope:id', id);
             }
 
-            scope.onAddedNewFiles = () => {
-                scope.getChildDocumentIntoListing(3);
-            }
-
             scope.toggleButton = (document: DocumentTree) => {
                 if (document.isExpanded === true) {
                     document.isExpanded = false;

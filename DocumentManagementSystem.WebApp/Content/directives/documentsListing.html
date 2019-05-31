@@ -49,27 +49,40 @@
             <td ng-if="document.documentType !== 'folder'" ng-click="getInfoOfDocument(document.id)"><a href="">{{document.documentName}}</a></td>
             <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)"><a href="">{{document.documentName}}</a></td>
             <td>
-                <button class="btn btn-info" ng-click="editDocument(document.id)">edit</button>
-
-                <!--<div class="dropdown">
+                <div class="dropdown">
                     <button class="btn-light" type="button" id="dropdownMoreAction" data-toggle="dropdown">
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMoreAction">
-                        <a href="" class="dropdown-item" data-toggle="modal" data-target="#edit" ng-click="editDocument(document.id)">Edit</a>
-                        <a class="dropdown-item" data-toggle="modal" data-target="#action1">Action 1</a>
-                        <a class="dropdown-item" data-toggle="modal" data-target="#action2">Action 2</a>
+                        <a href="" class="dropdown-item">
+                            <ul>
+                                <li class="list-inline-item"><i class="fas fa-download"></i></li>
+                                <li class="list-inline-item">Download</li>
+                            </ul>
+                        </a>
+                        <a href="" class="dropdown-item" ng-click="editDocument(document.id)">
+                            <ul>
+                                <li class="list-inline-item"><i class="fas fa-pencil-alt"></i></li>
+                                <li class="list-inline-item">Edit</li>
+                            </ul>
+                        </a>
+                        <a href="" class="dropdown-item">
+                            <ul>
+                                <li class="list-inline-item"><i class="fas fa-user-plus"></i></li>
+                                <li class="list-inline-item">Share</li>
+                            </ul>
+                        </a>
                     </div>
-                </div>-->
+                </div>
             </td>
             <td>
                 <div>
                     <span class="badge badge-dark" ng-repeat="type in document.documentTypes">{{type.type}}</span>
                 </div>
             </td>
-            <td>{{document.created | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td>{{document.created | date:'yyyy-MM-dd'}}</td>
             <td><a href="">{{document.createdBy.username}}</a></td>
-            <td>{{document.lastModified | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td>{{document.lastModified | date:'yyyy-MM-dd'}}</td>
             <td><a href="">{{document.lastModifiedBy.username}}</a></td>
         </tr>
     </tbody>
