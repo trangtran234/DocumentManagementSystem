@@ -87,13 +87,13 @@
                 scope.getChildDocument(data);
             });
 
-            scope.getChildDocument = (id) => {
-                http.get<Document[]>('/api/documents/DocumentByFolderId/' + id)
-                    .then((response: ng.IHttpPromiseCallbackArg<Document[]>) => {
-                        scope.documents = response.data;
-                        scope.documentsLength = scope.documents.length;
-                    });
-            }
+            //scope.getChildDocument = (id) => {
+            //    http.get<Document[]>('/api/documents/DocumentByFolderId/' + id)
+            //        .then((response: ng.IHttpPromiseCallbackArg<Document[]>) => {
+            //            scope.documents = response.data;
+            //            scope.documentsLength = scope.documents.length;
+            //        });
+            //}
 
             scope.getChildDocumentOfFolder = (id) => {
                 scope.getChildDocument(id);
@@ -124,10 +124,9 @@
 
             scope.currentPage = 0;
             scope.pageSize = 5;
+            var desc = true;
 
-            scope.numberOfPages = () => {              
-                return Math.ceil(scope.documentsLength / scope.pageSize);
-            }
+            
 
             this.$filter('limitTo')(scope.documents, scope.pageSize, function () {
                 return function (input, start) {
@@ -135,6 +134,42 @@
                     return input.slice(start);
                 }
             })
+
+            scope.getChildDocument = (id) => {
+                http({
+                    url: '/api/documents/LazyLoadDocuments/' + desc + '/' + scope.currentPage + '/'+scope.pageSize+'/'+ id,
+                    method: "GET",
+                }).then(function success(response) {
+
+                    var obj = angular.fromJson(response.data as string);
+                    scope.documentsLength = obj.totalRecords;
+
+                    angular.forEach(obj.documents, function (value, key) {
+                        var dt: Document = {};
+
+                        dt.id = value.Id;
+                        dt.documentName = value.DocumentName;
+                        dt.documentType = value.DocumentType;
+                        dt.documentTypes = value.DocumentTypes;
+                        dt.created = value.Created;
+                        dt.createdBy = value.CreatedBy;
+                        dt.lastModified = value.LastModified;
+                        dt.lastModifiedBy = value.LastModifiedBy;
+
+                        scope.documents.push(dt);
+                    });
+
+                    scope.$apply;     
+                    
+                    }, function error(response) {
+                        console.log('error: ' + response)
+                    });
+            }
+
+            scope.numberOfPages = () => {
+                var aaa = Math.ceil(scope.documentsLength as number / scope.pageSize);
+                return Math.ceil(scope.documentsLength as number/ scope.pageSize);
+            }
 
         }
 

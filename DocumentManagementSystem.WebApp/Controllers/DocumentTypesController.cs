@@ -12,18 +12,18 @@ namespace DocumentManagementSystem.WebApp.Controllers
     [RoutePrefix("api/documenttypes")]
     public class DocumentTypesController : ApiController
     {
-        private IDocumentTypeService documentTermService;
+        private IDocumentTypeService documentTypeService;
 
-        public DocumentTypesController(DocumentTypeService documentTermService)
+        public DocumentTypesController(DocumentTypeService documentTypeService)
         {
-            this.documentTermService = documentTermService;
+            this.documentTypeService = documentTypeService;
         }
 
         [Route("DocumentTypes")]
         [HttpGet]
-        public List<DocumentType> GetAllDocumentTerms()
+        public List<DocumentType> GetAllDocumentTypes()
         {
-            return documentTermService.GetAllDocumentTerms();
+            return documentTypeService.GetAllDocumentTypes();
         }
     }
 }

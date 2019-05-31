@@ -164,22 +164,6 @@ namespace DocumentManagementSystem.Repository
             return true;
         }
 
-        public List<Document> LazyLoadDocument(Expression<Func<Document, string>> sort, bool desc, int page, int pageSize, out int totalRecords)
-        {
-            List<Document> documents = new List<Document>();
-            totalRecords = context.Documents.Count();
-            int skipRows = (page - 1) * pageSize;
-            if (desc)
-            {
-                documents = context.Documents.OrderByDescending(sort).Skip(skipRows).Take(pageSize).ToList();
-            }
-            else
-            {
-                documents = context.Documents.OrderBy(sort).Skip(skipRows).Take(pageSize).ToList();
-            }
-            return documents;
-        }
-
         private bool AddDocumentHistory(int documentId, int actionId)
         {
             DocumentHistory documentHistory = new DocumentHistory
@@ -190,6 +174,25 @@ namespace DocumentManagementSystem.Repository
                 Date = DateTime.Now
             };
             return true;
+        }
+
+        public List<Document> LazyLoadDocuments(Expression<Func<Document, string>> sort, bool desc, int page, int pageSize, int parentId,out int totalRecords)
+        {
+            var documentsContext = context.Documents.Where(d => d.ParentId == parentId);
+            List<Document> documents = new List<Document>();
+
+            totalRecords = documentsContext.ToList().Count();
+
+            int skipRows = page * pageSize;
+            if (desc)
+            {
+                documents = documentsContext.OrderByDescending(sort).Skip(skipRows).Take(pageSize).ToList();
+            }
+            else
+            {
+                documents = documentsContext.OrderBy(sort).Skip(skipRows).Take(pageSize).ToList();
+            }
+            return documents;
         }
     }
 }

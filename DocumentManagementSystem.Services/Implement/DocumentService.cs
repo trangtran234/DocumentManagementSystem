@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -114,6 +115,16 @@ namespace DocumentManagementSystem.Services
             document.LastModified = currentDay;
             Repository.Document documentRepo = mapper.Map<Repository.Document>(document);
             return documentRepository.UpdateDocument(documentRepo);
+        }
+
+        public List<Models.Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId,out int totalRecords)
+        {
+            Expression<Func<Repository.Document, string>> expression = d => d.DocumentName;
+            List<Repository.Document> documentListRepository = documentRepository.LazyLoadDocuments(expression, desc, page, pageSize, parentId,out totalRecords);
+
+            List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentListRepository);
+
+            return documents;
         }
     }
 }

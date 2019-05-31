@@ -8,6 +8,6 @@ namespace DocumentManagementSystem.Services
 {
     public interface IDocumentTypeService
     {
-        List<Models.DocumentType> GetAllDocumentTerms();
+        List<Models.DocumentType> GetAllDocumentTypes();
     }
 }

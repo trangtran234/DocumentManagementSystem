@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,5 +18,6 @@ namespace DocumentManagementSystem.Services
         void DeleteDocument(int id);
         bool AddDocument(Document document);
         bool UpdateDocument(Document document);
+        List<Models.Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId,out int totalRecords);
     }
 }

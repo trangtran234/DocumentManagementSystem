@@ -99,13 +99,5 @@ namespace DocumentManagementSystem.WebApp.Controllers
             }
             return Request.CreateResponse(HttpStatusCode.BadRequest, listFail);
         }
-
-        [HttpDelete]
-        [Route("deleteDocument")]
-        public HttpResponseMessage DeleteDocument(int id)
-        {
-            documentServices.DeleteDocument(id);
-            return Request.CreateResponse(HttpStatusCode.OK);
-        }
     }
 }
