@@ -5,6 +5,11 @@ var rootApp;
         function DocumentController($http, $scope) {
             this.$http = $http;
             this.$scope = $scope;
+            this.onSave = function () {
+                //reload the list
+            };
+            $scope.onSave = this.onSave;
+            //$scope.uploadFiles = this.uploadFiles;
         }
         DocumentController.$inject = ['$http', '$scope'];
         return DocumentController;

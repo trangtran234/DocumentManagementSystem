@@ -9,12 +9,8 @@ var rootApp;
             this.restrict = "E";
             this.templateUrl = '/Content/directives/informationDocument.html';
             this.link = function (scope, element, attributes) {
-                scope.isVisible = false;
                 scope.$on('rootScope:documentInfo', function (event, data) {
                     scope.document = data;
-                });
-                scope.$on('rootScope:isVisible', function (event, data) {
-                    scope.isVisible = data;
                 });
             };
         }
