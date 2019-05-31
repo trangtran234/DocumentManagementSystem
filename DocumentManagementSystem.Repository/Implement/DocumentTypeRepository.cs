@@ -1,5 +1,4 @@
-﻿using DocumentManagementSystem.Repository.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +8,9 @@ namespace DocumentManagementSystem.Repository
 {
     public class DocumentTypeRepository : IDocumentTypeRepository
     {
-        private IDocumentContext context;
+        private DocumentManagementSystemEntities context;
 
-        public DocumentTypeRepository(IDocumentContext context)
+        public DocumentTypeRepository(DocumentManagementSystemEntities context)
         {
             this.context = context;
         }

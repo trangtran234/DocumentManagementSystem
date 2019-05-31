@@ -19,6 +19,7 @@ namespace DocumentManagementSystem.Repository
         {
             this.Documents = new HashSet<Document>();
             this.Documents1 = new HashSet<Document>();
+            this.DocumentHistories = new HashSet<DocumentHistory>();
         }
     
         public int Id { get; set; }
@@ -29,5 +30,7 @@ namespace DocumentManagementSystem.Repository
         public virtual ICollection<Document> Documents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Document> Documents1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentHistory> DocumentHistories { get; set; }
     }
 }

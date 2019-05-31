@@ -19,6 +19,7 @@ namespace DocumentManagementSystem.Repository
         {
             this.DocumentTags = new HashSet<DocumentTag>();
             this.DocumentTypes = new HashSet<DocumentType>();
+            this.DocumentHistories = new HashSet<DocumentHistory>();
         }
     
         public int Id { get; set; }
@@ -40,5 +41,7 @@ namespace DocumentManagementSystem.Repository
         public virtual ICollection<DocumentTag> DocumentTags { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentType> DocumentTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentHistory> DocumentHistories { get; set; }
     }
 }

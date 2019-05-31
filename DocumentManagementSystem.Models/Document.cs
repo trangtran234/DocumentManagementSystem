@@ -13,8 +13,8 @@ namespace DocumentManagementSystem.Models
         public string DocumentType { get; set; }
         public double DocumentSize { get; set; }
         public string DocumentDescription { get; set; }
-        public string Created { get; set; }
-        public string LastModified { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime LastModified { get; set; }
         public virtual Account CreatedBy { get; set; }
         public virtual Account LastModifiedBy { get; set; }
         public byte[] DocumentContent { get; set; }

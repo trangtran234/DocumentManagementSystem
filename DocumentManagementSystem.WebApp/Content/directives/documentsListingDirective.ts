@@ -17,19 +17,21 @@
         pageSize: number;
         numberOfPages: () => void;
         documentsLength: number;
+        document: Document;
     }
 
     export class DocumentsListingDirective implements ng.IDirective {
         public restrict: string = "E";
         public templateUrl: string = '/Content/directives/documentsListing.html';
         //public scope = {
-        //    documents: '='
+        //    documentTypes: '='
         //}
 
         constructor(private $http: ng.IHttpService,
             private $rootScope: ng.IRootScopeService,
             private orderBy: ng.IFilterOrderBy,
-            private $filter: ng.FilterFactory) {
+            private $filter: ng.FilterFactory,
+            private $uibModal: ng.ui.bootstrap.IModalService) {
 
         }
 
@@ -37,9 +39,10 @@
             const directive = ($http: ng.IHttpService,
                 $rootScope: ng.IRootScopeService,
                 orderBy: ng.IFilterOrderBy,
-                $filter: ng.FilterFactory) => new DocumentsListingDirective($http, $rootScope, orderBy, $filter);
+                $filter: ng.FilterFactory,
+                $uibModal: ng.ui.bootstrap.IModalService) => new DocumentsListingDirective($http, $rootScope, orderBy, $filter, $uibModal);
 
-            directive.$inject = ['$http', '$rootScope', 'orderByFilter','$filter'];
+            directive.$inject = ['$http', '$rootScope', 'orderByFilter', '$filter', '$uibModal'];
             return directive;
         }
 
@@ -63,9 +66,29 @@
                 scope.getChildDocument(data);
             });
 
+
             scope.editDocument = (id) => {
                 this.$rootScope.$broadcast('rootScope:edit', id);
                 this.$rootScope.$broadcast('rootScope:parentId', parentId);
+
+                http.get<Document>('/api/documents/DocumentById/' + id)
+                    .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
+                        scope.document = response.data;
+                    });
+
+                var modalInstance: ng.ui.bootstrap.IModalServiceInstance = this.$uibModal.open({
+                    scope: scope,
+                    templateUrl: '/Content/directives/editDocument.html',
+                    controller: 'ModalInstanceController',
+                    resolve: {
+                        id: function () {
+                            return id;
+                        },
+                        parentId: function () {
+                            return parentId;
+                        }
+                    }
+                });
             }
 
             scope.$on('rootScope:successEditDocument', function (event, data) {

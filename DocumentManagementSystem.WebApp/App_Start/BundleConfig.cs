@@ -11,8 +11,11 @@ namespace DocumentManagementSystem.WebApp
             bundles.Add(new ScriptBundle("~/bundles/libs").Include(
                       "~/Scripts/lib/angular/angular.min.js",
                       "~/Scripts/lib/angular-route/angular-route.min.js",
+                      "~/Scripts/lib/angular-bootstrap/ui-bootstrap.min.js",
+                      "~/Scripts/lib/angular-bootstrap/ui-bootstrap-tpls.min.js",
                       "~/Scripts/lib/jQuery/dist/jquery.min.js",
-                      "~/Scripts/lib/bootstrap/dist/js/bootstrap.bundle.js"));
+                      "~/Scripts/lib/bootstrap/dist/js/bootstrap.bundle.js"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/Contents").Include(
                             "~/Content/models/*.js",

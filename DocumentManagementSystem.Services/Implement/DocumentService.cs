@@ -68,7 +68,7 @@ namespace DocumentManagementSystem.Services
             document.DocumentName = arr[0];
             document.DocumentType = arr[arr.Length - 1];
 
-            var currentDay = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            var currentDay = DateTime.Now;
             document.Created = currentDay;
             document.LastModified = currentDay;
 
@@ -110,7 +110,7 @@ namespace DocumentManagementSystem.Services
 
         public bool UpdateDocument(Models.Document document)
         {
-            var currentDay = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            var currentDay = DateTime.Now;
             document.LastModified = currentDay;
             Repository.Document documentRepo = mapper.Map<Repository.Document>(document);
             return documentRepository.UpdateDocument(documentRepo);

@@ -1,5 +1,4 @@
-﻿using DocumentManagementSystem.Repository.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -16,7 +15,7 @@ namespace DocumentManagementSystem.Repository.DependencyExtension
     {
         protected override void Initialize()
         {
-            Container.RegisterType<IDocumentContext, DocumentManagementSystemEntities>(new PerThreadLifetimeManager(), new InjectionConstructor("name=DocumentManagementSystemEntities"));
+            Container.RegisterType<DocumentManagementSystemEntities>(new PerThreadLifetimeManager());
         }
     }
 }
