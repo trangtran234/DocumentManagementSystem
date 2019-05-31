@@ -954,7 +954,7 @@
     <TypeScriptCompile Include="Content\configure-routes.ts" />
     <TypeScriptCompile Include="Content\controllers\documentController.ts" />
     <TypeScriptCompile Include="Content\controllers\recycleBinController.ts" />
-	<TypeScriptCompile Include="Content\controllers\ModalInstanceController.ts" />
+    <TypeScriptCompile Include="Content\controllers\modalInstanceController.ts" />
     <TypeScriptCompile Include="Content\directives\documentDirective.ts" />
     <TypeScriptCompile Include="Content\directives\documentTreeViewDirective.ts" />
     <TypeScriptCompile Include="Content\directives\editDocumentDirective.ts" />

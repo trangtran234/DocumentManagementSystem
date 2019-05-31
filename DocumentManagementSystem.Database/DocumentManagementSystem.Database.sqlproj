@@ -73,5 +73,6 @@
     <Build Include="dbo\Tables\DocumentType.sql" />
     <Build Include="dbo\Tables\DocumentDocumentType.sql" />
     <Build Include="Storage\FileStreamGroup1.sql" />
+    <Build Include="dbo\Tables\DocumentHistory.sql" />
   </ItemGroup>
 </Project>
