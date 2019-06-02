@@ -49,8 +49,8 @@
             <td ng-if="document.documentType !== 'folder'" ng-click="getInfoOfDocument(document.id)"><a href="">{{document.documentName}}</a></td>
             <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)"><a href="">{{document.documentName}}</a></td>
             <td>
-                <div class="dropdown">
-                    <button class="btn-light" type="button" id="dropdownMoreAction" data-toggle="dropdown">
+                <div class="dropdown hideInListing">
+                    <button class="btn-circle btn btn-outline-dark" id="dropdownMoreAction" data-toggle="dropdown">
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMoreAction">
