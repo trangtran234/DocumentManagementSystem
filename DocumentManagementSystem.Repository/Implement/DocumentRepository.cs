@@ -178,12 +178,12 @@ namespace DocumentManagementSystem.Repository
             return false;
         }
 
-        public List<Document> LazyLoadDocuments(Expression<Func<Document, string>> sort, bool desc, int page, int pageSize, int parentId,out int totalRecords)
+        public List<Document> LazyLoadDocuments(Expression<Func<Document, dynamic>> sort, bool desc, int page, int pageSize, int parentId, out int totalRecords)
         {
             var documentsContext = context.Documents.Where(d => d.ParentId == parentId);
             List<Document> documents = new List<Document>();
 
-            totalRecords = documentsContext.ToList().Count();
+            totalRecords = documentsContext.Count();
 
             int skipRows = page * pageSize;
             if (desc)
