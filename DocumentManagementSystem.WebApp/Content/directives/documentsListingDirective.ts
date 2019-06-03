@@ -95,7 +95,7 @@
             };
 
             scope.$on('rootScope:successEditDocument', function (event, data) {
-                scope.getChildDocument(data);
+                scope.getChildDocument(data, scope.currentPage, documentName);
             });
 
             scope.getChildDocumentOfFolder = (id) => {
