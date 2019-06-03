@@ -5,7 +5,7 @@
 
     export interface IMyDocumentScope extends ng.IScope {
         documents: Document[];
-        getChildDocument: (id) => void;
+        getChildDocument: (id, currentPage, propertyName) => void;
         getChildDocumentOfFolder: (id) => void;
         getInfoOfDocument: (id) => void;
         editDocument: (id) => void;
@@ -17,6 +17,7 @@
         pageSize: number;
         numberOfPages: () => void;
         documentsLength: number;
+        init: () => void;
     }
 
     export class DocumentsListingDirective implements ng.IDirective {
@@ -52,17 +53,24 @@
         ) => {
             var http = this.$http;
             var parentId = null;
+            var documentName = 'documentName';
+            scope.currentPage = 0;
+            scope.pageSize = 5;
+            var desc = true;
+
             scope.$on('rootScope:id', function (event, data) {
                 scope.documents = [];
                 parentId = data;
-                scope.getChildDocument(parentId);
-            });
-            scope.$on('rootScope:treeviewId', function (event, data) {
-                scope.getChildDocument(data);
+                scope.init();
+                scope.getChildDocument(parentId, scope.currentPage, documentName);
             });
 
+            //scope.$on('rootScope:treeviewId', function (event, data) {
+            //    scope.getChildDocument(data, scope.currentPage);
+            //});
+
             scope.$on('uploadSuccess', function (event, data) {
-                scope.getChildDocument(data);
+                scope.getChildDocument(data, scope.currentPage, documentName);
             });
 
             scope.editDocument = (id) => {
@@ -85,19 +93,12 @@
             };
 
             scope.$on('rootScope:successEditDocument', function (event, data) {
-                scope.getChildDocument(data);
+                scope.getChildDocument(data, scope.currentPage, documentName);
             });
 
-            //scope.getChildDocument = (id) => {
-            //    http.get<Document[]>('/api/documents/DocumentByFolderId/' + id)
-            //        .then((response: ng.IHttpPromiseCallbackArg<Document[]>) => {
-            //            scope.documents = response.data;
-            //            scope.documentsLength = scope.documents.length;
-            //        });
-            //}
-
             scope.getChildDocumentOfFolder = (id) => {
-                scope.getChildDocument(id);
+                scope.init();
+                scope.getChildDocument(id, scope.currentPage, documentName);
                 this.$http.get<Document>('/api/documents/DocumentById/' + id)
                     .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
                         var document = response.data;
@@ -120,42 +121,43 @@
             scope.sort = (propertyName) => {
                 scope.reverse = (scope.propertyName === propertyName) ? !scope.reverse : false;
                 scope.propertyName = propertyName;
-                scope.documents = this.orderBy(scope.documents, scope.propertyName, scope.reverse);
-            }
+                //scope.documents = this.orderBy(scope.documents, scope.propertyName, scope.reverse);
+                scope.init();
+                scope.getChildDocument(parentId, scope.currentPage, propertyName);
+            }          
 
-            scope.currentPage = 0;
-            scope.pageSize = 5;
-            var desc = true;
+            scope.getChildDocument = (id, currentPage, propertyName) => {
 
-            
-
-            this.$filter('limitTo')(scope.documents, scope.pageSize, function () {
-                return function (input, start) {
-                    start = +start;
-                    return input.slice(start);
+                if (typeof propertyName === 'undefined') {
+                    propertyName = 'documentName';
                 }
-            })
 
-            scope.getChildDocument = (id) => {
+                if (typeof scope.reverse === 'undefined') {
+                    scope.reverse = true;
+                }
+
                 http({
-                    url: '/api/documents/LazyLoadDocuments/' + desc + '/' + scope.currentPage + '/'+scope.pageSize+'/'+ id,
+                    url: '/api/documents/LazyLoadDocuments?page=' + currentPage + '&pageSize=' + scope.pageSize + '&parentId=' + parentId + '&desc=' + scope.reverse + '&propertyName=' + propertyName,
                     method: "GET",
                 }).then(function success(response) {
 
                     var obj = angular.fromJson(response.data as string);
+
                     scope.documentsLength = obj.totalRecords;
+                    scope.documents = [];
 
                     angular.forEach(obj.documents, function (value, key) {
                         var dt: Document = {};
 
-                        dt.id = value.Id;
-                        dt.documentName = value.DocumentName;
-                        dt.documentType = value.DocumentType;
-                        dt.documentTypes = value.DocumentTypes;
-                        dt.created = value.Created;
-                        dt.createdBy = value.CreatedBy;
-                        dt.lastModified = value.LastModified;
-                        dt.lastModifiedBy = value.LastModifiedBy;
+                        dt.id = value.id;
+                        dt.documentName = value.documentName;
+                        dt.documentType = value.documentType;
+                        dt.documentTypes = value.documentTypes;
+
+                        dt.createdBy = value.createdBy;
+                        dt.lastModifiedBy = value.lastModifiedBy;
+                        dt.created = value.created;
+                        dt.lastModified = value.lastModified;
 
                         scope.documents.push(dt);
                     });
@@ -168,12 +170,17 @@
             }
 
             scope.numberOfPages = () => {
-                var aaa = Math.ceil(scope.documentsLength as number / scope.pageSize);
-                return Math.ceil(scope.documentsLength as number/ scope.pageSize);
+                var totalPages = Math.ceil(scope.documentsLength / scope.pageSize);
+                if (totalPages === 0 || isNaN(totalPages))
+                {
+                    totalPages = 1;
+                }
+                return totalPages;
             }
 
-        }
-
-        
+            scope.init = () => {
+                scope.currentPage = 0;
+            }
+        }        
     };
 }

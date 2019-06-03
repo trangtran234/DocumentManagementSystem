@@ -21,6 +21,6 @@ namespace DocumentManagementSystem.Repository
         bool AddDocument(Document document, List<DocumentType> types);
         bool AddDocumentContent(DocumentContent documentContent);
         bool UpdateDocument(Document document);
-        List<Document> LazyLoadDocuments(Expression<Func<Document, string>> sort, bool desc, int page, int pageSize, int parentId,out int totalRecords);
+        List<Document> LazyLoadDocuments(Expression<Func<Document, dynamic>> sort, bool desc, int page, int pageSize, int parentId,out int totalRecords);
     }
 }

@@ -117,9 +117,33 @@ namespace DocumentManagementSystem.Services
             return documentRepository.UpdateDocument(documentRepo);
         }
 
-        public List<Models.Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId,out int totalRecords)
+        public List<Models.Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId, string propertyName, out int totalRecords)
         {
-            Expression<Func<Repository.Document, string>> expression = d => d.DocumentName;
+            Expression<Func<Repository.Document, dynamic>> expression = null;
+            if (propertyName == "documentName")
+            {
+                expression = d => d.DocumentName;
+            }
+            else if (propertyName == "created")
+            {
+                expression = d => d.Created.ToString();
+            }
+            else if (propertyName == "lastModified")
+            {
+                expression = d => d.LastModified.ToString();
+            }
+            else if (propertyName == "createdBy")
+            {
+                expression = d => d.Account.Username;
+            }
+            else if (propertyName == "lastModifiedBy")
+            {
+                expression = d => d.Account1.Username;
+            }
+            else if (propertyName == "documentType")
+            {
+                expression = d => d.DocumentType;
+            }
             List<Repository.Document> documentListRepository = documentRepository.LazyLoadDocuments(expression, desc, page, pageSize, parentId,out totalRecords);
 
             List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentListRepository);

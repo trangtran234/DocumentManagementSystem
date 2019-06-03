@@ -7,6 +7,9 @@ using System.Web.Http;
 using System.Web.Script.Serialization;
 using DocumentManagementSystem.Models;
 using DocumentManagementSystem.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace DocumentManagementSystem.WebApp.Controllers
 {
@@ -101,22 +104,19 @@ namespace DocumentManagementSystem.WebApp.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        [Route("LazyLoadDocuments/{desc:bool}/{page:int}/{pageSize:int}/{parentId:int}")]
+        [Route("LazyLoadDocuments")]
         [HttpGet]
-        public HttpResponseMessage LazyLoadDocuments(bool desc, int page, int pageSize, int parentId)
+        public HttpResponseMessage LazyLoadDocuments(int page, int pageSize, int parentId, bool desc, string propertyName)
         {
             int totalRecords;
 
-            List<Document> documents = documentServices.LazyLoadDocuments(desc, page, pageSize, parentId, out totalRecords);
-            Console.WriteLine("Lenght: " + totalRecords);
+            List<Document> documents = documentServices.LazyLoadDocuments(desc, page, pageSize, parentId, propertyName, out totalRecords);
 
-            var json = new JavaScriptSerializer().Serialize(new
+            return Request.CreateResponse(HttpStatusCode.OK, new
             {
-                documents ,
+                documents,
                 totalRecords
             });
-
-            return Request.CreateResponse(HttpStatusCode.OK, json);
         }
     }
 }

@@ -2,7 +2,9 @@
     <thead class="thead-light">
         <tr>
             <th class="checkbox" scope="col"><input type="checkbox" ng-model="leader" /></th>
-            <th scope="col"></th>
+            <th scope="col" ng-click="sort('documentType')">
+                <span class="sortorder" ng-show="propertyName === 'documentType'" ng-class="{reverse: reverse}"></span>
+            </th>
             <th scope="col" ng-click="sort('documentName')">
                 Title
                 <span class="sortorder" ng-show="propertyName === 'documentName'" ng-class="{reverse: reverse}"></span>
@@ -13,17 +15,17 @@
                 Created
                 <span class="sortorder" ng-show="propertyName === 'created'" ng-class="{reverse: reverse}"></span>
             </th>
-            <th scope="col" ng-click="sort('createdBy.username')">
+            <th scope="col" ng-click="sort('createdBy')">
                 Created By
-                <span class="sortorder" ng-show="propertyName === 'createdBy.username'" ng-class="{reverse: reverse}"></span>
+                <span class="sortorder" ng-show="propertyName === 'createdBy'" ng-class="{reverse: reverse}"></span>
             </th>
             <th scope="col" ng-click="sort('lastModified')">
                 Last Modified
                 <span class="sortorder" ng-show="propertyName === 'lastModified'" ng-class="{reverse: reverse}"></span>
             </th>
-            <th scope="col" ng-click="sort('lastModifiedBy.username')">
+            <th scope="col" ng-click="sort('lastModifiedBy')">
                 Last Modified By
-                <span class="sortorder" ng-show="propertyName === 'lastModifiedBy.username'" ng-class="{reverse: reverse}"></span>
+                <span class="sortorder" ng-show="propertyName === 'lastModifiedBy'" ng-class="{reverse: reverse}"></span>
             </th>
         </tr>
     </thead>
@@ -80,18 +82,20 @@
                     <span class="badge badge-dark" ng-repeat="type in document.documentTypes">{{type.type}}</span>
                 </div>
             </td>
-            <td>{{document.created | date:'yyyy-MM-dd'}}</td>
+            <td>{{document.created | date:'yyyy-MM-dd HH:mm:ss'}}</td>
             <td><a href="">{{document.createdBy.username}}</a></td>
-            <td>{{document.lastModified | date:'yyyy-MM-dd'}}</td>
+            <td>{{document.lastModified | date:'yyyy-MM-dd HH:mm:ss'}}</td>
             <td><a href="">{{document.lastModifiedBy.username}}</a></td>
         </tr>
     </tbody>
 </table>
 
-<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+<button ng-disabled="currentPage == 0" ng-click="getChildDocument(id,currentPage=currentPage-1,propertyName)">
     Previous
 </button>
+
 {{currentPage+1}}/{{numberOfPages()}}
-<button ng-disabled="currentPage >= documentsLength/pageSize - 1" ng-click="currentPage=currentPage+1">
+
+<button ng-disabled="currentPage >= documentsLength/pageSize - 1" ng-click="getChildDocument(id,currentPage=currentPage+1,propertyName)">
     Next
 </button>
