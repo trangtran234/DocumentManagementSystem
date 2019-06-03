@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DocumentManagementSystem.Repository.Common;
 using System.Linq.Expressions;
+using DocumentManagementSystem.Models.Common;
+using DocumentManagementSystem.Repository.Interface;
 
 namespace DocumentManagementSystem.Repository
 {
     public class DocumentRepository : IDocumentRepository
     {
         private DocumentManagementSystemEntities context;
+        private readonly IDocumentHistoryRepository historyRepository;
 
-        public DocumentRepository(DocumentManagementSystemEntities context)
+        public DocumentRepository(DocumentManagementSystemEntities context, IDocumentHistoryRepository historyRepository)
         {
             this.context = context;
+            this.historyRepository = historyRepository;
         }
 
         public List<Document> GetDocumentByParentId(int id)
@@ -98,7 +101,13 @@ namespace DocumentManagementSystem.Repository
                     document.DocumentTypes.Add(type);
                 }
 
-                context.SaveChanges();
+                //Trang added code for feature Add Document History
+                int isAdded = context.SaveChanges();
+                if (isAdded != -1)
+                {
+                    bool isSuccessed = historyRepository.AddDocumentHistory(document, Helper.HistoryAction.Upload);
+                    return true;
+                }
             }
             catch(Exception e)
             {
@@ -154,26 +163,19 @@ namespace DocumentManagementSystem.Repository
                     //like previous method add instance to navigation property
                     documentDB.DocumentTypes.Add(type);
                 }
-                context.SaveChanges();
+                int isEdited = context.SaveChanges();
+                if (isEdited != -1)
+                {
+                    bool isSuccessed = historyRepository.AddDocumentHistory(document, Helper.HistoryAction.Edit);
+                    return true;
+                }
             }
             catch(Exception e)
             {
                 return false;
             }
 
-            return true;
-        }
-
-        private bool AddDocumentHistory(int documentId, int actionId)
-        {
-            DocumentHistory documentHistory = new DocumentHistory
-            {
-                DocumentId = documentId,
-                ActionId = actionId,
-                UserId = Helper.FAKE_USERID_TO_ADD_HISTORY,
-                Date = DateTime.Now
-            };
-            return true;
+            return false;
         }
 
         public List<Document> LazyLoadDocuments(Expression<Func<Document, string>> sort, bool desc, int page, int pageSize, int parentId,out int totalRecords)

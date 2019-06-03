@@ -3,19 +3,19 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active text-dark" data-toggle="tab" href="#home">Info</a>
+            <a class="nav-link active text-dark" data-toggle="tab" data-target="#info">Info</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" data-toggle="tab" href="#versions">Versions</a>
+            <a class="nav-link text-dark" data-toggle="tab" data-target="#versions">Versions</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" data-toggle="tab" href="#history">History</a>
+            <a class="nav-link text-dark" data-toggle="tab" data-target="#history">History</a>
         </li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div id="home" class="container tab-pane active" ng-show="isVisible">
+        <div id="info" class="container tab-pane active" ng-show="isVisible">
             <br>
             <h6>Name</h6>
             <p>{{document.documentName}}</p>
@@ -33,6 +33,12 @@
             <em><h7>Last modified by <u><a href="">{{document.lastModifiedBy.username}}</a></u> at {{document.lastModified | date:'yyyy-MM-dd HH:mm:ss'}}</h7></em>
         </div>
         <div id="versions" class="container tab-pane fade"></div>
-        <div id="history" class="container tab-pane fade"></div>
+        <div id="history" class="container tab-pane fade">
+            <div>
+                <ul>
+                    <li ng-repeat="history in documentHistories">Updated by {{history.account.username}} at {{history.date | date:'yyyy-MM-dd HH:mm:ss'}}</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>

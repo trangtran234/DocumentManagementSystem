@@ -51,6 +51,7 @@
             attributes: ng.IAttributes,
         ) => {
             var http = this.$http;
+            var rootScope = this.$rootScope;
             var parentId = null;
             scope.$on('rootScope:id', function (event, data) {
                 scope.documents = [];
@@ -63,6 +64,7 @@
 
             scope.$on('uploadSuccess', function (event, data) {
                 scope.getChildDocument(data);
+                rootScope.$broadcast('history:sucessed', 'sucessed');
             });
 
             scope.editDocument = (id) => {
@@ -86,6 +88,7 @@
 
             scope.$on('rootScope:successEditDocument', function (event, data) {
                 scope.getChildDocument(data);
+                rootScope.$broadcast('history:sucessed', 'sucessed');
             });
 
             //scope.getChildDocument = (id) => {

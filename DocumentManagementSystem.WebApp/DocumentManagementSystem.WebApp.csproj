@@ -747,6 +747,7 @@
     <TypeScriptCompile Include="Content\directives\treeViewDirective.ts" />
     <TypeScriptCompile Include="Content\directives\userLoginDirective.ts" />
     <TypeScriptCompile Include="Content\models\document.ts" />
+    <TypeScriptCompile Include="Content\models\documentHistory.ts" />
     <TypeScriptCompile Include="Content\models\documentType.ts" />
     <TypeScriptCompile Include="Content\models\documentTree.ts" />
     <TypeScriptCompile Include="Content\models\tag.ts" />

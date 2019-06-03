@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DocumentManagementSystem.Models;
+using DocumentManagementSystem.Models.Common;
 using DocumentManagementSystem.Repository;
+using DocumentManagementSystem.Repository.Interface;
 using DocumentManagementSystem.Services.Automapper;
 
 namespace DocumentManagementSystem.Services
@@ -15,10 +17,12 @@ namespace DocumentManagementSystem.Services
     {
         private IDocumentRepository documentRepository;
         private IMapper mapper;
-        public DocumentService(IDocumentRepository documentRepository, IAutoMapperConfig mapper)
+        private readonly IDocumentHistoryRepository documentHistoryRepository;
+        public DocumentService(IDocumentRepository documentRepository, IAutoMapperConfig mapper, IDocumentHistoryRepository documentHistoryRepository)
         {
             this.documentRepository = documentRepository;
             this.mapper = mapper.GetMapper();
+            this.documentHistoryRepository = documentHistoryRepository;
         }
 
         public List<Models.Document> GetAllDocument()
@@ -125,6 +129,13 @@ namespace DocumentManagementSystem.Services
             List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentListRepository);
 
             return documents;
+        }
+
+        public List<Models.DocumentHistory> GetDocumentHistories()
+        {
+            List<Repository.DocumentHistory> documentHistoriesRepo = documentHistoryRepository.GetDocumentHistories();
+            List<Models.DocumentHistory> documentHistories = mapper.Map<List<Models.DocumentHistory>>(documentHistoriesRepo);
+            return documentHistories;
         }
     }
 }

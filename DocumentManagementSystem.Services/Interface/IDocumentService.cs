@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentManagementSystem.Models.Common;
 
 namespace DocumentManagementSystem.Services
 {
@@ -19,5 +20,6 @@ namespace DocumentManagementSystem.Services
         bool AddDocument(Document document);
         bool UpdateDocument(Document document);
         List<Models.Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId,out int totalRecords);
+        List<DocumentHistory> GetDocumentHistories();
     }
 }

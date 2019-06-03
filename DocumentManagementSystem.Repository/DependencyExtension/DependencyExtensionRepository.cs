@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DocumentManagementSystem.Repository.Implement;
+using DocumentManagementSystem.Repository.Interface;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -16,6 +18,7 @@ namespace DocumentManagementSystem.Repository.DependencyExtension
         protected override void Initialize()
         {
             Container.RegisterType<DocumentManagementSystemEntities>(new PerThreadLifetimeManager());
+            Container.RegisterType<IDocumentHistoryRepository, DocumentHistoryRepository>(new ContainerControlledLifetimeManager());
         }
     }
 }

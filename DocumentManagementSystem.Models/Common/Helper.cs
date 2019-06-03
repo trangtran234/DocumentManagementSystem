@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DocumentManagementSystem.Repository.Common
+namespace DocumentManagementSystem.Models.Common
 {
     public class Helper
     {
@@ -33,11 +33,11 @@ namespace DocumentManagementSystem.Repository.Common
         public enum HistoryAction
         {
             [Description("Upload")]
-            one = 1,
+            Upload = 1,
             [Description("Edit")]
-            two = 2,
+            Edit = 2,
             [Description("Delete")]
-            three = 3
+            Delete = 3
         }
     }
 }

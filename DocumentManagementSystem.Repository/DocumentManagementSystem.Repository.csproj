@@ -83,7 +83,6 @@
     <Compile Include="Account.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
     </Compile>
-    <Compile Include="Common\Helper.cs" />
     <Compile Include="DependencyExtension\DependencyExtensionRepository.cs" />
     <Compile Include="Document.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
@@ -117,8 +116,10 @@
     </Compile>
     <Compile Include="Implement\DocumentRepository.cs" />
     <Compile Include="Implement\DocumentTypeRepository.cs" />
+    <Compile Include="Implement\DocumentHistoryRepository.cs" />
     <Compile Include="Interface\IDocumentRepository.cs" />
     <Compile Include="Interface\IDocumentTypeRepository.cs" />
+    <Compile Include="Interface\IDocumentHistoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>

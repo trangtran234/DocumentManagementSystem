@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using DocumentManagementSystem.Models.Common;
 
 namespace DocumentManagementSystem.Services.Automapper
 {
@@ -35,6 +36,8 @@ namespace DocumentManagementSystem.Services.Automapper
                 cfg.CreateMap<Models.DocumentContent, Repository.DocumentContent>();
                 cfg.CreateMap<Repository.DocumentType, Models.DocumentType>();
                 cfg.CreateMap<Models.DocumentType, Repository.DocumentType>();
+                cfg.CreateMap<Repository.DocumentHistory, Models.DocumentHistory>()
+                                        .ForMember(model => model.ActionEvent, opt => opt.MapFrom(repo => (Helper.HistoryAction)Enum.ToObject(typeof(Helper.HistoryAction), repo.ActionId)));
                 //.ForMember();
                 //lots more maps...here!
             });

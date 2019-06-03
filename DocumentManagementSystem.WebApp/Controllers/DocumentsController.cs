@@ -118,5 +118,13 @@ namespace DocumentManagementSystem.WebApp.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, json);
         }
+
+        [Route("DocumentHistories")]
+        [HttpGet]
+        public List<DocumentHistory> GetDocumentHistories()
+        {
+            List<DocumentHistory> documentHistories = documentServices.GetDocumentHistories();
+            return documentHistories;
+        }
     }
 }

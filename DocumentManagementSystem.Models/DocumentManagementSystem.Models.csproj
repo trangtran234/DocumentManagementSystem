@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="Common\Helper.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="DocumentContent.cs" />
+    <Compile Include="DocumentHistory.cs" />
     <Compile Include="DocumentType.cs" />
     <Compile Include="DocumentTreeView.cs" />
     <Compile Include="DocumentTag.cs" />
@@ -56,5 +58,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
