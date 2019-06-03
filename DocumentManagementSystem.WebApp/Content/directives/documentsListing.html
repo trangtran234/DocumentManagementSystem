@@ -1,4 +1,4 @@
-﻿<table class="table table-hover">
+﻿<table class="table table-hover" id="listingTable">
     <thead class="thead-light">
         <tr>
             <th class="checkbox" scope="col"><input type="checkbox" ng-model="leader" /></th>
@@ -52,8 +52,8 @@
             <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)"><a href="">{{document.documentName}}</a></td>
             <td>
                 <div class="dropdown hideInListing">
-                    <button class="btn-circle btn btn-outline-dark" id="dropdownMoreAction" data-toggle="dropdown">
-                        <i class="fas fa-ellipsis-v"></i>
+                    <button class="btn btn-circle" id="dropdownMoreAction" data-toggle="dropdown">
+                        <i class="fas fa-ellipsis-v fa-lg"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMoreAction">
                         <a href="" class="dropdown-item">
