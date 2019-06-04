@@ -1,35 +1,65 @@
 ﻿<table class="table table-hover" id="listingTable">
-    <thead class="thead-light">
+    <thead class="thead-dark">
         <tr>
             <th class="checkbox" scope="col"><input type="checkbox" ng-model="leader" /></th>
             <th scope="col" ng-click="sort('documentType')">
-                <span class="sortorder" ng-show="propertyName === 'documentType'" ng-class="{reverse: reverse}"></span>
+                <span ng-show="propertyName === 'documentType'" ng-class="{reverse: reverse}"></span>
+                <div class="sortorder" >
+                    <div ng-if="reverse === true && propertyName === 'documentType'"><i class="fas fa-sort-down"></i></div>
+                    <div ng-if="reverse === false && propertyName === 'documentType'"><i class="fas fa-sort-up"></i></div>
+                </div>
             </th>
+
             <th scope="col" ng-click="sort('documentName')">
-                Title
-                <span class="sortorder" ng-show="propertyName === 'documentName'" ng-class="{reverse: reverse}"></span>
+                <span ng-show="propertyName === 'documentName'" ng-class="{reverse: reverse}"></span>
+                <div class="headerdocument">Title</div>
+                <div class="sortorder">
+                    <div ng-if="reverse === true && propertyName === 'documentName'"><i class="fas fa-sort-down"></i></div>
+                    <div ng-if="reverse === false && propertyName === 'documentName'"><i class="fas fa-sort-up"></i></div>
+                </div>
             </th>
+
             <th scope="col"></th>
             <th scope="col">Document Type</th>
+
             <th scope="col" ng-click="sort('created')">
-                Created
-                <span class="sortorder" ng-show="propertyName === 'created'" ng-class="{reverse: reverse}"></span>
+                <span ng-show="propertyName === 'created'" ng-class="{reverse: reverse}"></span>
+                <div class="headerdocument">Created</div>
+                <div class="sortorder">
+                    <div ng-if="reverse === true && propertyName === 'created'"><i class="fas fa-sort-down"></i></div>
+                    <div ng-if="reverse === false && propertyName === 'created'"><i class="fas fa-sort-up"></i></div>
+                </div>
             </th>
-            <th scope="col" ng-click="sort('createdBy')">
-                Created By
-                <span class="sortorder" ng-show="propertyName === 'createdBy'" ng-class="{reverse: reverse}"></span>
+
+            <th scope="col" ng-click="sort('createBy')">
+                <span ng-show="propertyName === 'createBy'" ng-class="{reverse: reverse}"></span>
+                <div class="headerdocument">Created By</div>
+                <div class="sortorder">
+                    <div ng-if="reverse === true && propertyName === 'createBy'"><i class="fas fa-sort-down"></i></div>
+                    <div ng-if="reverse === false && propertyName === 'createBy'"><i class="fas fa-sort-up"></i></div>
+                </div>
             </th>
+
             <th scope="col" ng-click="sort('lastModified')">
-                Last Modified
-                <span class="sortorder" ng-show="propertyName === 'lastModified'" ng-class="{reverse: reverse}"></span>
+                <span ng-show="propertyName === 'lastModified'" ng-class="{reverse: reverse}"></span>
+                <div class="headerdocument">Last Modified</div>
+                <div class="sortorder">
+                    <div ng-if="reverse === true && propertyName === 'lastModified'"><i class="fas fa-sort-down"></i></div>
+                    <div ng-if="reverse === false && propertyName === 'lastModified'"><i class="fas fa-sort-up"></i></div>
+                </div>
             </th>
+
             <th scope="col" ng-click="sort('lastModifiedBy')">
-                Last Modified By
-                <span class="sortorder" ng-show="propertyName === 'lastModifiedBy'" ng-class="{reverse: reverse}"></span>
+                <span ng-show="propertyName === 'lastModifiedBy'" ng-class="{reverse: reverse}"></span>
+                <div class="headerdocument">Last Modified By</div>
+                <div class="sortorder">
+                    <div ng-if="reverse === true && propertyName === 'lastModifiedBy'"><i class="fas fa-sort-down"></i></div>
+                    <div ng-if="reverse === false && propertyName === 'lastModifiedBy'"><i class="fas fa-sort-up"></i></div>
+                </div>
             </th>
         </tr>
     </thead>
-    <tbody ng-repeat="document in documents">
+    <tbody ng-repeat="document in documents" onload="onloadData()">
         <tr ng-switch="document.documentType" ng-click="getDocumentsByTreeView(document)">
             <td class="checkbox"><input type="checkbox" ng-checked="leader" /></td>
             <td ng-switch-when="jpg"><i class="fas fa-file-image fa-lg"></i></td>
