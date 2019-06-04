@@ -6,7 +6,8 @@
     export interface IMyDocumentScope extends ng.IScope {
         documents: Document[];
         getChildDocument: (id, currentPage, propertyName) => void;
-        getChildDocumentOfFolder: (id) => void;
+        //getChildDocumentOfFolder: (id) => void;
+        getDocumentsByTreeView: (document: Document) => void;
         getInfoOfDocument: (id) => void;
         editDocument: (id) => void;
         sort: (propertyName) => void;
@@ -98,16 +99,27 @@
                 scope.getChildDocument(data, scope.currentPage, documentName);
             });
 
-            scope.getChildDocumentOfFolder = (id) => {
-                scope.init();
-                scope.getChildDocument(id, scope.currentPage, documentName);
-                this.$http.get<Document>('/api/documents/DocumentById/' + id)
-                    .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
-                        var document = response.data;
-                        this.$rootScope.$broadcast('rootScope:documentInfo', document)
-                        var isVisible = true;
-                        this.$rootScope.$broadcast('rootScope:isVisible', isVisible);
-                    });
+            //scope.getChildDocumentOfFolder = (id) => {
+            //    scope.init();
+            //    scope.getChildDocument(id, scope.currentPage, documentName);
+            //    this.$http.get<Document>('/api/documents/DocumentById/' + id)
+            //        .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
+            //            var document = response.data;
+            //            this.$rootScope.$broadcast('rootScope:documentInfo', document)
+            //            var isVisible = true;
+            //            this.$rootScope.$broadcast('rootScope:isVisible', isVisible);
+            //        });
+            //}
+
+            scope.getDocumentsByTreeView = (document) => {
+                if (document.documentType !== 'folder') {
+                    scope.getInfoOfDocument(document.id);
+                }
+                else {
+                    scope.init();
+                    scope.getChildDocument(document.id, scope.currentPage, documentName);
+                    scope.getInfoOfDocument(document.id);
+                }
             }
 
             scope.getInfoOfDocument = (id) => {

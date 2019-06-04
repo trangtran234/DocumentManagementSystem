@@ -30,7 +30,7 @@
         </tr>
     </thead>
     <tbody ng-repeat="document in documents">
-        <tr ng-switch="document.documentType">
+        <tr ng-switch="document.documentType" ng-click="getDocumentsByTreeView(document)">
             <td class="checkbox"><input type="checkbox" ng-checked="leader" /></td>
             <td ng-switch-when="jpg"><i class="fas fa-file-image fa-lg"></i></td>
             <td ng-switch-when="png"><i class="fas fa-file-image fa-lg"></i></td>
@@ -48,8 +48,7 @@
             <td ng-switch-when="rtf"><i class="fas fa-file-alt fa-lg"></i></td>
             <td ng-switch-when="css"><i class="fas fa-file-code fa-lg"></i></td>
             <td ng-switch-when="folder"><i class="fas fa-folder fa-lg"></i></td>
-            <td ng-if="document.documentType !== 'folder'" ng-click="getInfoOfDocument(document.id)"><a href="">{{document.documentName}}</a></td>
-            <td ng-if="document.documentType === 'folder'" ng-click="getChildDocumentOfFolder(document.id)"><a href="">{{document.documentName}}</a></td>
+            <td><a href="">{{document.documentName}}</a></td>
             <td>
                 <div class="dropdown hideInListing">
                     <button class="btn btn-circle" id="dropdownMoreAction" data-toggle="dropdown">
