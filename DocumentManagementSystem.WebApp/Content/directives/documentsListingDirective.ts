@@ -52,6 +52,10 @@
             element: ng.IAugmentedJQuery,
             attributes: ng.IAttributes,
         ) => {
+            //$('#listingTable > tbody > tr').click(function () {
+            //    $(this).addClass('bg-success').siblings().removeClass('bg-success');
+            //});
+
             var http = this.$http;
             var rootScope = this.$rootScope;
             var parentId = null;
@@ -97,6 +101,7 @@
 
             scope.$on('rootScope:successEditDocument', function (event, data) {
                 scope.getChildDocument(data, scope.currentPage, created);
+                rootScope.$broadcast('history:sucessed', 'sucessed');
             });
 
             //scope.getChildDocumentOfFolder = (id) => {
@@ -117,7 +122,7 @@
                 }
                 else {
                     scope.init();
-                    scope.getChildDocument(document.id, scope.currentPage, documentName);
+                    scope.getChildDocument(document.id, scope.currentPage, created);
                     scope.getInfoOfDocument(document.id);
                 }
             }

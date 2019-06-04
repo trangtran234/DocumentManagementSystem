@@ -12,6 +12,7 @@ namespace DocumentManagementSystem.WebApp
                       "~/Scripts/lib/angular/angular.min.js",
                       "~/Scripts/lib/angular-bootstrap/ui-bootstrap.min.js",
                       "~/Scripts/lib/angular-bootstrap/ui-bootstrap-tpls.min.js",
+                      "~/Scripts/lib/angular-sanitize/angular-sanitize.min.js",
                       "~/Scripts/lib/angular-route/angular-route.min.js",
                       "~/Scripts/lib/jQuery/dist/jquery.min.js",
                       "~/Scripts/lib/bootstrap/dist/js/bootstrap.bundle.js"

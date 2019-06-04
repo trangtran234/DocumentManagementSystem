@@ -7,6 +7,7 @@
     "jQuery": "3.4.0",
     "bootstrap": "v4.3.1",
     "angular-route": "v1.7.8",
-    "angular-bootstrap": "2.5.0"
+    "angular-bootstrap": "2.5.0",
+    "angular-sanitize": "1.7.8"
   }
 }

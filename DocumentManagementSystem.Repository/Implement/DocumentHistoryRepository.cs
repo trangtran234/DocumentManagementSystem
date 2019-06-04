@@ -23,12 +23,11 @@ namespace DocumentManagementSystem.Repository.Implement
             {
                 DocumentId = document.Id,
                 ActionId = (int)actionEvent,
-                UserId = Helper.FAKE_USERID_TO_ADD_HISTORY,
+                UserId = Helper.FAKE_USERID,
                 Date = DateTime.Now
             };
             context.DocumentHistories.Add(documentHistory);
             int isAddedHistory = context.SaveChanges();
-            Console.WriteLine("History Repo add history document status: {0}");
             if(isAddedHistory != -1)
             {
                 return true;
@@ -38,7 +37,7 @@ namespace DocumentManagementSystem.Repository.Implement
 
         public List<DocumentHistory> GetDocumentHistories()
         {
-            List<DocumentHistory> documentHistories = context.DocumentHistories.ToList();
+            List<DocumentHistory> documentHistories = context.DocumentHistories.OrderByDescending(d => d.Id).ToList();
             return documentHistories;
         }
     }

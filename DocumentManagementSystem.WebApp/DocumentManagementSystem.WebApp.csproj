@@ -233,6 +233,9 @@
     <Content Include="Scripts\lib\angular-route\angular-route.js" />
     <Content Include="Scripts\lib\angular-route\angular-route.min.js" />
     <Content Include="Scripts\lib\angular-route\index.js" />
+    <Content Include="Scripts\lib\angular-sanitize\angular-sanitize.js" />
+    <Content Include="Scripts\lib\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="Scripts\lib\angular-sanitize\index.js" />
     <Content Include="Scripts\lib\angular\angular-csp.css" />
     <Content Include="Scripts\lib\angular\angular.js" />
     <Content Include="Scripts\lib\angular\angular.min.js" />
@@ -754,6 +757,7 @@
     <TypeScriptCompile Include="Content\models\user.ts" />
     <TypeScriptCompile Include="Content\services\documentService.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular-route\index.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\angular-ui-bootstrap\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\angular\jqlite.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\bootstrap\index.d.ts" />
@@ -779,6 +783,12 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="node_modules\%40types\angular-route\LICENSE" />
+    <Content Include="node_modules\%40types\angular-route\package.json" />
+    <Content Include="node_modules\%40types\angular-route\README.md" />
+    <Content Include="node_modules\%40types\angular-ui-bootstrap\LICENSE" />
+    <Content Include="node_modules\%40types\angular-ui-bootstrap\package.json" />
+    <Content Include="node_modules\%40types\angular-ui-bootstrap\README.md" />
     <Content Include="node_modules\%40types\angular\LICENSE" />
     <Content Include="node_modules\%40types\angular\package.json" />
     <Content Include="node_modules\%40types\angular\README.md" />
@@ -807,34 +817,6 @@
     <Content Include="node_modules\popper.js\index.js.flow" />
     <Content Include="node_modules\popper.js\package.json" />
     <Content Include="node_modules\popper.js\README.md" />
-    <Content Include="node_modules\%40types\angular-route\LICENSE" />
-    <Content Include="node_modules\%40types\angular-route\package.json" />
-    <Content Include="node_modules\%40types\angular-route\README.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\CHANGELOG.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\dist\.DS_Store" />
-    <Content Include="node_modules\angular-ui-bootstrap\LICENSE" />
-    <Content Include="node_modules\angular-ui-bootstrap\package.json" />
-    <Content Include="node_modules\angular-ui-bootstrap\README.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\accordion\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\alert\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\buttons\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\carousel\docs\README.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\collapse\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\dateparser\docs\README.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\datepickerPopup\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\datepicker\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\dropdown\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\modal\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\pager\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\pagination\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\popover\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\position\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\progressbar\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\rating\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\tabs\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\timepicker\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\tooltip\docs\readme.md" />
-    <Content Include="node_modules\angular-ui-bootstrap\src\typeahead\docs\readme.md" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -1141,6 +1123,12 @@
     <Content Include="Scripts\lib\angular-route\LICENSE.md" />
     <Content Include="Scripts\lib\angular-route\package.json" />
     <Content Include="Scripts\lib\angular-route\README.md" />
+    <Content Include="Scripts\lib\angular-sanitize\.bower.json" />
+    <Content Include="Scripts\lib\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\lib\angular-sanitize\bower.json" />
+    <Content Include="Scripts\lib\angular-sanitize\LICENSE.md" />
+    <Content Include="Scripts\lib\angular-sanitize\package.json" />
+    <Content Include="Scripts\lib\angular-sanitize\README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DocumentManagementSystem.Models\DocumentManagementSystem.Models.csproj">

@@ -29,5 +29,5 @@
         }
     ]);
 
-    angular.module('rootApp', ['controllerModule', 'directiveModule', 'routeModule', 'ui.bootstrap']);
+    angular.module('rootApp', ['controllerModule', 'directiveModule', 'routeModule', 'ui.bootstrap', 'ngSanitize']);
 }
