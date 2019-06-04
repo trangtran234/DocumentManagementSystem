@@ -18,7 +18,6 @@
             $http.get<Document>('/api/documents/DocumentById/' + id)
                 .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
                     $scope.document = response.data;
-                    console.log($scope.document);
                 });
 
             $scope.saveDocument = function () {

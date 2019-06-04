@@ -233,6 +233,9 @@
     <Content Include="Scripts\lib\angular-route\angular-route.js" />
     <Content Include="Scripts\lib\angular-route\angular-route.min.js" />
     <Content Include="Scripts\lib\angular-route\index.js" />
+    <Content Include="Scripts\lib\angular-sanitize\angular-sanitize.js" />
+    <Content Include="Scripts\lib\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="Scripts\lib\angular-sanitize\index.js" />
     <Content Include="Scripts\lib\angular\angular-csp.css" />
     <Content Include="Scripts\lib\angular\angular.js" />
     <Content Include="Scripts\lib\angular\angular.min.js" />
@@ -836,6 +839,12 @@
     <Content Include="Scripts\lib\angular-route\LICENSE.md" />
     <Content Include="Scripts\lib\angular-route\package.json" />
     <Content Include="Scripts\lib\angular-route\README.md" />
+    <Content Include="Scripts\lib\angular-sanitize\.bower.json" />
+    <Content Include="Scripts\lib\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\lib\angular-sanitize\bower.json" />
+    <Content Include="Scripts\lib\angular-sanitize\LICENSE.md" />
+    <Content Include="Scripts\lib\angular-sanitize\package.json" />
+    <Content Include="Scripts\lib\angular-sanitize\README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DocumentManagementSystem.Models\DocumentManagementSystem.Models.csproj">

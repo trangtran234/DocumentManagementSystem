@@ -152,7 +152,7 @@ namespace DocumentManagementSystem.Repository
             {
                 var documentDB = context.Documents.Find(document.Id);
                 documentDB.LastModified = document.LastModified;
-                documentDB.LastModifiedBy = Helper.FAKE_USERID_TO_EDIT;
+                documentDB.LastModifiedBy = Helper.FAKE_USERID;
                 //attach instance to context
                 context.Documents.Attach(documentDB);
                 foreach (var documentType in document.DocumentTypes.ToList())
