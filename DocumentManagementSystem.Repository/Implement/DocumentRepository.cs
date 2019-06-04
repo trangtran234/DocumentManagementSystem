@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using System.Linq.Dynamic;
 using DocumentManagementSystem.Models.Common;
 using DocumentManagementSystem.Repository.Interface;
 
@@ -178,7 +179,7 @@ namespace DocumentManagementSystem.Repository
             return false;
         }
 
-        public List<Document> LazyLoadDocuments(Expression<Func<Document, dynamic>> sort, bool desc, int page, int pageSize, int parentId, out int totalRecords)
+        public List<Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId, out int totalRecords)
         {
             var documentsContext = context.Documents.Where(d => d.ParentId == parentId);
             List<Document> documents = new List<Document>();
@@ -188,11 +189,11 @@ namespace DocumentManagementSystem.Repository
             int skipRows = page * pageSize;
             if (desc)
             {
-                documents = documentsContext.OrderByDescending(sort).Skip(skipRows).Take(pageSize).ToList();
+                documents = documentsContext.OrderBy(propertyName + " desc").Skip(skipRows).Take(pageSize).ToList();
             }
             else
             {
-                documents = documentsContext.OrderBy(sort).Skip(skipRows).Take(pageSize).ToList();
+                documents = documentsContext.OrderBy(propertyName + " asc").Skip(skipRows).Take(pageSize).ToList();
             }
             return documents;
         }
