@@ -54,16 +54,15 @@
             var http = this.$http;
             var rootScope = this.$rootScope;
             var parentId = null;
-            var documentName = 'documentName';
+            var created = 'created';
             scope.currentPage = 0;
             scope.pageSize = 5;
             var desc = true;
 
             scope.$on('rootScope:id', function (event, data) {
-                scope.documents = [];
                 parentId = data;
                 scope.init();
-                scope.getChildDocument(parentId, scope.currentPage, documentName);
+                scope.getChildDocument(parentId, scope.currentPage, created);
             });
 
             //scope.$on('rootScope:treeviewId', function (event, data) {
@@ -71,7 +70,8 @@
             //});
 
             scope.$on('uploadSuccess', function (event, data) {
-                scope.getChildDocument(data, scope.currentPage, documentName);
+                scope.init();
+                scope.getChildDocument(data, scope.currentPage, created);
                 rootScope.$broadcast('history:sucessed', 'sucessed');
             });
 
@@ -95,12 +95,14 @@
             };
 
             scope.$on('rootScope:successEditDocument', function (event, data) {
-                scope.getChildDocument(data, scope.currentPage, documentName);
+                scope.getChildDocument(data, scope.currentPage, created);
             });
 
             scope.getChildDocumentOfFolder = (id) => {
+
                 scope.init();
-                scope.getChildDocument(id, scope.currentPage, documentName);
+                scope.getChildDocument(id, scope.currentPage, created);
+
                 this.$http.get<Document>('/api/documents/DocumentById/' + id)
                     .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
                         var document = response.data;
@@ -123,15 +125,19 @@
             scope.sort = (propertyName) => {
                 scope.reverse = (scope.propertyName === propertyName) ? !scope.reverse : false;
                 scope.propertyName = propertyName;
-                //scope.documents = this.orderBy(scope.documents, scope.propertyName, scope.reverse);
+
                 scope.init();
                 scope.getChildDocument(parentId, scope.currentPage, propertyName);
             }          
 
             scope.getChildDocument = (id, currentPage, propertyName) => {
 
+                if (typeof id === 'undefined') {
+                    id = parentId;
+                }
+
                 if (typeof propertyName === 'undefined') {
-                    propertyName = 'documentName';
+                    propertyName = created;
                 }
 
                 if (typeof scope.reverse === 'undefined') {
@@ -139,7 +145,7 @@
                 }
 
                 http({
-                    url: '/api/documents/LazyLoadDocuments?page=' + currentPage + '&pageSize=' + scope.pageSize + '&parentId=' + parentId + '&desc=' + scope.reverse + '&propertyName=' + propertyName,
+                    url: '/api/documents/LazyLoadDocuments?page=' + currentPage + '&pageSize=' + scope.pageSize + '&parentId=' + id + '&desc=' + scope.reverse + '&propertyName=' + propertyName,
                     method: "GET",
                 }).then(function success(response) {
 
@@ -182,6 +188,7 @@
 
             scope.init = () => {
                 scope.currentPage = 0;
+                scope.documents = [];
             }
         }        
     };
