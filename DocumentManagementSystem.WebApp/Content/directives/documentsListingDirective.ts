@@ -62,7 +62,6 @@
             var created = 'created';
             scope.currentPage = 0;
             scope.pageSize = 5;
-            var desc = true;
 
             scope.$on('rootScope:id', function (event, data) {
                 parentId = data;
@@ -73,7 +72,7 @@
             //scope.$on('rootScope:treeviewId', function (event, data) {
             //    scope.getChildDocument(data, scope.currentPage);
             //});
-
+            
             scope.$on('uploadSuccess', function (event, data) {
                 scope.init();
                 scope.getChildDocument(data, scope.currentPage, created);
@@ -138,10 +137,9 @@
             }
 
             scope.sort = (propertyName) => {
-                scope.reverse = (scope.propertyName === propertyName) ? !scope.reverse : false;
-                scope.propertyName = propertyName;
-
                 scope.init();
+                scope.reverse = (scope.propertyName === propertyName) ? !scope.reverse : false;
+                scope.propertyName = propertyName;               
                 scope.getChildDocument(parentId, scope.currentPage, propertyName);
             }          
 
@@ -205,6 +203,7 @@
                 scope.currentPage = 0;
                 scope.documents = [];
             }
+
         }        
     };
 }
