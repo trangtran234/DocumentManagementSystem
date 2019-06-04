@@ -54,7 +54,7 @@
         ) => {
             var http = this.$http;
             var rootScope = this.$rootScope;
-            var parentId = null;
+            var parentId = 0;
             var created = 'created';
             scope.currentPage = 0;
             scope.pageSize = 5;
@@ -136,8 +136,8 @@
                 scope.reverse = (scope.propertyName === propertyName) ? !scope.reverse : false;
                 scope.propertyName = propertyName;               
                 scope.getChildDocument(parentId, scope.currentPage, propertyName);
-            }          
-
+            }
+            
             scope.getChildDocument = (id, currentPage, propertyName) => {
 
                 if (typeof id === 'undefined') {
@@ -199,6 +199,7 @@
                 scope.documents = [];
             }
 
+            scope.getChildDocument(0, scope.currentPage, scope.propertyName);
         }        
     };
 }
