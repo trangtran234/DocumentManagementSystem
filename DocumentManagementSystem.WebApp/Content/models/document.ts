@@ -16,5 +16,6 @@
         statusUpload?: number;
         documentContent?: Uint8Array;
         documentTypes?: Array<DocumentType>;
+        parentId?: number;
     }
 }

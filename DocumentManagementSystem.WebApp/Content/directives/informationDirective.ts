@@ -68,7 +68,7 @@
                                     msg = sce.trustAsHtml('Created by <a href="">' + docHistory.account.username + '</a> at ' + dateStr);
                                     break;
                                 case 2:
-                                    msg = sce.trustAsHtml('Updated by <a href="">' + docHistory.account.username + '</a> at ' + dateStr);
+                                    msg = sce.trustAsHtml('Document Type updated by <a href="">' + docHistory.account.username + '</a> at ' + dateStr);
                                     break;
                                 case 3:
                                     msg = sce.trustAsHtml('Deleted by <a href="">' + docHistory.account.username + '</a> at ' + dateStr);
