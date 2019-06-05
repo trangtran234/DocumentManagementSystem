@@ -105,6 +105,7 @@
 
             scope.getChildDocumentOfFolder = (id) => {
                 scope.init();
+                parentId = id;
                 scope.getChildDocument(id, scope.currentPage, created);
             }
 
