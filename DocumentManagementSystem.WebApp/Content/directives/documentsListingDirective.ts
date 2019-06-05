@@ -89,7 +89,8 @@
             };
 
             scope.$on('rootScope:successEditDocument', function (event, data) {
-                scope.getChildDocument(data.parentId, scope.currentPage, created);
+                scope.init();
+                scope.getChildDocument(data, scope.currentPage, 'lastModified');
                 rootScope.$broadcast('history:sucessed', data.id);
             });
 
@@ -97,6 +98,7 @@
                 rootScope.$broadcast('listing:Id', document.id);
                 rootScope.$broadcast('listing:document', document);
                 scope.init();
+                parentId = document.id;
                 scope.getChildDocument(document.id, scope.currentPage, created);
 
                 var collapse = "#collapse-" + document.id;

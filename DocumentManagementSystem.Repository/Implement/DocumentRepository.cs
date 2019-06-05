@@ -153,8 +153,9 @@ namespace DocumentManagementSystem.Repository
                 var documentDB = context.Documents.Find(document.Id);
                 documentDB.LastModified = document.LastModified;
                 documentDB.LastModifiedBy = Helper.FAKE_USERID;
+                int isUpdateDocument = context.SaveChanges();
                 //attach instance to context
-                context.Documents.Attach(documentDB);
+                context.Documents.Attach(documentDB);                
                 foreach (var documentType in document.DocumentTypes.ToList())
                 {
                     DocumentType type = context.DocumentTypes.Find(documentType.Id);
@@ -165,7 +166,7 @@ namespace DocumentManagementSystem.Repository
                     documentDB.DocumentTypes.Add(type);
                 }
                 int isEdited = context.SaveChanges();
-                if (isEdited != -1)
+                if (isEdited != -1 && isUpdateDocument == 1)
                 {
                     bool isSuccessed = historyRepository.AddDocumentHistory(document, Helper.HistoryAction.Edit);
                     return true;

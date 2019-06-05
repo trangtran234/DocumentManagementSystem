@@ -12,7 +12,7 @@
         uploadFiles: () => void;
         deleteDocumentInDialog: (id) => void;
         onSave: () => void;
-        changeFiles: () => void;
+        changeFiles: (element) => void;
         safeApply: (any) => void; 
         getDocumentTypes: () => void;
     }
@@ -63,34 +63,21 @@
                 });
             });
 
-            scope.changeFiles = () => { 
+            scope.changeFiles = (element) => {
+                var files = element.files;
+                for (var i = 0; i < files.length; i++) {
+                    var document = new Document();
+                    document.id = Math.floor((Math.random() * 100) + 1);
+                    document.documentName = files[i].name;
+                    document.documentSize = files[i].size;
+                    document.statusUpload = -1;
 
-                var count = 0;
-                element.bind("change", function (changeEvent: Event) {
-                   
-                    if (count === 0) {
-                        let fs = (<HTMLInputElement>changeEvent.target).files;
-
-                        for (var i = 0; i < fs.length; i++) {
-
-                            var document = new Document();
-
-                            document.id = Math.floor((Math.random() * 100) + 1);
-                            document.documentName = fs[i].name;
-                            document.documentSize = fs[i].size;
-                            document.documentType = fs[i].type;
-                            document.statusUpload = -1;
-
-                            scope.filesList.push(document);
-                            scope.files.push(fs[i]);
-                        }
-                        scope.$apply();
-                        count++;
-                    }
-
-                });
-
+                    scope.filesList.push(document);
+                    scope.files.push(files[i]);
+                }
+                scope.$apply();
             }
+
             scope.deleteDocumentInDialog = (id) => {
 
                 for (var i = 0; i < scope.filesList.length; i++) {

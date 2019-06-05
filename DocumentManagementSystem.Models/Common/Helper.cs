@@ -9,7 +9,7 @@ namespace DocumentManagementSystem.Models.Common
 {
     public class Helper
     {
-        public const int FAKE_USERID = 1;
+        public const int FAKE_USERID = 3;
         public enum DocumentType
         {
             jpg,
