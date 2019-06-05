@@ -5,7 +5,10 @@
 <div class="modal-body">
     <form>
         <div class="form-group">
-            <label for="documentTypes">Document Types</label>
+            <label for="documentName" class="font-weight-bold">Document Name</label>
+            <input class="form-control" type="text" placeholder="{{document.documentName}}" readonly>
+            <br>
+            <label for="documentTypes" class="font-weight-bold">Document Types</label>
             <select class="form-control" multiple ng-model="document.documentTypes"
                     ng-options="type as type.type for type in documentTypes track by type.id"></select>
         </div>

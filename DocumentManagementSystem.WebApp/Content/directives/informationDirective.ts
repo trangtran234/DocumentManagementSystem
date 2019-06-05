@@ -5,7 +5,7 @@
     import DocumentHistory = rootApp.model.DocumentHistory;
 
     interface IMyDocumentScope extends ng.IScope {
-        document: Document;
+        document;
         isVisible: boolean;
         documentHistories;
         messages;
@@ -31,6 +31,7 @@
         ) => {
             scope.isVisible = false;
             scope.$on('rootScope:documentInfo', function (event, data) {
+                scope.document = new Document();
                 scope.document = data;
             });
             scope.$on('rootScope:isVisible', function (event, data) {
@@ -61,7 +62,7 @@
                             
                             var msg: string;
                             var date = new Date(docHistory.date + "");
-                            var dateStr = filter('date')(date, 'yyyy-MM-dd HH:mm:ss');
+                            var dateStr = filter('date')(date, 'yyyy-MM-dd HH:mm');
                             switch (docHistory.actionEvent) {
                                 case 1:
                                     msg = sce.trustAsHtml('Created by <a href="">' + docHistory.account.username + '</a> at ' + dateStr);

@@ -64,7 +64,7 @@
 
                         for (var i = 0; i < fs.length; i++) {
 
-                            var document: Document = {};
+                            var document = new Document();
 
                             document.id = Math.floor((Math.random() * 100) + 1);
                             document.documentName = fs[i].name;
@@ -131,7 +131,7 @@
 
                         scope.filesList = [];
                         angular.forEach(response.data, function (value, key) {
-                            var document: Document = {};
+                            var document = new Document();
 
                             document.id = value.id;
                             document.documentName = value.documentName + '.' + value.documentType;

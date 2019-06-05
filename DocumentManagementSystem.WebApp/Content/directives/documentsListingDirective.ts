@@ -6,8 +6,8 @@
     export interface IMyDocumentScope extends ng.IScope {
         documents: Document[];
         getChildDocument: (id, currentPage, propertyName) => void;
-        //getChildDocumentOfFolder: (id) => void;
-        getDocumentsByTreeView: (document: Document) => void;
+        getChildDocumentOfFolder: (id) => void;
+        getDocumentsByTreeView: (id) => void;
         getInfoOfDocument: (id) => void;
         editDocument: (id) => void;
         sort: (propertyName) => void;
@@ -103,27 +103,13 @@
                 rootScope.$broadcast('history:sucessed', 'sucessed');
             });
 
-            //scope.getChildDocumentOfFolder = (id) => {
-            //    scope.init();
-            //    scope.getChildDocument(id, scope.currentPage, documentName);
-            //    this.$http.get<Document>('/api/documents/DocumentById/' + id)
-            //        .then((response: ng.IHttpPromiseCallbackArg<Document>) => {
-            //            var document = response.data;
-            //            this.$rootScope.$broadcast('rootScope:documentInfo', document)
-            //            var isVisible = true;
-            //            this.$rootScope.$broadcast('rootScope:isVisible', isVisible);
-            //        });
-            //}
+            scope.getChildDocumentOfFolder = (id) => {
+                scope.init();
+                scope.getChildDocument(id, scope.currentPage, created);
+            }
 
-            scope.getDocumentsByTreeView = (document) => {
-                if (document.documentType !== 'folder') {
-                    scope.getInfoOfDocument(document.id);
-                }
-                else {
-                    scope.init();
-                    scope.getChildDocument(document.id, scope.currentPage, created);
-                    scope.getInfoOfDocument(document.id);
-                }
+            scope.getDocumentsByTreeView = (id) => {
+                scope.getInfoOfDocument(id);
             }
 
             scope.getInfoOfDocument = (id) => {
@@ -168,7 +154,7 @@
                     scope.documents = [];
 
                     angular.forEach(obj.documents, function (value, key) {
-                        var dt: Document = {};
+                        var dt = new Document();
 
                         dt.id = value.id;
                         dt.documentName = value.documentName;
