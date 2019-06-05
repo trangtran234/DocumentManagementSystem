@@ -14,7 +14,7 @@
 
             <div class="modal-body">
                 <div class="custom-file mb-3">
-                    <input type="file" multiple class="custom-file-input" id="addFile" required ng-click="changeFiles()" />
+                    <input type="file" multiple class="custom-file-input" id="addFile" required  onchange="angular.element(this).scope().changeFiles(this)" />
                     <label class="custom-file-label" for="addFile">Select file(s) to upload</label>
                 </div>
 

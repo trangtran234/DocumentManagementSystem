@@ -99,14 +99,15 @@
             };
 
             scope.$on('rootScope:successEditDocument', function (event, data) {
-                scope.getChildDocument(data, scope.currentPage, created);
+                scope.init();
+                scope.getChildDocument(data, scope.currentPage, 'lastModified');
                 rootScope.$broadcast('history:sucessed', 'sucessed');
             });
 
             scope.getChildDocumentOfFolder = (document) => {
                 rootScope.$broadcast('listing:Id', document.id);
                 scope.init();
-                parentId = id;
+                parentId = document.id;
                 scope.getChildDocument(document.id, scope.currentPage, created);
             }
 
@@ -193,7 +194,7 @@
                 scope.documents = [];
             }
 
-            scope.getChildDocument(parentId, scope.currentPage, scope.propertyName);
+            scope.getChildDocument(parentId, scope.currentPage, scope.propertyName);                 
         }        
     };
 }
