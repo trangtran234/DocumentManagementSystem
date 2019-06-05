@@ -35,9 +35,9 @@ namespace DocumentManagementSystem.Repository.Implement
             return false;
         }
 
-        public List<DocumentHistory> GetDocumentHistories()
+        public List<DocumentHistory> GetDocumentHistories(int documentId)
         {
-            List<DocumentHistory> documentHistories = context.DocumentHistories.OrderByDescending(d => d.Id).ToList();
+            List<DocumentHistory> documentHistories = context.DocumentHistories.Where(d => d.DocumentId == documentId).OrderByDescending(d => d.Id).ToList();
             return documentHistories;
         }
     }

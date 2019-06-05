@@ -53,9 +53,7 @@
             scope.$on('listing:Id', function (event, data) {
                 parentID = data;
             });
-            //scope.$on('rootScope:treeviewId', function (event, data) {
-            //    parentID = data;
-            //});
+
             $('.modal').on('hidden.bs.modal', function (e) {
                 scope.safeApply(function () {
 

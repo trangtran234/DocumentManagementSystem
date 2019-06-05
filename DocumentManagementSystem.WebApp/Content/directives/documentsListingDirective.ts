@@ -33,7 +33,6 @@
             private orderBy: ng.IFilterOrderBy,
             private $filter: ng.FilterFactory,
             private $uibModal: ng.ui.bootstrap.IModalService) {
-
         }
 
         public static Factory(): ng.IDirectiveFactory {
@@ -52,10 +51,6 @@
             element: ng.IAugmentedJQuery,
             attributes: ng.IAttributes,
         ) => {
-            //$('#listingTable > tbody > tr').click(function () {
-            //    $(this).addClass('bg-success').siblings().removeClass('bg-success');
-            //});
-
             var http = this.$http;
             var rootScope = this.$rootScope;
             var parentId = 0;
@@ -68,15 +63,10 @@
                 scope.init();
                 scope.getChildDocument(parentId, scope.currentPage, created);
             });
-
-            //scope.$on('rootScope:treeviewId', function (event, data) {
-            //    scope.getChildDocument(data, scope.currentPage);
-            //});
             
             scope.$on('uploadSuccess', function (event, data) {
                 scope.init();
                 scope.getChildDocument(data, scope.currentPage, created);
-                rootScope.$broadcast('history:sucessed', 'sucessed');
             });
 
             scope.editDocument = (id) => {
@@ -99,14 +89,31 @@
             };
 
             scope.$on('rootScope:successEditDocument', function (event, data) {
-                scope.getChildDocument(data, scope.currentPage, created);
-                rootScope.$broadcast('history:sucessed', 'sucessed');
+                scope.getChildDocument(data.parentId, scope.currentPage, created);
+                rootScope.$broadcast('history:sucessed', data.id);
             });
 
             scope.getChildDocumentOfFolder = (document) => {
                 rootScope.$broadcast('listing:Id', document.id);
+                rootScope.$broadcast('listing:document', document);
                 scope.init();
                 scope.getChildDocument(document.id, scope.currentPage, created);
+
+                var collapse = "#collapse-" + document.id;
+                console.log(collapse);
+                var collapseParent = "#collapse-" + document.parentId;
+                console.log(collapseParent);
+
+                var classCollapse = $(collapse).attr("class");
+                var classCollapseParent = $(collapseParent).attr("class");
+
+                classCollapse = classCollapse + " show";
+                console.log(classCollapse);
+                $(collapse).toggleClass(classCollapse);
+
+                classCollapseParent = classCollapseParent + " show";
+                console.log(classCollapseParent);
+                $(collapseParent).toggleClass(classCollapseParent);
             }
 
             scope.getDocumentsByTreeView = (id) => {

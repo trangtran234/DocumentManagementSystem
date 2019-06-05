@@ -119,11 +119,11 @@ namespace DocumentManagementSystem.WebApp.Controllers
             });
         }
 
-        [Route("DocumentHistories")]
+        [Route("DocumentHistories/{documentId:int}")]
         [HttpGet]
-        public List<DocumentHistory> GetDocumentHistories()
+        public List<DocumentHistory> GetDocumentHistories(int documentId)
         {
-            List<DocumentHistory> documentHistories = documentServices.GetDocumentHistories();
+            List<DocumentHistory> documentHistories = documentServices.GetDocumentHistories(documentId);
             return documentHistories;
         }
     }

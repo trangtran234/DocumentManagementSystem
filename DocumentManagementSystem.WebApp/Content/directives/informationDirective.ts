@@ -9,7 +9,7 @@
         isVisible: boolean;
         documentHistories;
         messages;
-        getDocumentHistories: () => void;
+        getDocumentHistories: (documentId) => void;
     }
 
     export class InformationDirective implements ng.IDirective {
@@ -33,6 +33,7 @@
             scope.$on('rootScope:documentInfo', function (event, data) {
                 scope.document = new Document();
                 scope.document = data;
+                scope.getDocumentHistories(scope.document.id);
             });
             scope.$on('rootScope:isVisible', function (event, data) {
                 scope.isVisible = data;
@@ -44,16 +45,12 @@
             scope.documentHistories = new Array<DocumentHistory>();
             scope.messages = new Array<string>();
             
-
             scope.$on('history:sucessed', function (event, data) {
-                var actionEvent = data;
-                if (actionEvent !== null) {
-                    scope.getDocumentHistories();
-                }
+                scope.getDocumentHistories(data);
             });
 
-            scope.getDocumentHistories = () => {
-                http.get<DocumentHistory[]>('/api/documents/DocumentHistories')
+            scope.getDocumentHistories = (documentId) => {
+                http.get<DocumentHistory[]>('/api/documents/DocumentHistories/' + documentId)
                     .then((response: ng.IHttpPromiseCallbackArg<DocumentHistory[]>) => {
                         scope.documentHistories = [];
                         scope.messages = [];
@@ -80,8 +77,6 @@
                         })
                     });
             }
-
-            scope.getDocumentHistories();
         };
     }
 }

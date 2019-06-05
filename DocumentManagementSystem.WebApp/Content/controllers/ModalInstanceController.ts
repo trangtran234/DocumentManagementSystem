@@ -23,7 +23,7 @@
             $scope.saveDocument = function () {
                 $http.post('/api/documents/UpdateDocument', $scope.document)
                     .then(function (response) {
-                        $rootScope.$broadcast('rootScope:successEditDocument', parentId);
+                        $rootScope.$broadcast('rootScope:successEditDocument', $scope.document);
                     });
                 $uibModalInstance.close();
             }

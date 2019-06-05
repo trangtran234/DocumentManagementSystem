@@ -10,6 +10,6 @@ namespace DocumentManagementSystem.Repository.Interface
     public interface IDocumentHistoryRepository
     {
         bool AddDocumentHistory(Document document, Helper.HistoryAction actionEvent);
-        List<DocumentHistory> GetDocumentHistories();
+        List<DocumentHistory> GetDocumentHistories(int documentId);
     }
 }

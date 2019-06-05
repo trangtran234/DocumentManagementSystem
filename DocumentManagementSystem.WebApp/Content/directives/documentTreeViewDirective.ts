@@ -10,8 +10,7 @@
         onAddedNewFiles: () => void;
         getChildDocumentIntoListing: (id) => void;
         toggleButton: (document: DocumentTree) => void;
-
-        treeId: number;
+        resetExpanded: (document: DocumentTree) => void;
     }
 
     export class DocumentTreeViewDirective implements ng.IDirective {
@@ -38,6 +37,62 @@
 
             scope.getChildDocumentIntoListing = (id) => {
                 this.$rootScope.$broadcast('rootScope:id', id);
+            }
+
+            scope.$on('listing:document', function (event, data) {
+                var treeView = new DocumentTree();
+                var docTree = new DocumentTree();
+                angular.forEach(scope.documentsTree, function (value, key) {
+                    if (value.id === data.parentId) {
+                        treeView = value;
+                        angular.forEach(treeView.childrens, function (value, key) {
+                            if (value.id === data.id) {
+                                docTree = value;
+                            }
+                        })
+                    }
+                    else {
+                        angular.forEach(value.childrens, function (value, key) {
+                            if (value.id === data.parentId) {
+                                treeView = value;
+                                angular.forEach(treeView.childrens, function (value, key) {
+                                    if (value.id === data.id) {
+                                        docTree = value;
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+                scope.toggleButton(docTree);
+            });
+
+            scope.resetExpanded = (document) => {
+                angular.forEach(scope.documentsTree, function (value, key) {
+                    if (value.id === document.id) {
+                        if (document.childrens.length !== 0) {
+                            angular.forEach(document.childrens, function (value, key) {
+                                value.isExpanded = false;
+                                if (value.childrens.length !== 0) {
+                                    angular.forEach(value.childrens, function (value, key) {
+                                        value.isExpanded = false;
+                                    })
+                                }
+                            })
+                        }
+                    }
+                    else {
+                        angular.forEach(value.childrens, function (value, key) {
+                            if (value.id === document.id) {
+                                if (document.childrens.length !== 0) {
+                                    angular.forEach(document.childrens, function (value, key) {
+                                        value.isExpanded = false;
+                                    })
+                                }
+                            }
+                        })
+                    }
+                })
             }
 
             scope.toggleButton = (document: DocumentTree) => {
