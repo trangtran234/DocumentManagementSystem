@@ -181,7 +181,11 @@ namespace DocumentManagementSystem.Repository
 
         public List<Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId, out int totalRecords)
         {
-            var documentsContext = context.Documents.Where(d => d.ParentId == parentId);
+            var documentsContext = context.Documents.Where(d => d.ParentId.Equals(null));
+            if (parentId != 0)
+            {
+                documentsContext = context.Documents.Where(d => d.ParentId == parentId);
+            }
             List<Document> documents = new List<Document>();
 
             totalRecords = documentsContext.Count();
