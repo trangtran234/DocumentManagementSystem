@@ -6,7 +6,7 @@
     export interface IMyDocumentScope extends ng.IScope {
         documents: Document[];
         getChildDocument: (id, currentPage, propertyName) => void;
-        getChildDocumentOfFolder: (id) => void;
+        getChildDocumentOfFolder: (document: Document) => void;
         getDocumentsByTreeView: (id) => void;
         getInfoOfDocument: (id) => void;
         editDocument: (id) => void;
@@ -103,10 +103,11 @@
                 rootScope.$broadcast('history:sucessed', 'sucessed');
             });
 
-            scope.getChildDocumentOfFolder = (id) => {
+            scope.getChildDocumentOfFolder = (document) => {
+                rootScope.$broadcast('listing:Id', document.id);
                 scope.init();
                 parentId = id;
-                scope.getChildDocument(id, scope.currentPage, created);
+                scope.getChildDocument(document.id, scope.currentPage, created);
             }
 
             scope.getDocumentsByTreeView = (id) => {
@@ -166,6 +167,7 @@
                         dt.lastModifiedBy = value.lastModifiedBy;
                         dt.created = value.created;
                         dt.lastModified = value.lastModified;
+                        dt.parentId = value.parentId;
 
                         scope.documents.push(dt);
                     });

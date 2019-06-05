@@ -60,7 +60,7 @@
         </tr>
     </thead>
     <tbody ng-repeat="document in documents">
-        <tr ng-switch="document.documentType" ng-click="getDocumentsByTreeView(document.id)" ng-dblclick="getChildDocumentOfFolder(document.id)">
+        <tr ng-switch="document.documentType" ng-click="getDocumentsByTreeView(document.id)" ng-dblclick="getChildDocumentOfFolder(document)">
             <td class="checkbox"><input type="checkbox" ng-checked="leader" /></td>
             <td ng-switch-when="jpg"><i class="fas fa-file-image fa-lg"></i></td>
             <td ng-switch-when="png"><i class="fas fa-file-image fa-lg"></i></td>

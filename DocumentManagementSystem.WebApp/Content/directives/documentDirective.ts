@@ -50,6 +50,9 @@
             scope.$on('rootScope:id', function (event, data) {
                 parentID = data;
             });
+            scope.$on('listing:Id', function (event, data) {
+                parentID = data;
+            });
             //scope.$on('rootScope:treeviewId', function (event, data) {
             //    parentID = data;
             //});
