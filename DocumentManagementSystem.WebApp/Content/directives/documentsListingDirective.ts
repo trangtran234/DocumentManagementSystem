@@ -204,7 +204,7 @@
                 scope.documents = [];
             }
 
-            scope.getChildDocument(0, scope.currentPage, scope.propertyName);
+            scope.getChildDocument(parentId, scope.currentPage, scope.propertyName);
         }        
     };
 }

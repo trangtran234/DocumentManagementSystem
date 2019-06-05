@@ -122,9 +122,8 @@ namespace DocumentManagementSystem.Services
         }
 
         public List<Models.Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId, string propertyName, out int totalRecords)
-        {           
+        {
             List<Repository.Document> documentListRepository = documentRepository.LazyLoadDocuments(propertyName, desc, page, pageSize, parentId, out totalRecords);
-
             List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentListRepository);
 
             return documents;
