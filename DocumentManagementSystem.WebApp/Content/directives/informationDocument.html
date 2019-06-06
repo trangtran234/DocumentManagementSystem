@@ -6,9 +6,6 @@
             <a href="" class="nav-link active text-dark" data-toggle="tab" data-target="#info">Info</a>
         </li>
         <li class="nav-item">
-            <a href="" class="nav-link text-dark" data-toggle="tab" data-target="#versions">Versions</a>
-        </li>
-        <li class="nav-item">
             <a href="" class="nav-link text-dark" data-toggle="tab" data-target="#history">History</a>
         </li>
     </ul>
@@ -32,8 +29,7 @@
             <br>
             <em><h7>Last modified by <u><a href="">{{document.lastModifiedBy.username}}</a></u> at {{document.lastModified | date:'yyyy-MM-dd HH:mm'}}</h7></em>
         </div>
-        <div id="versions" class="container tab-pane fade"></div>
-        <div id="history" class="container tab-pane fade pre-scrollable">
+        <div id="history" class="container tab-pane fade">
             <div ng-repeat="msg in messages">
                 <br>
                 <div ng-bind-html="msg"></div>

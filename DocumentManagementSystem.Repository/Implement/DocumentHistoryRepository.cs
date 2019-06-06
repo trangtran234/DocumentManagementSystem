@@ -19,11 +19,13 @@ namespace DocumentManagementSystem.Repository.Implement
 
         public bool AddDocumentHistory(Document document, Helper.HistoryAction actionEvent)
         {
+            int userId = (int)actionEvent == 1 ? 1 : 3;
+
             DocumentHistory documentHistory = new DocumentHistory
             {
                 DocumentId = document.Id,
                 ActionId = (int)actionEvent,
-                UserId = Helper.FAKE_USERID,
+                UserId = userId,
                 Date = DateTime.Now
             };
             context.DocumentHistories.Add(documentHistory);
