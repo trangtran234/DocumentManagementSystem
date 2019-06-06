@@ -90,7 +90,7 @@
 
             scope.$on('rootScope:successEditDocument', function (event, data) {
                 scope.init();
-                scope.getChildDocument(data, scope.currentPage, 'lastModified');
+                scope.getChildDocument(data.parentId, scope.currentPage, 'lastModified');
                 rootScope.$broadcast('history:sucessed', data.id);
             });
 
