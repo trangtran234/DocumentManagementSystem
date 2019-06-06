@@ -68,30 +68,63 @@
             });
 
             scope.resetExpanded = (document) => {
+                var docsTreeCollapse = new Array<DocumentTree>();
                 angular.forEach(scope.documentsTree, function (value, key) {
+                    
                     if (value.id === document.id) {
                         if (document.childrens.length !== 0) {
                             angular.forEach(document.childrens, function (value, key) {
                                 value.isExpanded = false;
+
+                                var coll = "collapse-" + value.id;
+                                var collapse = "#collapse-" + value.id;
+                                var classCollapse = $(collapse).attr("class");
+                                $("div[id*='" + coll + "']").removeClass(classCollapse).addClass('collapse');
+
                                 if (value.childrens.length !== 0) {
                                     angular.forEach(value.childrens, function (value, key) {
                                         value.isExpanded = false;
+
+                                        var classColl = "collapse-" + value.id;
+                                        var childCollapse = "#collapse-" + value.id;
+                                        var childClassCollapse = $(childCollapse).attr("class");;
+                                        $("div[id*='" + classColl + "']").removeClass(childClassCollapse).addClass('collapse');
                                     })
                                 }
                             })
                         }
                     }
                     else {
+                        var parentDocTree = value;
+                        var isFlag = true;
                         angular.forEach(value.childrens, function (value, key) {
                             if (value.id === document.id) {
+                                isFlag = false;
                                 if (document.childrens.length !== 0) {
                                     angular.forEach(document.childrens, function (value, key) {
                                         value.isExpanded = false;
+
+                                        var coll = "collapse-" + value.id;
+                                        var collapse = "#collapse-" + value.id;
+                                        var classCollapse = $(collapse).attr("class");
+                                        $("div[id*='" + coll + "']").removeClass(classCollapse).addClass('collapse');
                                     })
                                 }
                             }
                         })
+                        if (isFlag) {
+                            docsTreeCollapse.push(parentDocTree);
+                        }
                     }
+
+                    angular.forEach(docsTreeCollapse, function (value, key) {
+                        value.isExpanded = false;
+
+                        var coll = "collapse-" + value.id;
+                        var collapse = "#collapse-" + value.id;
+                        var classCollapse = $(collapse).attr("class");
+                        $("div[id*='" + coll + "']").removeClass(classCollapse).addClass('collapse');
+                    })
                 })
             }
 
