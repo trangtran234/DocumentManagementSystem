@@ -1,7 +1,6 @@
 ﻿<table class="table table-hover" id="listingTable">
     <thead class="thead-dark">
         <tr>
-            <th class="checkbox" scope="col"><input type="checkbox" ng-model="leader" /></th>
             <th scope="col" ng-click="sort('documentType')">
                 <span ng-show="propertyName === 'documentType'" ng-class="{reverse: reverse}"></span>
                 <div class="sortorder" >
@@ -61,7 +60,6 @@
     </thead>
     <tbody ng-repeat="document in documents">
         <tr ng-switch="document.documentType" ng-click="getDocumentsByTreeView(document.id)" ng-dblclick="getChildDocumentOfFolder(document)">
-            <td class="checkbox"><input type="checkbox" ng-checked="leader" /></td>
             <td ng-switch-when="jpg"><i class="fas fa-file-image fa-lg"></i></td>
             <td ng-switch-when="png"><i class="fas fa-file-image fa-lg"></i></td>
             <td ng-switch-when="jpeg"><i class="fas fa-file-image fa-lg"></i></td>
@@ -86,7 +84,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMoreAction">
                         <a href="" class="dropdown-item" ng-click="editDocument(document.id)">
-                            <ul>
+                            <ul class="editButton">
                                 <li class="list-inline-item"><i class="fas fa-pencil-alt"></i></li>
                                 <li class="list-inline-item">Edit</li>
                             </ul>
