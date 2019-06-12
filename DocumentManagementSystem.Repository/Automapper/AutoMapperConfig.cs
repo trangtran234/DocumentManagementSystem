@@ -13,7 +13,11 @@ namespace DocumentManagementSystem.Repository.Automapper
         {
             var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<DocumentType, Models.DocumentType>();
-                //cfg.CreateMap<Models.DocumentType, DocumentType>();
+                cfg.CreateMap<Models.DocumentType, DocumentType>();
+
+                cfg.CreateMap<Document, Models.DocumentContent>()
+                                        .ForMember(d => d.Id, opt => opt.MapFrom(src => src.DocumentContent.Id))
+                                        .ForMember(d => d.Content, opt => opt.MapFrom(src => Encoding.UTF8.GetString(src.DocumentContent.Content)));
 
                 //.ForMember();
                 //lots more maps...here!

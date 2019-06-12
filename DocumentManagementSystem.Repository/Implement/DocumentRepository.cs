@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Linq.Dynamic;
 using DocumentManagementSystem.Models.Common;
 using DocumentManagementSystem.Repository.Interface;
+using AutoMapper;
 
 namespace DocumentManagementSystem.Repository
 {
@@ -14,11 +15,13 @@ namespace DocumentManagementSystem.Repository
     {
         private DocumentManagementSystemEntities context;
         private readonly IDocumentHistoryRepository historyRepository;
+        private IMapper mapper;
 
-        public DocumentRepository(DocumentManagementSystemEntities context, IDocumentHistoryRepository historyRepository)
+        public DocumentRepository(DocumentManagementSystemEntities context, IDocumentHistoryRepository historyRepository, IAutoMapperConfig mapper)
         {
             this.context = context;
             this.historyRepository = historyRepository;
+            this.mapper = mapper.GetMapper();
         }
 
         public List<Document> GetDocumentByParentId(int id)
@@ -82,31 +85,33 @@ namespace DocumentManagementSystem.Repository
             return Guid.Empty;
         }
 
-        public bool AddDocument(Document document, List<DocumentType> documentTypes)
+        public bool AddDocument(Models.Document document, List<Models.DocumentType> documentTypes)
         {
+            Document documentRepo = mapper.Map<Document>(document);
+            List<DocumentType> typesRepository = mapper.Map<List<DocumentType>>(documentTypes);
             try
             {
                 //add instance to context
-                context.Documents.Add(document);
+                context.Documents.Add(documentRepo);
                 //attach instance to context
                 //context.Documents.Attach(document);
 
-                foreach (DocumentType documentType in documentTypes)
+                foreach (DocumentType documentType in typesRepository)
                 {
                     DocumentType type = context.DocumentTypes.Find(documentType.Id);
                     //attach instance to context
                     context.DocumentTypes.Attach(type);
-                    
+
 
                     //like previous method add instance to navigation property
-                    document.DocumentTypes.Add(type);
+                    documentRepo.DocumentTypes.Add(type);
                 }
 
                 //Trang added code for feature Add Document History
                 int isAdded = context.SaveChanges();
                 if (isAdded != -1)
                 {
-                    bool isSuccessed = historyRepository.AddDocumentHistory(document, Helper.HistoryAction.Upload);
+                    bool isSuccessed = historyRepository.AddDocumentHistory(documentRepo, Helper.HistoryAction.Upload);
                     return true;
                 }
             }
@@ -117,11 +122,12 @@ namespace DocumentManagementSystem.Repository
             return true;
         }
 
-        public bool AddDocumentContent(DocumentContent documentContent)
+        public bool AddDocumentContent(Models.DocumentContent documentContent)
         {
+            DocumentContent contentRepository = mapper.Map<DocumentContent>(documentContent);
             try
             {
-                context.DocumentContents.Add(documentContent);
+                context.DocumentContents.Add(contentRepository);
                 context.SaveChanges();
             }
             catch (Exception e)
@@ -180,26 +186,28 @@ namespace DocumentManagementSystem.Repository
             return false;
         }
 
-        public List<Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId, out int totalRecords)
+        public List<Models.Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId, out int totalRecords)
         {
+            //List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentListRepository);
             var documentsContext = context.Documents.Where(d => d.ParentId.Equals(null));
             if (parentId != 0)
             {
                 documentsContext = context.Documents.Where(d => d.ParentId == parentId);
             }
-            List<Document> documents = new List<Document>();
+            List<Document> documentListRepository = new List<Document>();
 
             totalRecords = documentsContext.Count();
 
             int skipRows = page * pageSize;
             if (desc)
             {
-                documents = documentsContext.OrderBy(propertyName + " desc").Skip(skipRows).Take(pageSize).ToList();
+                documentListRepository = documentsContext.OrderBy(propertyName + " desc").Skip(skipRows).Take(pageSize).ToList();
             }
             else
             {
-                documents = documentsContext.OrderBy(propertyName + " asc").Skip(skipRows).Take(pageSize).ToList();
+                documentListRepository = documentsContext.OrderBy(propertyName + " asc").Skip(skipRows).Take(pageSize).ToList();
             }
+            List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentListRepository);
             return documents;
         }
     }
