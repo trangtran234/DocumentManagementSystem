@@ -86,6 +86,8 @@
     <Compile Include="Account.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Automapper\AutoMapperConfig.cs" />
+    <Compile Include="Automapper\IAutoMapperConfig.cs" />
     <Compile Include="DependencyExtension\DependencyExtensionRepository.cs" />
     <Compile Include="Document.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
