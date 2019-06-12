@@ -1,4 +1,6 @@
-﻿using DocumentManagementSystem.Models.Common;
+﻿using AutoMapper;
+using DocumentManagementSystem.Models.Common;
+using DocumentManagementSystem.Repository.Automapper;
 using DocumentManagementSystem.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,12 @@ namespace DocumentManagementSystem.Repository.Implement
     public class DocumentHistoryRepository: IDocumentHistoryRepository
     {
         private readonly DocumentManagementSystemEntities context;
+        private IMapper mapper;
 
-        public DocumentHistoryRepository(DocumentManagementSystemEntities context)
+        public DocumentHistoryRepository(DocumentManagementSystemEntities context, IAutoMapperConfig mapper)
         {
             this.context = context;
+            this.mapper = mapper.GetMapper();
         }
 
         public bool AddDocumentHistory(Document document, Helper.HistoryAction actionEvent)
@@ -37,9 +41,10 @@ namespace DocumentManagementSystem.Repository.Implement
             return false;
         }
 
-        public List<DocumentHistory> GetDocumentHistories(int documentId)
+        public List<Models.DocumentHistory> GetDocumentHistories(int documentId)
         {
-            List<DocumentHistory> documentHistories = context.DocumentHistories.Where(d => d.DocumentId == documentId).OrderByDescending(d => d.Id).ToList();
+            List<DocumentHistory> documentHistoriesRepo = context.DocumentHistories.Where(d => d.DocumentId == documentId).OrderByDescending(d => d.Id).ToList();
+            List<Models.DocumentHistory> documentHistories = mapper.Map<List<Models.DocumentHistory>>(documentHistoriesRepo);
             return documentHistories;
         }
     }

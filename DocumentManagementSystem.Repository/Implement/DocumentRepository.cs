@@ -7,6 +7,8 @@ using System.Linq.Expressions;
 using System.Linq.Dynamic;
 using DocumentManagementSystem.Models.Common;
 using DocumentManagementSystem.Repository.Interface;
+using DocumentManagementSystem.Repository.Automapper;
+using AutoMapper;
 
 namespace DocumentManagementSystem.Repository
 {
@@ -14,28 +16,33 @@ namespace DocumentManagementSystem.Repository
     {
         private DocumentManagementSystemEntities context;
         private readonly IDocumentHistoryRepository historyRepository;
+        private IMapper mapper;
 
-        public DocumentRepository(DocumentManagementSystemEntities context, IDocumentHistoryRepository historyRepository)
+        public DocumentRepository(DocumentManagementSystemEntities context, IDocumentHistoryRepository historyRepository, IAutoMapperConfig mapper)
         {
             this.context = context;
             this.historyRepository = historyRepository;
+            this.mapper = mapper.GetMapper();
         }
 
-        public List<Document> GetDocumentByParentId(int id)
+        public List<Models.Document> GetDocumentByParentId(int id)
         {
-            var documents = context.Documents.Where(d => d.ParentId == id).ToList();
+            var documentsRepo = context.Documents.Where(d => d.ParentId == id).ToList();
+            List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentsRepo);
             return documents;
         }
 
-        public List<Document> GetAllDocuments()
+        public List<Models.Document> GetAllDocuments()
         {
-            List<Document> documents = context.Documents.Select(d => d).ToList();
+            List<Document> documentsRepo = context.Documents.Select(d => d).ToList();
+            List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentsRepo);
             return documents;
         }
 
-        public Document GetDocumentByDocumentId(int id)
+        public Models.Document GetDocumentByDocumentId(int id)
         {
-            Document document = context.Documents.Include("DocumentTags").FirstOrDefault<Document>(d => d.Id == id);
+            Document documentRepo = context.Documents.Include("DocumentTags").FirstOrDefault<Document>(d => d.Id == id);
+            Models.Document document = mapper.Map<Models.Document>(documentRepo);
             return document;
         }
 
@@ -45,9 +52,10 @@ namespace DocumentManagementSystem.Repository
             return documents;
         }
 
-        public List<Document> GetFoldersByFolderId(int id)
+        public List<Models.DocumentTreeView> GetFoldersByFolderId(int id)
         {
-            List<Document> documents = context.Documents.Where(d => d.ParentId == id && d.DocumentType == Helper.DocumentType.folder.ToString()).ToList();
+            List<Document> documentsRepo = context.Documents.Where(d => d.ParentId == id && d.DocumentType == Helper.DocumentType.folder.ToString()).ToList();
+            List<Models.DocumentTreeView> documents = mapper.Map<List<Models.DocumentTreeView>>(documentsRepo);
             return documents;
         }
 
