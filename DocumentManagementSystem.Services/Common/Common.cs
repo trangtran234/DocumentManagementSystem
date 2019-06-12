@@ -25,7 +25,7 @@ namespace DocumentManagementSystem.Services
                 string type = s.Substring(postion + 1);
                 foreach (var item in Enum.GetNames(typeof(DocumentType)))
                 {
-                    if (type.Equals(item))
+                    if (type.ToUpper().Equals(item.ToUpper()))
                     {
                         arr = new string[] { name, type };
                         return arr;
