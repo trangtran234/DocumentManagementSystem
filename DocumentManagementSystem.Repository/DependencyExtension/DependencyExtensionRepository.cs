@@ -1,4 +1,5 @@
-﻿using DocumentManagementSystem.Repository.Implement;
+﻿using DocumentManagementSystem.Repository.Automapper;
+using DocumentManagementSystem.Repository.Implement;
 using DocumentManagementSystem.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace DocumentManagementSystem.Repository.DependencyExtension
             Container.RegisterType<IDocumentHistoryRepository, DocumentHistoryRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDocumentRepository, DocumentRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDocumentTypeRepository, DocumentTypeRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IAutoMapperConfig, AutoMapperConfig>(new ContainerControlledLifetimeManager());
         }
     }
 }

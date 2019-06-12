@@ -8,6 +8,6 @@ namespace DocumentManagementSystem.Repository
 {
     public interface IDocumentTypeRepository
     {
-        List<DocumentType> GetAllDocumentTypes();
+        List<Models.DocumentType> GetAllDocumentTypes();
     }
 }
