@@ -86,32 +86,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DocumentTypeUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Testcase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DocumentManagementSystem.Models\DocumentManagementSystem.Models.csproj">
       <Project>{54AC05E1-F58A-4A92-AC0C-DA1BC46C82B2}</Project>
       <Name>DocumentManagementSystem.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DocumentManagementSystem.Repository\DocumentManagementSystem.Repository.csproj">
-      <Project>{0BE8A9CE-F7B3-49DE-AF10-5DBD48A4FC9A}</Project>
-      <Name>DocumentManagementSystem.Repository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DocumentManagementSystem.Services\DocumentManagementSystem.Services.csproj">
       <Project>{6f354e66-8c0e-41c7-97cc-8100516497de}</Project>
       <Name>DocumentManagementSystem.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DocumentManagementSystem.WebApp\DocumentManagementSystem.WebApp.csproj">
-      <Project>{93589E04-7ED8-404D-9953-1B980AD051E8}</Project>
-      <Name>DocumentManagementSystem.WebApp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

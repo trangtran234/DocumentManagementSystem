@@ -27,36 +27,31 @@ namespace DocumentManagementSystem.Services
 
         public List<Models.Document> GetAllDocument()
         {
-            List<Repository.Document> documentsRepo = documentRepository.GetAllDocuments();
-            List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentsRepo);
+            List<Models.Document> documents = documentRepository.GetAllDocuments();
             return documents;
         }
 
         public List<Models.Document> GetDocumentByParentId(int id)
         {
-            List<Repository.Document> documentsRepo = documentRepository.GetDocumentByParentId(id);
-            List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentsRepo);
+            List<Models.Document> documents = documentRepository.GetDocumentByParentId(id);
             return documents;
         }
 
         public Models.Document GetDocumentByDocumentId(int id)
         {
-            Repository.Document documentRepo = documentRepository.GetDocumentByDocumentId(id);
-            Models.Document document = mapper.Map<Models.Document>(documentRepo);
+            Models.Document document = documentRepository.GetDocumentByDocumentId(id);
             return document;
         }
 
         public List<DocumentTreeView> GetFolders()
         {
-            List<Repository.Document> documentsRepo = documentRepository.GetFolders();
-            List<DocumentTreeView> documents = mapper.Map<List<DocumentTreeView>>(documentsRepo);
+            List<DocumentTreeView> documents = documentRepository.GetFolders();
             return documents;
         }
 
         public List<DocumentTreeView> GetFoldersByFolderId(int id)
         {
-            List<Repository.Document> documentsRepo = documentRepository.GetFoldersByFolderId(id);
-            List<DocumentTreeView> documents = mapper.Map<List<DocumentTreeView>>(documentsRepo);
+            List<DocumentTreeView> documents = documentRepository.GetFoldersByFolderId(id);
             return documents;
         }
 
@@ -131,8 +126,7 @@ namespace DocumentManagementSystem.Services
 
         public List<Models.DocumentHistory> GetDocumentHistories(int documentId)
         {
-            List<Repository.DocumentHistory> documentHistoriesRepo = documentHistoryRepository.GetDocumentHistories(documentId);
-            List<Models.DocumentHistory> documentHistories = mapper.Map<List<Models.DocumentHistory>>(documentHistoriesRepo);
+            List<Models.DocumentHistory> documentHistories = documentHistoryRepository.GetDocumentHistories(documentId);
             return documentHistories;
         }
     }

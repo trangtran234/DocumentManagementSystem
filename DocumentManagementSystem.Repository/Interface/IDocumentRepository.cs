@@ -9,11 +9,11 @@ namespace DocumentManagementSystem.Repository
 {
     public interface IDocumentRepository
     {
-        List<Document> GetAllDocuments();
-        List<Document> GetDocumentByParentId(int id);
-        List<Document> GetFolders();
-        List<Document> GetFoldersByFolderId(int id);
-        Document GetDocumentByDocumentId(int id);
+        List<Models.Document> GetAllDocuments();
+        List<Models.Document> GetDocumentByParentId(int id);
+        List<Models.DocumentTreeView> GetFolders();
+        List<Models.DocumentTreeView> GetFoldersByFolderId(int id);
+        Models.Document GetDocumentByDocumentId(int id);
         List<Document> GetDocumentsTop(int top);
         void DeleteDocument(int id);
         void DeleteDocumentContent(Guid id);
