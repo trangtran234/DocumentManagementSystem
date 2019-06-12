@@ -45,8 +45,7 @@ namespace DocumentManagementSystem.Services
 
         public List<DocumentTreeView> GetFolders()
         {
-            List<Repository.Document> documentsRepo = documentRepository.GetFolders();
-            List<DocumentTreeView> documents = mapper.Map<List<DocumentTreeView>>(documentsRepo);
+            List<DocumentTreeView> documents = documentRepository.GetFolders();
             return documents;
         }
 

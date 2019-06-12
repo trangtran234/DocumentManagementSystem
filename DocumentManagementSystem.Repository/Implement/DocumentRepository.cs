@@ -46,9 +46,10 @@ namespace DocumentManagementSystem.Repository
             return document;
         }
 
-        public List<Document> GetFolders()
+        public List<Models.DocumentTreeView> GetFolders()
         {
-            List<Document> documents = context.Documents.Where(d => d.DocumentType == Helper.DocumentType.folder.ToString()).ToList();
+            List<Document> documentsRepo = context.Documents.Where(d => d.DocumentType == Helper.DocumentType.folder.ToString()).ToList();
+            List<Models.DocumentTreeView> documents = mapper.Map<List<Models.DocumentTreeView>>(documentsRepo);
             return documents;
         }
 

@@ -1,4 +1,6 @@
-﻿using DocumentManagementSystem.Models.Common;
+﻿using AutoMapper;
+using DocumentManagementSystem.Models.Common;
+using DocumentManagementSystem.Repository.Automapper;
 using DocumentManagementSystem.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,13 @@ namespace DocumentManagementSystem.Repository.Implement
 {
     public class DocumentHistoryRepoMockup : IDocumentHistoryRepository
     {
+        private IMapper mapper;
+
+        public DocumentHistoryRepoMockup(IAutoMapperConfig mapper)
+        {
+            this.mapper = mapper.GetMapper();
+        }
+
         private List<DocumentHistory> DocumentHistoriesStored()
         {
             List<DocumentHistory> documentHistories = new List<DocumentHistory>()
@@ -25,9 +34,10 @@ namespace DocumentManagementSystem.Repository.Implement
             throw new NotImplementedException();
         }
 
-        public List<DocumentHistory> GetDocumentHistories(int documentId)
+        public List<Models.DocumentHistory> GetDocumentHistories(int documentId)
         {
-            List<DocumentHistory> documentHistories = DocumentHistoriesStored().Where(d => d.DocumentId == documentId).ToList();
+            List<DocumentHistory> documentHistoriesRepo = DocumentHistoriesStored().Where(d => d.DocumentId == documentId).OrderByDescending(d => d.Id).ToList();
+            List<Models.DocumentHistory> documentHistories = mapper.Map<List<Models.DocumentHistory>>(documentHistoriesRepo);
             return documentHistories;
         }
     }

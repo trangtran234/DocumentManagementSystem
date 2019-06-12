@@ -11,7 +11,7 @@ namespace DocumentManagementSystem.Repository
     {
         List<Models.Document> GetAllDocuments();
         List<Models.Document> GetDocumentByParentId(int id);
-        List<Document> GetFolders();
+        List<Models.DocumentTreeView> GetFolders();
         List<Models.DocumentTreeView> GetFoldersByFolderId(int id);
         Models.Document GetDocumentByDocumentId(int id);
         List<Document> GetDocumentsTop(int top);
