@@ -117,6 +117,7 @@
     <Compile Include="DocumentType.cs">
       <DependentUpon>DocumentManagementSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Implement\DocumentHistoryRepoMockup.cs" />
     <Compile Include="Implement\DocumentRepository.cs" />
     <Compile Include="Implement\DocumentTypeRepository.cs" />
     <Compile Include="Implement\DocumentHistoryRepository.cs" />
