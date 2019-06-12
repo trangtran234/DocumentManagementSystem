@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentManagementSystem.Se
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DocumentManagementSystem.Database", "DocumentManagementSystem.Database\DocumentManagementSystem.Database.sqlproj", "{9C6BAA25-0025-4602-9F00-A8F57482D963}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentManagementSystem.UnitTest", "DocumentManagementSystem.UnitTest\DocumentManagementSystem.UnitTest.csproj", "{9D8126C2-7BE3-4054-92D6-08F08006BBBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{9C6BAA25-0025-4602-9F00-A8F57482D963}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C6BAA25-0025-4602-9F00-A8F57482D963}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C6BAA25-0025-4602-9F00-A8F57482D963}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9D8126C2-7BE3-4054-92D6-08F08006BBBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D8126C2-7BE3-4054-92D6-08F08006BBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D8126C2-7BE3-4054-92D6-08F08006BBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D8126C2-7BE3-4054-92D6-08F08006BBBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
