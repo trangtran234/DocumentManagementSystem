@@ -18,7 +18,6 @@ namespace DocumentManagementSystem.WebApp
 
             container.AddExtension(new DependencyExtensionRepository());
             container.AddExtension(new DependencyExtensionService());
-            container.AddExtension(new DependencyExtensionWebApp());
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

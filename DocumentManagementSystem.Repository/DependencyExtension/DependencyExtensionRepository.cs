@@ -19,6 +19,8 @@ namespace DocumentManagementSystem.Repository.DependencyExtension
         {
             Container.RegisterType<DocumentManagementSystemEntities>(new PerThreadLifetimeManager());
             Container.RegisterType<IDocumentHistoryRepository, DocumentHistoryRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IDocumentRepository, DocumentRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IDocumentTypeRepository, DocumentTypeRepository>(new ContainerControlledLifetimeManager());
         }
     }
 }
