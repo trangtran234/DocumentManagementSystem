@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
 using DocumentManagementSystem.Models;
-using DocumentManagementSystem.Models.Common;
 using DocumentManagementSystem.Repository;
 using DocumentManagementSystem.Repository.Interface;
-using DocumentManagementSystem.Services.Automapper;
 
 namespace DocumentManagementSystem.Services
 {
@@ -60,52 +53,6 @@ namespace DocumentManagementSystem.Services
             documentRepository.DeleteDocumentContent(contentId);
         }
 
-        public bool AddDocument(Models.Document document)
-        {
-            string[] arr = Common.GetDocumentTypes(document.DocumentName, ".");
-            document.DocumentName = arr[0];
-            document.DocumentType = arr[arr.Length - 1];
-
-            var currentDay = DateTime.Now;
-            document.Created = currentDay;
-            document.LastModified = currentDay;
-
-            if (document.DocumentType != null 
-                && document.DocumentContent != null 
-                && document.DocumentSize <= Common.LIMITED_FILE_SIZE)
-            {
-                Models.DocumentContent content = new Models.DocumentContent();
-
-                content.Id = Guid.NewGuid();
-                document.DocumentContentId = content.Id;
-                content.Content = document.DocumentContent;
-
-                List<Models.DocumentType> types = new List<Models.DocumentType>();
-                foreach(Models.DocumentType dt in document.DocumentTypes)
-                {
-                    Models.DocumentType type = new Models.DocumentType();
-                    type.Id = dt.Id;
-                    type.Type = dt.Type;
-
-                    types.Add(type);
-                }
-
-                document.DocumentTypes = null;
-
-                //Repository.DocumentContent contentRepository = mapper.Map<Repository.DocumentContent>(content);
-                //Repository.Document documentRepo = mapper.Map<Repository.Document>(document);
-                //List<Repository.DocumentType> typesRepository = mapper.Map<List<Repository.DocumentType>>(types);
-
-                if(documentRepository.AddDocumentContent(content) && documentRepository.AddDocument(document, types))
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            return false;
-        }
-
         public bool UpdateDocument(Models.Document document)
         {
             var currentDay = DateTime.Now;
@@ -116,7 +63,6 @@ namespace DocumentManagementSystem.Services
         public List<Models.Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId, string propertyName, out int totalRecords)
         {
             List<Models.Document> documents = documentRepository.LazyLoadDocuments(propertyName, desc, page, pageSize, parentId, out totalRecords);
-            //List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentListRepository);
 
             return documents;
         }
