@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Linq.Expressions;
 using System.Linq.Dynamic;
 using DocumentManagementSystem.Models.Common;
-using DocumentManagementSystem.Repository.Interface;
 using DocumentManagementSystem.Repository.Automapper;
 using AutoMapper;
 using DocumentManagementSystem.IRepository;
@@ -113,7 +112,7 @@ namespace DocumentManagementSystem.Repository
                 int isAdded = context.SaveChanges();
                 if (isAdded != -1)
                 {
-                    bool isSuccessed = historyRepository.AddDocumentHistory(documentRepo, Helper.HistoryAction.Upload);
+                    bool isSuccessed = historyRepository.AddDocumentHistory(document, Helper.HistoryAction.Upload);
                     return true;
                 }
             }
@@ -177,7 +176,7 @@ namespace DocumentManagementSystem.Repository
                 int isEdited = context.SaveChanges();
                 if (isEdited != -1 && isUpdateDocument == 1)
                 {
-                    bool isSuccessed = historyRepository.AddDocumentHistory(documentRepo, Helper.HistoryAction.Edit);
+                    bool isSuccessed = historyRepository.AddDocumentHistory(document, Helper.HistoryAction.Edit);
                     return true;
                 }
             }

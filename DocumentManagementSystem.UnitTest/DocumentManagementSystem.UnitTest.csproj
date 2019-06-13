@@ -87,8 +87,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyExtensionUnitTest.cs" />
+    <Compile Include="Mockup\DocumentMockup.cs" />
     <Compile Include="Mockup\UploadDocumentMockup.cs" />
     <Compile Include="UnitTest\DocumentTypeUnitTest.cs" />
+    <Compile Include="Mockup\DocumentHistoryMockup.cs" />
     <Compile Include="Mockup\DocumentTypeMockup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTest\DocumentHistoryUnitTest.cs" />

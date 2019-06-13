@@ -1,9 +1,6 @@
 ﻿using DocumentManagementSystem.Models.Common;
-using DocumentManagementSystem.Repository;
-using DocumentManagementSystem.Repository.DependencyExtension;
-using DocumentManagementSystem.Repository.Interface;
 using DocumentManagementSystem.Services;
-using DocumentManagementSystem.Services.DependencyExtension;
+using DocumentManagementSystem.UnitTest.Mockup;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -29,7 +26,20 @@ namespace DocumentManagementSystem.UnitTest
         [Test]
         public void GetDocumentHistories()
         {
-            var result = documentService.GetDocumentHistories(1);
+            int documentId = 1;
+            string documentName = "Test";
+            string documentType = Helper.DocumentType.docx.ToString();
+
+            Models.Document document = new Models.Document()
+            {
+                Id = documentId, DocumentName = documentName, DocumentType = documentType
+            };
+
+            DocumentHistoryMockup historyMockup = new DocumentHistoryMockup();
+            historyMockup.AddDocumentHistory(document, Helper.HistoryAction.Upload);
+            historyMockup.AddDocumentHistory(document, Helper.HistoryAction.Edit);
+
+            var result = documentService.GetDocumentHistories(documentId);
             Assert.AreEqual(result.Count, 2);
         }
     }

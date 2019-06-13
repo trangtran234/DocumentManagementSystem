@@ -1,7 +1,6 @@
 ﻿using DocumentManagementSystem.IRepository;
 using DocumentManagementSystem.Repository.Automapper;
 using DocumentManagementSystem.Repository.Implement;
-using DocumentManagementSystem.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -20,7 +19,7 @@ namespace DocumentManagementSystem.Repository.DependencyExtension
         protected override void Initialize()
         {
             Container.RegisterType<DocumentManagementSystemEntities>(new PerThreadLifetimeManager());
-            Container.RegisterType<Interface.IDocumentHistoryRepository, DocumentHistoryRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IDocumentHistoryRepository, DocumentHistoryRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDocumentRepository, DocumentRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDocumentTypeRepository, DocumentTypeRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IAutoMapperConfig, AutoMapperConfig>(new ContainerControlledLifetimeManager());

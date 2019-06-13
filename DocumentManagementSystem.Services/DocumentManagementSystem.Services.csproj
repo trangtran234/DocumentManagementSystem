@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DocumentManagementSystem.IRepository\DocumentManagementSystem.IRepository.csproj">
-      <Project>{7389360C-3E50-4EF9-8338-42322DDDA543}</Project>
+      <Project>{7389360c-3e50-4ef9-8338-42322ddda543}</Project>
       <Name>DocumentManagementSystem.IRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\DocumentManagementSystem.Models\DocumentManagementSystem.Models.csproj">
