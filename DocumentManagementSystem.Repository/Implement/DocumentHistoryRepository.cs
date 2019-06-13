@@ -21,13 +21,14 @@ namespace DocumentManagementSystem.Repository.Implement
             this.mapper = mapper.GetMapper();
         }
 
-        public bool AddDocumentHistory(Document document, Helper.HistoryAction actionEvent)
+        public bool AddDocumentHistory(Models.Document document, Helper.HistoryAction actionEvent)
         {
+            Document documentRepo = mapper.Map<Document>(document);
             int userId = (int)actionEvent == 1 ? 1 : 3;
 
             DocumentHistory documentHistory = new DocumentHistory
             {
-                DocumentId = document.Id,
+                DocumentId = documentRepo.Id,
                 ActionId = (int)actionEvent,
                 UserId = userId,
                 Date = DateTime.Now
