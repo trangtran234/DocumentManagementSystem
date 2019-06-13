@@ -9,6 +9,9 @@ using Unity.Extension;
 using Unity.Lifetime;
 using Unity;
 using DocumentManagementSystem.Services;
+using DocumentManagementSystem.IRepository;
+using DocumentManagementSystem.Services.Interface;
+using DocumentManagementSystem.Services.Implement;
 
 namespace DocumentManagementSystem.UnitTest
 {
@@ -18,6 +21,7 @@ namespace DocumentManagementSystem.UnitTest
         {
             Container.RegisterType<IDocumentTypeRepository, DocumentTypeMockup>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDocumentTypeService, DocumentTypeService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IUploadService, UploadService>(new ContainerControlledLifetimeManager());
         }
     }
 }

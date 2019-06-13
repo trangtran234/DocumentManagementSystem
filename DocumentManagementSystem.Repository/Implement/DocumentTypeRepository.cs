@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using DocumentManagementSystem.IRepository;
 using DocumentManagementSystem.Repository.Automapper;
+
 namespace DocumentManagementSystem.Repository
 {
     public class DocumentTypeRepository : IDocumentTypeRepository

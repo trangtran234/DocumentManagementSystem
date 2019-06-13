@@ -1,6 +1,6 @@
-﻿using System;
+﻿using DocumentManagementSystem.IRepository;
+using System;
 using System.Collections.Generic;
-using DocumentManagementSystem.Repository;
 
 namespace DocumentManagementSystem.Services
 {

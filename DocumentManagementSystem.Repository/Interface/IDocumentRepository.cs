@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace DocumentManagementSystem.Repository
 {
-    public interface IDocumentRepository
-    {
-        List<Models.Document> GetAllDocuments();
-        List<Models.Document> GetDocumentByParentId(int id);
-        List<Models.DocumentTreeView> GetFolders();
-        List<Models.DocumentTreeView> GetFoldersByFolderId(int id);
-        Models.Document GetDocumentByDocumentId(int id);
-        List<Document> GetDocumentsTop(int top);
-        void DeleteDocument(int id);
-        void DeleteDocumentContent(Guid id);
-        Guid FindDocumentContent(int id);
-        bool AddDocument(Models.Document document, List<Models.DocumentType> types);
-        bool AddDocumentContent(Models.DocumentContent documentContent);
-        bool UpdateDocument(Models.Document document);
-        List<Models.Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId,out int totalRecords);
-    }
+    //public interface IDocumentRepository
+    //{
+    //    List<Models.Document> GetAllDocuments();
+    //    List<Models.Document> GetDocumentByParentId(int id);
+    //    List<Models.DocumentTreeView> GetFolders();
+    //    List<Models.DocumentTreeView> GetFoldersByFolderId(int id);
+    //    Models.Document GetDocumentByDocumentId(int id);
+    //    List<Document> GetDocumentsTop(int top);
+    //    void DeleteDocument(int id);
+    //    void DeleteDocumentContent(Guid id);
+    //    Guid FindDocumentContent(int id);
+    //    bool AddDocument(Models.Document document, List<Models.DocumentType> types);
+    //    bool AddDocumentContent(Models.DocumentContent documentContent);
+    //    bool UpdateDocument(Models.Document document);
+    //    List<Models.Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId,out int totalRecords);
+    //}
 }

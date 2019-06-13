@@ -9,6 +9,8 @@ using DocumentManagementSystem.Models.Common;
 using DocumentManagementSystem.Repository.Interface;
 using DocumentManagementSystem.Repository.Automapper;
 using AutoMapper;
+using DocumentManagementSystem.IRepository;
+using DocumentManagementSystem.Models;
 
 namespace DocumentManagementSystem.Repository
 {
@@ -58,13 +60,7 @@ namespace DocumentManagementSystem.Repository
             List<Document> documentsRepo = context.Documents.Where(d => d.ParentId == id && d.DocumentType == Helper.DocumentType.folder.ToString()).ToList();
             List<Models.DocumentTreeView> documents = mapper.Map<List<Models.DocumentTreeView>>(documentsRepo);
             return documents;
-        }
-
-        public List<Document> GetDocumentsTop(int top)
-        {
-            List<Document> documents = context.Documents.Select(d => d).OrderByDescending(f => f.Id).Take(top).ToList();
-            return documents;
-        }
+        }        
 
         public void DeleteDocument(int id)
         {
