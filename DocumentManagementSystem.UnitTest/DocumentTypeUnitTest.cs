@@ -1,6 +1,7 @@
-﻿using DocumentManagementSystem.Models;
+﻿using DocumentManagementSystem.Repository;
 using DocumentManagementSystem.Services;
 using DocumentManagementSystem.Services.Automapper;
+using DocumentManagementSystem.WebApp.Controllers;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -14,19 +15,23 @@ namespace DocumentManagementSystem.UnitTest
     [TestFixture]
     public class DocumentTypeUnitTest
     {
-        //private Mock<IDocumentTypeService> externalServiceClientMock;
-        //private IDocumentTypeService documentTypeService;
+        private Mock<IDocumentTypeRepository> mock;
+        private DocumentTypeService documentTypeService;
 
-        //public DocumentTypeUnitTest(DocumentTypeService documentTypeService)
-        //{
-        //    this.documentTypeService = documentTypeService;
-        //}
+        [Test]
+        public void GetAllDocumentTypes()
+        {
+            List<Models.DocumentType> documentTypes = new List<Models.DocumentType>()
+            {
+                new Models.DocumentType { Id = 1 , Type = "Training" },
+                new Models.DocumentType { Id = 2 , Type = "Tax" }
+            };
+            mock = new Mock<IDocumentTypeRepository>();
+            mock.Setup(m => m.GetAllDocumentTypes()).Returns(documentTypes);
 
-        //[Test]
-        //public void GetAllDocumentTypes()
-        //{
-            
-
-        //}
+            documentTypeService = new DocumentTypeService(mock.Object);
+            var result = documentTypeService.GetAllDocumentTypes();
+            Assert.AreEqual(result.Count, 2);
+        }
     }
 }

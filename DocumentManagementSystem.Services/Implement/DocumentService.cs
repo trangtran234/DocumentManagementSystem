@@ -92,11 +92,11 @@ namespace DocumentManagementSystem.Services
 
                 document.DocumentTypes = null;
 
-                Repository.DocumentContent contentRepository = mapper.Map<Repository.DocumentContent>(content);
-                Repository.Document documentRepo = mapper.Map<Repository.Document>(document);
-                List<Repository.DocumentType> typesRepository = mapper.Map<List<Repository.DocumentType>>(types);
+                //Repository.DocumentContent contentRepository = mapper.Map<Repository.DocumentContent>(content);
+                //Repository.Document documentRepo = mapper.Map<Repository.Document>(document);
+                //List<Repository.DocumentType> typesRepository = mapper.Map<List<Repository.DocumentType>>(types);
 
-                if(documentRepository.AddDocumentContent(contentRepository) && documentRepository.AddDocument(documentRepo, typesRepository))
+                if(documentRepository.AddDocumentContent(content) && documentRepository.AddDocument(document, types))
                 {
                     return true;
                 }
@@ -115,8 +115,8 @@ namespace DocumentManagementSystem.Services
 
         public List<Models.Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId, string propertyName, out int totalRecords)
         {
-            List<Repository.Document> documentListRepository = documentRepository.LazyLoadDocuments(propertyName, desc, page, pageSize, parentId, out totalRecords);
-            List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentListRepository);
+            List<Models.Document> documents = documentRepository.LazyLoadDocuments(propertyName, desc, page, pageSize, parentId, out totalRecords);
+            //List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentListRepository);
 
             return documents;
         }

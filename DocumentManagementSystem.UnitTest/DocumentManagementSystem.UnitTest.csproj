@@ -94,12 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DocumentManagementSystem.Models\DocumentManagementSystem.Models.csproj">
-      <Project>{54ac05e1-f58a-4a92-ac0c-da1bc46c82b2}</Project>
+      <Project>{54AC05E1-F58A-4A92-AC0C-DA1BC46C82B2}</Project>
       <Name>DocumentManagementSystem.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DocumentManagementSystem.Repository\DocumentManagementSystem.Repository.csproj">
-      <Project>{0be8a9ce-f7b3-49de-af10-5dbd48a4fc9a}</Project>
-      <Name>DocumentManagementSystem.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\DocumentManagementSystem.Services\DocumentManagementSystem.Services.csproj">
       <Project>{6f354e66-8c0e-41c7-97cc-8100516497de}</Project>
