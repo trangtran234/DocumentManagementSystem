@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.Http;
 using DocumentManagementSystem.Models;
 using DocumentManagementSystem.Services;
+using DocumentManagementSystem.Services.Interface;
 using Newtonsoft.Json;
 
 
@@ -20,11 +21,12 @@ namespace DocumentManagementSystem.WebApp.Controllers
     [RoutePrefix("api/upload")]
     public class UploadController : ApiController
     {
-        private IDocumentService documentServices;
 
-        public UploadController(IDocumentService documentServices)
+        private IUploadService uploadService;
+
+        public UploadController(IUploadService uploadService)
         {
-            this.documentServices = documentServices;
+            this.uploadService = uploadService;
         }
 
         [HttpPost]
@@ -82,7 +84,7 @@ namespace DocumentManagementSystem.WebApp.Controllers
 
             foreach(Document document in listDocument)
             {
-                bool flag = documentServices.AddDocument(document);
+                bool flag = uploadService.AddDocument(document);
                 if (flag)
                 {
                     listSuccess.Add(document);

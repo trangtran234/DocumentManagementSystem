@@ -86,7 +86,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependencyExtensionUnitTest.cs" />
     <Compile Include="DocumentTypeUnitTest.cs" />
+    <Compile Include="Mockup\DocumentTypeMockup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTest\DocumentHistoryUnitTest.cs" />
     <Compile Include="UnityConfig.cs" />
@@ -95,6 +97,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DocumentManagementSystem.IRepository\DocumentManagementSystem.IRepository.csproj">
+      <Project>{7389360c-3e50-4ef9-8338-42322ddda543}</Project>
+      <Name>DocumentManagementSystem.IRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DocumentManagementSystem.Models\DocumentManagementSystem.Models.csproj">
       <Project>{54AC05E1-F58A-4A92-AC0C-DA1BC46C82B2}</Project>
       <Name>DocumentManagementSystem.Models</Name>
@@ -108,6 +114,7 @@
       <Name>DocumentManagementSystem.Services</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

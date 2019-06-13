@@ -146,6 +146,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DocumentManagementSystem.IRepository\DocumentManagementSystem.IRepository.csproj">
+      <Project>{7389360c-3e50-4ef9-8338-42322ddda543}</Project>
+      <Name>DocumentManagementSystem.IRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DocumentManagementSystem.Models\DocumentManagementSystem.Models.csproj">
       <Project>{54ac05e1-f58a-4a92-ac0c-da1bc46c82b2}</Project>
       <Name>DocumentManagementSystem.Models</Name>

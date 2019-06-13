@@ -1,31 +1,45 @@
 ﻿using DocumentManagementSystem.Repository;
 using DocumentManagementSystem.Services;
-using Moq;
+using DocumentManagementSystem.UnitTest.Mockup;
 using NUnit.Framework;
-using System.Collections.Generic;
+using Unity;
+using Unity.Lifetime;
 
 namespace DocumentManagementSystem.UnitTest
 {
     [TestFixture]
     public class DocumentTypeUnitTest
     {
-        private Mock<IDocumentTypeRepository> mock;
-        private DocumentTypeService documentTypeService;
+        private IDocumentTypeService documentTypeService;
+
+        private IUnityContainer unityContainer; 
+
+        [OneTimeSetUp]
+        public void Init()
+        {
+            unityContainer.AddExtension(new DependencyExtensionUnitTest());
+            documentTypeService = unityContainer.Resolve<IDocumentTypeService>();
+
+        }
 
         [Test]
         public void GetAllDocumentTypes()
         {
-            List<Models.DocumentType> documentTypes = new List<Models.DocumentType>()
-            {
-                new Models.DocumentType { Id = 1 , Type = "Training" },
-                new Models.DocumentType { Id = 2 , Type = "Tax" }
-            };
-            mock = new Mock<IDocumentTypeRepository>();
-            mock.Setup(m => m.GetAllDocumentTypes()).Returns(documentTypes);
-
-            documentTypeService = new DocumentTypeService(mock.Object);
             var result = documentTypeService.GetAllDocumentTypes();
-            Assert.AreEqual(result.Count, 2);
+            Assert.AreEqual(result.Count, 3);
+        }
+
+        [Test]
+        public void GetDocumentType()
+        {
+            var result = documentTypeService.GetAllDocumentTypes();
+            Assert.AreEqual(result.Count, 3);
+        }
+
+        [OneTimeTearDown]
+        public void Cleanup()
+        {
+
         }
     }
 }
