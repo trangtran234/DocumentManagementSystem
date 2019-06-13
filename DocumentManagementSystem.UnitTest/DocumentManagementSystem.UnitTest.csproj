@@ -88,7 +88,8 @@
   <ItemGroup>
     <Compile Include="DocumentTypeUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Testcase.cs" />
+    <Compile Include="UnitTest\DocumentHistoryUnitTest.cs" />
+    <Compile Include="UnityConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
