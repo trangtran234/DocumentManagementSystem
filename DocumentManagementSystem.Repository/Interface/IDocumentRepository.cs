@@ -20,7 +20,7 @@ namespace DocumentManagementSystem.Repository
         Guid FindDocumentContent(int id);
         bool AddDocument(Document document, List<DocumentType> types);
         bool AddDocumentContent(DocumentContent documentContent);
-        bool UpdateDocument(Document document);
+        bool UpdateDocument(Models.Document document);
         List<Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId,out int totalRecords);
     }
 }

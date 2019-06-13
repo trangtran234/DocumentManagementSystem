@@ -18,7 +18,7 @@ namespace DocumentManagementSystem.Services
         Document GetDocumentByDocumentId(int id);
         void DeleteDocument(int id);
         bool AddDocument(Document document);
-        bool UpdateDocument(Document document);
+        bool UpdateDocument(Models.Document document);
         List<Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId, string propertyName, out int totalRecords);
         List<DocumentHistory> GetDocumentHistories(int documentId);
     }

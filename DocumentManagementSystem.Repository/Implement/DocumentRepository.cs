@@ -153,19 +153,20 @@ namespace DocumentManagementSystem.Repository
             }
         }
 
-        public bool UpdateDocument(Document document)
+        public bool UpdateDocument(Models.Document document)
         {
-            DeleteDocumentTypeByDocumentId(document.Id);
+            Document documentRepo = mapper.Map<Document>(document);
+            DeleteDocumentTypeByDocumentId(documentRepo.Id);
 
             try
             {
-                var documentDB = context.Documents.Find(document.Id);
-                documentDB.LastModified = document.LastModified;
+                var documentDB = context.Documents.Find(documentRepo.Id);
+                documentDB.LastModified = documentRepo.LastModified;
                 documentDB.LastModifiedBy = Helper.FAKE_USERID;
                 int isUpdateDocument = context.SaveChanges();
                 //attach instance to context
                 context.Documents.Attach(documentDB);                
-                foreach (var documentType in document.DocumentTypes.ToList())
+                foreach (var documentType in documentRepo.DocumentTypes.ToList())
                 {
                     DocumentType type = context.DocumentTypes.Find(documentType.Id);
                     //attach instance to context
@@ -177,7 +178,7 @@ namespace DocumentManagementSystem.Repository
                 int isEdited = context.SaveChanges();
                 if (isEdited != -1 && isUpdateDocument == 1)
                 {
-                    bool isSuccessed = historyRepository.AddDocumentHistory(document, Helper.HistoryAction.Edit);
+                    bool isSuccessed = historyRepository.AddDocumentHistory(documentRepo, Helper.HistoryAction.Edit);
                     return true;
                 }
             }

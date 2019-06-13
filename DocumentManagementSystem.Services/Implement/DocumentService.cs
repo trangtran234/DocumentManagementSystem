@@ -16,12 +16,10 @@ namespace DocumentManagementSystem.Services
     public class DocumentService : IDocumentService
     {
         private IDocumentRepository documentRepository;
-        private IMapper mapper;
         private readonly IDocumentHistoryRepository documentHistoryRepository;
-        public DocumentService(IDocumentRepository documentRepository, IAutoMapperConfig mapper, IDocumentHistoryRepository documentHistoryRepository)
+        public DocumentService(IDocumentRepository documentRepository, IDocumentHistoryRepository documentHistoryRepository)
         {
             this.documentRepository = documentRepository;
-            this.mapper = mapper.GetMapper();
             this.documentHistoryRepository = documentHistoryRepository;
         }
 
@@ -112,8 +110,7 @@ namespace DocumentManagementSystem.Services
         {
             var currentDay = DateTime.Now;
             document.LastModified = currentDay;
-            Repository.Document documentRepo = mapper.Map<Repository.Document>(document);
-            return documentRepository.UpdateDocument(documentRepo);
+            return documentRepository.UpdateDocument(document);
         }
 
         public List<Models.Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId, string propertyName, out int totalRecords)
