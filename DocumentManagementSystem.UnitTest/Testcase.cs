@@ -1,11 +1,8 @@
-﻿using DocumentManagementSystem.Models;
-using DocumentManagementSystem.Models.Common;
+﻿using DocumentManagementSystem.Models.Common;
 using DocumentManagementSystem.Repository;
 using DocumentManagementSystem.Repository.DependencyExtension;
 using DocumentManagementSystem.Repository.Interface;
 using DocumentManagementSystem.Services;
-using DocumentManagementSystem.Services.Automapper;
-using DocumentManagementSystem.Services.DependencyExtension;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -38,7 +35,7 @@ namespace DocumentManagementSystem.UnitTest
 
             var actualResult = documentService.GetDocumentHistories(documentHistoryId);
             
-            Assert.AreNotEqual(actualResult.Count, 2);
+            Assert.AreEqual(actualResult.Count, 2);
         }
     }
 }
