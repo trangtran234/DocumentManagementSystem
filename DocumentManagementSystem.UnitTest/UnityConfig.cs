@@ -18,8 +18,9 @@ namespace DocumentManagementSystem.UnitTest
         [OneTimeSetUp]
         public static void RegisterComponents()
         {
-            container.AddExtension(new DependencyExtensionRepository());
-            container.AddExtension(new DependencyExtensionService());
+            //container.AddExtension(new DependencyExtensionRepository());
+            //container.AddExtension(new DependencyExtensionService());
+            container.AddExtension(new DependencyExtensionUnitTest());
         }
     }
 }

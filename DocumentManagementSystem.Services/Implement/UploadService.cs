@@ -1,5 +1,4 @@
-﻿using DocumentManagementSystem.Models;
-using DocumentManagementSystem.Repository;
+﻿using DocumentManagementSystem.IRepository;
 using DocumentManagementSystem.Services.Interface;
 using System;
 using System.Collections.Generic;
