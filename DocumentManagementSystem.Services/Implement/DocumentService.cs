@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using DocumentManagementSystem.IRepository;
 using DocumentManagementSystem.Models;
-using DocumentManagementSystem.Repository.Interface;
 
 namespace DocumentManagementSystem.Services
 {

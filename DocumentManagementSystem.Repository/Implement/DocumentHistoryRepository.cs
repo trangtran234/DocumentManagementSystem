@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using DocumentManagementSystem.IRepository;
 using DocumentManagementSystem.Models.Common;
 using DocumentManagementSystem.Repository.Automapper;
-using DocumentManagementSystem.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

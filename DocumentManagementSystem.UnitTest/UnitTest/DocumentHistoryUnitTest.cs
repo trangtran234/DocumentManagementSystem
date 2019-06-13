@@ -1,9 +1,5 @@
 ﻿using DocumentManagementSystem.Models.Common;
-using DocumentManagementSystem.Repository;
-using DocumentManagementSystem.Repository.DependencyExtension;
-using DocumentManagementSystem.Repository.Interface;
 using DocumentManagementSystem.Services;
-using DocumentManagementSystem.Services.DependencyExtension;
 using DocumentManagementSystem.UnitTest.Mockup;
 using Moq;
 using NUnit.Framework;

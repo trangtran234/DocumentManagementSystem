@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Linq.Expressions;
 using System.Linq.Dynamic;
 using DocumentManagementSystem.Models.Common;
-using DocumentManagementSystem.Repository.Interface;
 using DocumentManagementSystem.Repository.Automapper;
 using AutoMapper;
 using DocumentManagementSystem.IRepository;

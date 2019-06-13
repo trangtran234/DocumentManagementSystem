@@ -1,7 +1,6 @@
-﻿using DocumentManagementSystem.Models;
+﻿using DocumentManagementSystem.IRepository;
+using DocumentManagementSystem.Models;
 using DocumentManagementSystem.Models.Common;
-using DocumentManagementSystem.Repository;
-using DocumentManagementSystem.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DocumentManagementSystem.Repository.Interface
+namespace DocumentManagementSystem.IRepository
 {
     public interface IDocumentHistoryRepository
     {
