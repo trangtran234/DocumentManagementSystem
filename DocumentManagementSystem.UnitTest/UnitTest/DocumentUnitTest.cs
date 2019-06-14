@@ -28,17 +28,15 @@ namespace DocumentManagementSystem.UnitTest.UnitTest
         public void GetLazyLoad(bool desc, int page, int pageSize, int parentId, string propertyName)
         {
             int totalRecords;
-            List<Document> expected = documentRepository.LazyLoadDocuments(propertyName, desc, page, pageSize, parentId, out totalRecords);
-
+            List<Document> expectedDocument = documentRepository.LazyLoadDocuments(propertyName, desc, page, pageSize, parentId, out totalRecords);
             List<Document> documents = documentService.LazyLoadDocuments(desc, page, pageSize, parentId, propertyName, out totalRecords);
-            foreach(Document document in documents)
+            if(expectedDocument.Count != documents.Count)
             {
-                Console.WriteLine(document.DocumentType, 
-                    document.DocumentName, 
-                    document.Created, 
-                    document.CreatedBy.Username, 
-                    document.LastModified, 
-                    document.LastModifiedBy.Username);
+                Assert.Fail();
+            }
+            for(int i =0; i < expectedDocument.Count; i++)
+            {
+                Assert.AreEqual(expectedDocument[i], documents[i]);
             }
         }
 

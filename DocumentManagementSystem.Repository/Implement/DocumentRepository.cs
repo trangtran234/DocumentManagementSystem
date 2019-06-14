@@ -110,11 +110,11 @@ namespace DocumentManagementSystem.Repository
 
                 //Trang added code for feature Add Document History
                 int isAdded = context.SaveChanges();
-                if (isAdded != -1)
-                {
-                    bool isSuccessed = historyRepository.AddDocumentHistory(document, Helper.HistoryAction.Upload);
-                    return true;
-                }
+                //if (isAdded != -1)
+                //{
+                //    bool isSuccessed = historyRepository.AddDocumentHistory(document, Helper.HistoryAction.Upload);
+                //    return true;
+                //}
             }
             catch(Exception e)
             {
