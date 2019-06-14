@@ -10,14 +10,20 @@ namespace DocumentManagementSystem.UnitTest.Mockup
 {
     public class DocumentMockup : IDocumentRepository
     {
+        private List<Document> documents = new List<Document>();
+        private List<DocumentContent> contents = new List<DocumentContent>();
+
         public bool AddDocument(Document document, List<DocumentType> types)
         {
-            throw new NotImplementedException();
+            document.DocumentTypes = types;
+            documents.Add(document);
+            return true;
         }
 
         public bool AddDocumentContent(DocumentContent documentContent)
         {
-            throw new NotImplementedException();
+            contents.Add(documentContent);
+            return true;
         }
 
         public void DeleteDocument(int id)
