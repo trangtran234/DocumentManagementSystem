@@ -10,13 +10,13 @@ namespace DocumentManagementSystem.UnitTest.Mockup
 {
     public class DocumentTypeMockup : IDocumentTypeRepository
     {
-        public List<Models.DocumentType> GetAllDocumentTypes()
+        public List<DocumentType> GetAllDocumentTypes()
         {
-            List<Models.DocumentType> documentTypes = new List<Models.DocumentType>()
+            List<DocumentType> documentTypes = new List<Models.DocumentType>()
             {
-                new Models.DocumentType { Id = 1 , Type = "Training" },
-                new Models.DocumentType { Id = 2 , Type = "Tax" },
-                new Models.DocumentType { Id = 3 , Type = "HR" }
+                new DocumentType { Id = 1 , Type = "Training" },
+                new DocumentType { Id = 2 , Type = "Tax" },
+                new DocumentType { Id = 3 , Type = "HR" }
             };
             return documentTypes;
         }

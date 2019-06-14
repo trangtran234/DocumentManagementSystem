@@ -21,6 +21,8 @@ namespace DocumentManagementSystem.UnitTest
         {
             Container.RegisterType<IDocumentTypeRepository, DocumentTypeMockup>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDocumentTypeService, DocumentTypeService>(new ContainerControlledLifetimeManager());
+
+            Container.RegisterType<IDocumentRepository, UploadDocumentMockup>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IUploadService, UploadService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDocumentService, DocumentService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDocumentRepository, DocumentMockup>(new ContainerControlledLifetimeManager());

@@ -60,9 +60,9 @@ namespace DocumentManagementSystem.Services
             return documentRepository.UpdateDocument(document);
         }
 
-        public List<Models.Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId, string propertyName, out int totalRecords)
+        public List<Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId, string propertyName, out int totalRecords)
         {
-            List<Models.Document> documents = documentRepository.LazyLoadDocuments(propertyName, desc, page, pageSize, parentId, out totalRecords);
+            List<Document> documents = documentRepository.LazyLoadDocuments(propertyName, desc, page, pageSize, parentId, out totalRecords);
 
             return documents;
         }
