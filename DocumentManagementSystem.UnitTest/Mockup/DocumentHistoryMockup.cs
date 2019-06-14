@@ -11,7 +11,7 @@ namespace DocumentManagementSystem.UnitTest.Mockup
 {
     public class DocumentHistoryMockup : IDocumentHistoryRepository
     {
-        private readonly List<Models.DocumentHistory> documentHistories = new List<Models.DocumentHistory>();
+        private List<Models.DocumentHistory> documentHistories = new List<Models.DocumentHistory>();
         
         public bool AddDocumentHistory(Models.Document document, Helper.HistoryAction actionEvent)
         {
