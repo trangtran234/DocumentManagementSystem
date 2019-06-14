@@ -1,4 +1,5 @@
 ﻿using DocumentManagementSystem.IRepository;
+using DocumentManagementSystem.Models;
 using DocumentManagementSystem.Models.Common;
 using DocumentManagementSystem.Services;
 using DocumentManagementSystem.UnitTest.Mockup;
@@ -26,77 +27,64 @@ namespace DocumentManagementSystem.UnitTest
             documentService = UnityConfig.container.Resolve<IDocumentService>();
         }
 
-        [Test]
-        public void GetDocumentHistories_WhenAddingDocument()
+        private void GetDocumentHistories_WhenAddingDocument(Document document)
         {
-            int documentId = 1;
-            string documentName = "Test";
-            string documentType = Helper.DocumentType.docx.ToString();
-
-            Models.Document document = new Models.Document()
-            {
-                Id = documentId,
-                DocumentName = documentName,
-                DocumentType = documentType
-            };
             documentHistoryMockup.AddDocumentHistory(document, Helper.HistoryAction.Upload);
 
-            var result = documentService.GetDocumentHistories(documentId);
-            Assert.AreNotEqual(result.Count, 0);
-            var action = result.Where(d => d.DocumentId == documentId && d.ActionEvent == Helper.HistoryAction.Upload).FirstOrDefault();
+            var result = documentService.GetDocumentHistories(document.Id);
+            var action = result.Where(d => d.DocumentId == document.Id && d.ActionEvent == Helper.HistoryAction.Upload).FirstOrDefault();
             Assert.AreNotEqual(action, null);
         }
 
         [Test]
-        public void GetDocumentHistories_WhenEditingDocument()
+        public void GetDocumentHistories_WhenAddingOneDocument()
         {
-            int documentId = 1;
-            string documentName = "TestEdit";
-            string documentType = Helper.DocumentType.docx.ToString();
-
-            Models.Document document = new Models.Document()
+            Document document = new Document()
             {
-                Id = documentId,
-                DocumentName = documentName,
-                DocumentType = documentType
+                Id = 1,
+                DocumentName = "TestAdding",
+                DocumentType = Helper.DocumentType.docx.ToString()
             };
 
-            var result = documentService.GetDocumentHistories(documentId);
-            var actionsEdit = result.Where(d => d.DocumentId == documentId && d.ActionEvent == Helper.HistoryAction.Edit).ToList();
+            GetDocumentHistories_WhenAddingDocument(document);
+        }
+
+        [TestCaseSource(typeof(Data), "documentsAddingForTestDocumentHistory")]
+        public void GetDocumentHistories_WhenAddingOneMoreDocument(Document document)
+        {
+            GetDocumentHistories_WhenAddingDocument(document);
+        }
+
+        private void GetDocumentHistories_WhenEditingDocument(Document document)
+        {
+            var result = documentService.GetDocumentHistories(document.Id);
+            var actionsEdit = result.Where(d => d.DocumentId == document.Id && d.ActionEvent == Helper.HistoryAction.Edit).ToList();
             var actionEditLengh = actionsEdit.Count;
 
             documentHistoryMockup.AddDocumentHistory(document, Helper.HistoryAction.Edit);
-            result = documentService.GetDocumentHistories(documentId);
-            actionsEdit = result.Where(d => d.DocumentId == documentId && d.ActionEvent == Helper.HistoryAction.Edit).ToList();
+            result = documentService.GetDocumentHistories(document.Id);
+            actionsEdit = result.Where(d => d.DocumentId == document.Id && d.ActionEvent == Helper.HistoryAction.Edit).ToList();
             Assert.Greater(actionsEdit.Count, actionEditLengh);
+            actionEditLengh = actionsEdit.Count;
         }
 
         [Test]
-        public void GetDocumentHistories_WhenEditingMoreThanOne()
+        public void GetDocumentHistories_WhenEditingOneTime()
         {
-            int documentId = 1;
-            string documentName = "TestEdit";
-            string documentType = Helper.DocumentType.docx.ToString();
-
-            Models.Document document = new Models.Document()
+            Document document = new Document()
             {
-                Id = documentId,
-                DocumentName = documentName,
-                DocumentType = documentType
+                Id = 1,
+                DocumentName = "TestEditing",
+                DocumentType = Helper.DocumentType.docx.ToString()
             };
 
-            var result = documentService.GetDocumentHistories(documentId);
-            var actionsEdit = result.Where(d => d.DocumentId == documentId && d.ActionEvent == Helper.HistoryAction.Edit).ToList();
-            var actionEditLengh = actionsEdit.Count;
+            GetDocumentHistories_WhenEditingDocument(document);
+        }
 
-            for (int i = 0; i <= 5; i++)
-            {
-                documentHistoryMockup.AddDocumentHistory(document, Helper.HistoryAction.Edit);
-                result = documentService.GetDocumentHistories(documentId);
-                actionsEdit = result.Where(d => d.DocumentId == documentId && d.ActionEvent == Helper.HistoryAction.Edit).ToList();
-                Assert.Greater(actionsEdit.Count, actionEditLengh);
-                actionEditLengh = actionsEdit.Count;
-            }
+        [TestCaseSource(typeof(Data), "documentsEditingForTestDocumentHistory")]
+        public void GetDocumentHistories_WhenEditingMoreThanOneTime(Document document)
+        {
+            GetDocumentHistories_WhenEditingDocument(document);
         }
     }
 }
