@@ -18,14 +18,13 @@ namespace DocumentManagementSystem.UnitTest.UnitTest
             uploadService = UnityConfig.container.Resolve<IUploadService>();
         }
 
-        [TestCaseSource(typeof(Data),"documents")]
-        public void AddDocument(Document document, int expected)
+        [TestCaseSource(typeof(Data), "uploadCases")]
+        public void AddDocument(Document document, bool expected)
         {
             bool actual = uploadService.AddDocument(document);
-            bool expectedResult = expected == 1 ? true : false;
             try
             {
-                Assert.AreEqual(expectedResult, actual);
+                Assert.AreEqual(expected, actual);
             }catch(Exception e)
             {
                 Console.WriteLine(e.Message);
