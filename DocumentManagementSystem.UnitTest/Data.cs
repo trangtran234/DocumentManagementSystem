@@ -1,4 +1,5 @@
 ﻿using DocumentManagementSystem.Models;
+using DocumentManagementSystem.Models.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -295,6 +296,24 @@ namespace DocumentManagementSystem.UnitTest
             new object[] {false, 0, 5, 1, "DocumentName"},
             new object[] {true, 1, 5, 1, "Created"},
             new object[] {false, 0, 5, 2, "Created"},
+        };
+
+        static List<Document> documentsAddingForTestDocumentHistory = new List<Document>()
+        {
+            new Document { Id = 1, DocumentName = "TestHistory_Adding_1", DocumentType = Helper.DocumentType.docx.ToString() },
+            new Document { Id = 2, DocumentName = "TestHistory_Adding_2", DocumentType = Helper.DocumentType.docx.ToString() },
+            new Document { Id = 3, DocumentName = "TestHistory_Adding_3", DocumentType = Helper.DocumentType.docx.ToString() },
+            new Document { Id = 4, DocumentName = "TestHistory_Adding_4", DocumentType = Helper.DocumentType.docx.ToString() },
+            new Document { Id = 5, DocumentName = "TestHistory_Adding_5", DocumentType = Helper.DocumentType.docx.ToString() }
+        };
+
+        static List<Document> documentsEditingForTestDocumentHistory = new List<Document>()
+        {
+            new Document { Id = 1, DocumentName = "TestHistory_Editing_1", DocumentType = Helper.DocumentType.docx.ToString() },
+            new Document { Id = 1, DocumentName = "TestHistory_Editing_2", DocumentType = Helper.DocumentType.docx.ToString() },
+            new Document { Id = 1, DocumentName = "TestHistory_Editing_3", DocumentType = Helper.DocumentType.docx.ToString() },
+            new Document { Id = 1, DocumentName = "TestHistory_Editing_4", DocumentType = Helper.DocumentType.docx.ToString() },
+            new Document { Id = 1, DocumentName = "TestHistory_Editing_5", DocumentType = Helper.DocumentType.docx.ToString() }
         };
     }
 }
