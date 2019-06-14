@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DocumentManagementSystem.IRepository;
 using DocumentManagementSystem.Models;
 
@@ -70,6 +71,42 @@ namespace DocumentManagementSystem.Services
         {
             List<Models.DocumentHistory> documentHistories = documentHistoryRepository.GetDocumentHistories(documentId);
             return documentHistories;
+        }
+
+        private void GetTreeView(List<DocumentTreeView> list, DocumentTreeView current, ref List<DocumentTreeView> returnList)
+        {
+            var childs = list.Where(c => c.ParentId == current.Id).ToList();
+            current.Childrens = new List<DocumentTreeView>();
+            current.Childrens.AddRange(childs);
+            foreach (var item in childs)
+            {
+                GetTreeView(list, item, ref returnList);
+            }
+        }
+
+        private List<DocumentTreeView> BuildTree(List<DocumentTreeView> list)
+        {
+            List<DocumentTreeView> returnList = new List<DocumentTreeView>();
+            var topLevels = list.Where(a => a.ParentId == 0);
+            returnList.AddRange(topLevels);
+            foreach (var item in topLevels)
+            {
+                GetTreeView(list, item, ref returnList);
+            }
+
+            return returnList;
+        }
+
+        public List<DocumentTreeView> GetFileStructure()
+        {
+            List<DocumentTreeView> list = GetFolders();
+
+            List<DocumentTreeView> treelist = new List<DocumentTreeView>();
+            if (list.Count() > 0)
+            {
+                treelist = BuildTree(list);
+            }
+            return treelist;
         }
     }
 }

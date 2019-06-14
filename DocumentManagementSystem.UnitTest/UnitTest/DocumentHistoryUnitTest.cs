@@ -40,6 +40,7 @@ namespace DocumentManagementSystem.UnitTest
             historyMockup.AddDocumentHistory(document, Helper.HistoryAction.Edit);
 
             var result = documentService.GetDocumentHistories(documentId);
+            var count = historyMockup.GetDocumentHistories(documentId);
             Assert.AreEqual(result.Count, 2);
         }
     }

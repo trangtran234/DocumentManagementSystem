@@ -20,5 +20,6 @@ namespace DocumentManagementSystem.Services
         bool UpdateDocument(Models.Document document);
         List<Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId, string propertyName, out int totalRecords);
         List<DocumentHistory> GetDocumentHistories(int documentId);
+        List<DocumentTreeView> GetFileStructure();
     }
 }
