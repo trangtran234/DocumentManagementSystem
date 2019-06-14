@@ -24,9 +24,11 @@ namespace DocumentManagementSystem.Services.Implement
             document.Created = currentDay;
             document.LastModified = currentDay;
 
-            if (document.DocumentType != null
+            if (document.DocumentType.ToUpper() != Common.DocumentType.folder.ToString().ToUpper()
                 && document.DocumentContent != null
-                && document.DocumentSize <= Common.LIMITED_FILE_SIZE)
+                && ( document.ParentId != 0 || document.ParentId.ToString() != null)
+                && (document.DocumentSize > Common.MIX_FILE_SIZE 
+                && document.DocumentSize <= Common.LIMITED_FILE_SIZE ))
             {
                 Models.DocumentContent content = new Models.DocumentContent();
 

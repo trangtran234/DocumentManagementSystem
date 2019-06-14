@@ -9,6 +9,7 @@ namespace DocumentManagementSystem.Services
     public class Common
     {
         public static int LIMITED_FILE_SIZE = 1048576;
+        public static int MIX_FILE_SIZE = 0;
 
         public static string[] GetDocumentTypes(string s, string condition)
         {
