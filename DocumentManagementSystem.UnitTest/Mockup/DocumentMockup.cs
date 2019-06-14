@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Dynamic;
 
 namespace DocumentManagementSystem.UnitTest.Mockup
 {
@@ -68,7 +69,23 @@ namespace DocumentManagementSystem.UnitTest.Mockup
 
         public List<Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId, out int totalRecords)
         {
-            throw new NotImplementedException();
+            var documents = Data.documents.Where(d => d.ParentId.Equals(null));
+            if(parentId != 0)
+            {
+                documents = Data.documents.Where(d => d.ParentId == parentId);
+            }
+            totalRecords = documents.Count();
+
+            int skipRows = page * pageSize;
+            if (desc)
+            {
+                documents = documents.OrderBy(propertyName + " desc").Skip(skipRows).Take(pageSize);
+            }
+            else
+            {
+                documents = documents.OrderBy(propertyName + " asc").Skip(skipRows).Take(pageSize);
+            }
+            return documents.ToList();
         }
 
         public bool UpdateDocument(Document document)

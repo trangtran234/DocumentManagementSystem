@@ -1,5 +1,4 @@
-﻿using DocumentManagementSystem.Repository.DependencyExtension;
-using DocumentManagementSystem.Services.DependencyExtension;
+﻿using DocumentManagementSystem.Services.DependencyExtension;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
