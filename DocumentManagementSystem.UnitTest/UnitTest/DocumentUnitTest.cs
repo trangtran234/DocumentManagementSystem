@@ -42,6 +42,33 @@ namespace DocumentManagementSystem.UnitTest.UnitTest
             }
         }
 
+        [Test]
+        public void UpdateDocument()
+        {
+            List<Document> documents = Data.documents;
+            foreach (var item in documents)
+            {
+                documentRepository.AddDocument(item, item.DocumentTypes.ToList());
+            }
+
+            Document document = documents.First();
+            List<DocumentType> documentTypeUpdating = new List<DocumentType>
+                {
+                    new DocumentType{Id = 1, Type = "HR"},
+                    new DocumentType{Id = 2, Type = "IT"},
+                    new DocumentType{Id = 3, Type = "Admin"}
+                };
+            document.DocumentTypes.Clear();
+            foreach (var item in documentTypeUpdating)
+            {
+                document.DocumentTypes.Add(item);
+            }
+
+            documentService.UpdateDocument(document);
+            Document actualDocument = documentService.GetDocumentByDocumentId(document.Id);
+            Assert.AreEqual(actualDocument.DocumentTypes.Count, documentTypeUpdating.Count);
+        }
+
         [OneTimeTearDown]
         public void Cleanup() { }
     }

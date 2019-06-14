@@ -105,6 +105,11 @@ namespace DocumentManagementSystem.UnitTest
                 {
                     Id = 1,
                     Username = "IT"
+                },
+                DocumentTypes = new List<DocumentType>
+                {
+                    new DocumentType{Id = 1, Type = "HR"},
+                    new DocumentType{Id = 2, Type = "IT"}
                 }
             },
 
@@ -123,6 +128,12 @@ namespace DocumentManagementSystem.UnitTest
                 {
                     Id = 1,
                     Username = "IT"
+                },
+                DocumentTypes = new List<DocumentType>
+                {
+                    new DocumentType{Id = 1, Type = "HR"},
+                    new DocumentType{Id = 2, Type = "IT"},
+                    new DocumentType{Id = 3, Type = "Admin"}
                 }
             },
 
@@ -141,6 +152,10 @@ namespace DocumentManagementSystem.UnitTest
                 {
                     Id = 1,
                     Username = "IT"
+                },
+                DocumentTypes = new List<DocumentType>
+                {
+                    new DocumentType{Id = 1, Type = "HR"}
                 }
             },
 
@@ -159,6 +174,12 @@ namespace DocumentManagementSystem.UnitTest
                 {
                     Id = 1,
                     Username = "IT"
+                },
+                DocumentTypes = new List<DocumentType>
+                {
+                    new DocumentType{Id = 1, Type = "HR"},
+                    new DocumentType{Id = 2, Type = "IT"},
+                    new DocumentType{Id = 3, Type = "Admin"}
                 }
             },
 
@@ -177,6 +198,10 @@ namespace DocumentManagementSystem.UnitTest
                 {
                     Id = 1,
                     Username = "IT"
+                },
+                DocumentTypes = new List<DocumentType>
+                {
+                    new DocumentType{Id = 3, Type = "Admin"}
                 }
             },
 
@@ -195,6 +220,12 @@ namespace DocumentManagementSystem.UnitTest
                 {
                     Id = 1,
                     Username = "IT"
+                },
+                DocumentTypes = new List<DocumentType>
+                {
+                    new DocumentType{Id = 1, Type = "HR"},
+                    new DocumentType{Id = 2, Type = "IT"},
+                    new DocumentType{Id = 3, Type = "Admin"}
                 }
             },
 
@@ -213,6 +244,11 @@ namespace DocumentManagementSystem.UnitTest
                 {
                     Id = 1,
                     Username = "IT"
+                },
+                DocumentTypes = new List<DocumentType>
+                {
+                    new DocumentType{Id = 1, Type = "HR"},
+                    new DocumentType{Id = 2, Type = "IT"}
                 }
             },
 
@@ -231,6 +267,12 @@ namespace DocumentManagementSystem.UnitTest
                 {
                     Id = 1,
                     Username = "IT"
+                },
+                DocumentTypes = new List<DocumentType>
+                {
+                    new DocumentType{Id = 1, Type = "HR"},
+                    new DocumentType{Id = 2, Type = "IT"},
+                    new DocumentType{Id = 3, Type = "Admin"}
                 }
             },
 
@@ -249,6 +291,11 @@ namespace DocumentManagementSystem.UnitTest
                 {
                     Id = 1,
                     Username = "IT"
+                },
+                DocumentTypes = new List<DocumentType>
+                {
+                    new DocumentType{Id = 2, Type = "IT"},
+                    new DocumentType{Id = 3, Type = "Admin"}
                 }
             },
 
@@ -267,6 +314,12 @@ namespace DocumentManagementSystem.UnitTest
                 {
                     Id = 1,
                     Username = "IT"
+                },
+                DocumentTypes = new List<DocumentType>
+                {
+                    new DocumentType{Id = 1, Type = "HR"},
+                    new DocumentType{Id = 2, Type = "IT"},
+                    new DocumentType{Id = 3, Type = "Admin"}
                 }
             },
 
@@ -285,9 +338,14 @@ namespace DocumentManagementSystem.UnitTest
                 {
                     Id = 1,
                     Username = "IT"
+                },
+                DocumentTypes = new List<DocumentType>
+                {
+                    new DocumentType{Id = 1, Type = "HR"},
+                    new DocumentType{Id = 2, Type = "IT"},
+                    new DocumentType{Id = 3, Type = "Admin"}
                 }
-            },
-
+            }
         };
 
         static object[] lazyLoadCases =
@@ -296,15 +354,6 @@ namespace DocumentManagementSystem.UnitTest
             new object[] {false, 0, 5, 1, "DocumentName"},
             new object[] {true, 1, 5, 1, "Created"},
             new object[] {false, 0, 5, 2, "Created"},
-        };
-
-        static List<Document> documentsAddingForTestDocumentHistory = new List<Document>()
-        {
-            new Document { Id = 1, DocumentName = "TestHistory_Adding_1", DocumentType = Helper.DocumentType.docx.ToString() },
-            new Document { Id = 2, DocumentName = "TestHistory_Adding_2", DocumentType = Helper.DocumentType.docx.ToString() },
-            new Document { Id = 3, DocumentName = "TestHistory_Adding_3", DocumentType = Helper.DocumentType.docx.ToString() },
-            new Document { Id = 4, DocumentName = "TestHistory_Adding_4", DocumentType = Helper.DocumentType.docx.ToString() },
-            new Document { Id = 5, DocumentName = "TestHistory_Adding_5", DocumentType = Helper.DocumentType.docx.ToString() }
         };
 
         static List<Document> documentsEditingForTestDocumentHistory = new List<Document>()

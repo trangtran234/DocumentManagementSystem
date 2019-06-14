@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Dynamic;
+using DocumentManagementSystem.Models.Common;
 
 namespace DocumentManagementSystem.UnitTest.Mockup
 {
@@ -49,7 +50,8 @@ namespace DocumentManagementSystem.UnitTest.Mockup
 
         public Document GetDocumentByDocumentId(int id)
         {
-            throw new NotImplementedException();
+            var document = documents.Where(d => d.Id == id).FirstOrDefault();
+            return document;
         }
 
         public List<Document> GetDocumentByParentId(int id)
@@ -90,7 +92,19 @@ namespace DocumentManagementSystem.UnitTest.Mockup
 
         public bool UpdateDocument(Document document)
         {
-            throw new NotImplementedException();
+            var documentUpdating = documents.Where(d => d.Id == document.Id).FirstOrDefault();
+            documentUpdating.LastModified = document.LastModified;
+            documentUpdating.LastModifiedBy.Id = Helper.FAKE_USERID;
+            documentUpdating.DocumentTypes.Clear();
+            foreach(var item in document.DocumentTypes)
+            {
+                documentUpdating.DocumentTypes.Add(item);
+            }
+
+            documents.Remove(documents.Where(d => d.Id == document.Id).First());
+            documents.Add(documentUpdating);
+
+            return true;
         }
     }
 }

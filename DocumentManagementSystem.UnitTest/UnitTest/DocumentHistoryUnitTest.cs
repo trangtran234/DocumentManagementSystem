@@ -49,7 +49,7 @@ namespace DocumentManagementSystem.UnitTest
             GetDocumentHistories_WhenAddingDocument(document);
         }
 
-        [TestCaseSource(typeof(Data), "documentsAddingForTestDocumentHistory")]
+        [TestCaseSource(typeof(Data), "documents")]
         public void GetDocumentHistories_WhenAddingOneMoreDocument(Document document)
         {
             GetDocumentHistories_WhenAddingDocument(document);
