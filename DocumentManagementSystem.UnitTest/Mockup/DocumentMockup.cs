@@ -45,7 +45,8 @@ namespace DocumentManagementSystem.UnitTest.Mockup
 
         public List<Document> GetAllDocuments()
         {
-            throw new NotImplementedException();
+            List<Document> documentsMockup = documents;
+            return documentsMockup;
         }
 
         public Document GetDocumentByDocumentId(int id)
@@ -56,17 +57,43 @@ namespace DocumentManagementSystem.UnitTest.Mockup
 
         public List<Document> GetDocumentByParentId(int id)
         {
-            throw new NotImplementedException();
+            List<Document> documentsById = documents.Where(d => d.ParentId == id).ToList();
+            return documentsById;
         }
 
         public List<DocumentTreeView> GetFolders()
         {
-            throw new NotImplementedException();
+            List<Document> documentsMockup = documents.Where(d => d.DocumentType == Helper.DocumentType.folder.ToString()).ToList();
+
+            List<DocumentTreeView> documentsTree = new List<DocumentTreeView>();
+            foreach(var item in documentsMockup)
+            {
+                DocumentTreeView documentTree = new DocumentTreeView
+                {
+                    Id = item.Id,
+                    DocumentName = item.DocumentName,
+                    ParentId = item.ParentId
+                };
+                documentsTree.Add(documentTree);
+            }
+
+            return documentsTree;
         }
 
         public List<DocumentTreeView> GetFoldersByFolderId(int id)
         {
-            throw new NotImplementedException();
+            List<Document> documentsMockup = documents.Where(d => d.ParentId == id && d.DocumentType == Helper.DocumentType.folder.ToString()).ToList();
+            DocumentTreeView documentTree = new DocumentTreeView();
+            List<DocumentTreeView> documentsTree = new List<DocumentTreeView>();
+            foreach (var item in documentsMockup)
+            {
+                documentTree.Id = item.Id;
+                documentTree.DocumentName = item.DocumentName;
+                documentTree.ParentId = item.ParentId;
+                documentsTree.Add(documentTree);
+            }
+
+            return documentsTree;
         }
 
         public List<Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId, out int totalRecords)
@@ -95,16 +122,15 @@ namespace DocumentManagementSystem.UnitTest.Mockup
             var documentUpdating = documents.Where(d => d.Id == document.Id).FirstOrDefault();
             documentUpdating.LastModified = document.LastModified;
             documentUpdating.LastModifiedBy.Id = Helper.FAKE_USERID;
-            documentUpdating.DocumentTypes.Clear();
-            foreach(var item in document.DocumentTypes)
-            {
-                documentUpdating.DocumentTypes.Add(item);
-            }
 
             documents.Remove(documents.Where(d => d.Id == document.Id).First());
+            int lengh = documents.Count;
             documents.Add(documentUpdating);
-
-            return true;
+            if (documents.Count > lengh)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -67,6 +67,73 @@ namespace DocumentManagementSystem.UnitTest.UnitTest
             Assert.AreEqual(actualDocument.DocumentTypes.Count, documentTypeUpdating.Count);
         }
 
+        [Test]
+        public void GetAllDocument()
+        {
+            List<Document> documents = Data.documents;
+            foreach (var item in documents)
+            {
+                documentRepository.AddDocument(item, item.DocumentTypes.ToList());
+            }
+
+            List<Document> actualDocuments = documentService.GetAllDocument();
+            Assert.AreEqual(actualDocuments.Count, documents.Count);
+        }
+
+        [Test]
+        public void GetDocumentByParentId()
+        {
+            int parentId = 1;
+            List<Document> documents = Data.documents;
+            foreach (var item in documents)
+            {
+                documentRepository.AddDocument(item, item.DocumentTypes.ToList());
+            }
+
+            List<Document> actualDocuments = documentService.GetDocumentByParentId(parentId);
+            Assert.Greater(actualDocuments.Count, 0);
+        }
+
+        [Test]
+        public void GetFolders()
+        {
+            List<Document> documents = Data.documents;
+            foreach (var item in documents)
+            {
+                documentRepository.AddDocument(item, item.DocumentTypes.ToList());
+            }
+
+            List<DocumentTreeView> documentsTree = documentService.GetFolders();
+            Assert.Greater(documentsTree.Count, 0);
+        }
+
+        [Test]
+        public void GetFoldersByFolderId()
+        {
+            int parentId = 1;
+            List<Document> documents = Data.documents;
+            foreach (var item in documents)
+            {
+                documentRepository.AddDocument(item, item.DocumentTypes.ToList());
+            }
+
+            List<DocumentTreeView> documentsTree = documentService.GetFoldersByFolderId(parentId);
+            Assert.Greater(documentsTree.Count, 0);
+        }
+
+        [Test]
+        public void GetFileStructure()
+        {
+            List<Document> documents = Data.documents;
+            foreach (var item in documents)
+            {
+                documentRepository.AddDocument(item, item.DocumentTypes.ToList());
+            }
+
+            List<DocumentTreeView> folderStructured = documentService.GetFileStructure();
+            Assert.Greater(folderStructured.Count, 0);
+        }
+
         [OneTimeTearDown]
         public void Cleanup() { }
     }
