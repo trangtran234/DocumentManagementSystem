@@ -38,6 +38,10 @@ namespace DocumentManagementSystem.Repository.Automapper
                 cfg.CreateMap<Models.DocumentType, Repository.DocumentType>();
                 cfg.CreateMap<Repository.DocumentHistory, Models.DocumentHistory>()
                                         .ForMember(model => model.ActionEvent, opt => opt.MapFrom(repo => (Helper.HistoryAction)Enum.ToObject(typeof(Helper.HistoryAction), repo.ActionId)));
+
+                cfg.CreateMap<Models.Document, DocumentContent>()
+                                        .ForMember(repo => repo.Id, model => model.MapFrom(src => src.DocumentContentId))
+                                        .ForMember(repo => repo.Content, model => model.MapFrom(src => src.DocumentContent));
                 //.ForMember();
                 //lots more maps...here!
             });

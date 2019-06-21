@@ -30,11 +30,7 @@ namespace DocumentManagementSystem.Services.Implement
                 && (document.DocumentSize > Common.MIX_FILE_SIZE 
                 && document.DocumentSize <= Common.LIMITED_FILE_SIZE ))
             {
-                Models.DocumentContent content = new Models.DocumentContent();
-
-                content.Id = Guid.NewGuid();
-                document.DocumentContentId = content.Id;
-                content.Content = document.DocumentContent;
+                document.DocumentContentId = Guid.NewGuid();
 
                 List<Models.DocumentType> types = new List<Models.DocumentType>();
                 foreach (Models.DocumentType dt in document.DocumentTypes)
@@ -48,7 +44,7 @@ namespace DocumentManagementSystem.Services.Implement
 
                 document.DocumentTypes = null;
 
-                if (documentRepository.AddDocumentContent(content) && documentRepository.AddDocument(document, types))
+                if (documentRepository.AddDocument(document, types))
                 {
                     return true;
                 }

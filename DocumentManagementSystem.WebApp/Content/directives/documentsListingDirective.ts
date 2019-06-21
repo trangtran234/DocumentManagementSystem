@@ -153,6 +153,14 @@
                     scope.reverse = true;
                 }
 
+                if (propertyName === 'createBy') {
+                    propertyName = 'CreatedBy.username'
+                }
+
+                if (propertyName === 'lastModifiedBy') {
+                    propertyName = 'LastModifiedBy.username'
+                }
+
                 http({
                     url: '/api/documents/LazyLoadDocuments?page=' + currentPage + '&pageSize=' + scope.pageSize + '&parentId=' + id + '&desc=' + scope.reverse + '&propertyName=' + propertyName,
                     method: "GET",

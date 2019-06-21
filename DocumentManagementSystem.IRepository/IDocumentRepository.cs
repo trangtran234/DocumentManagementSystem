@@ -17,8 +17,7 @@ namespace DocumentManagementSystem.IRepository
         void DeleteDocument(int id);
         void DeleteDocumentContent(Guid id);
         Guid FindDocumentContent(int id);
-        bool AddDocument(Models.Document document, List<Models.DocumentType> types);
-        bool AddDocumentContent(Models.DocumentContent documentContent);
+        bool AddDocument(Document document, List<DocumentType> types);
         bool UpdateDocument(Models.Document document);
         List<Models.Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId, out int totalRecords);
     }

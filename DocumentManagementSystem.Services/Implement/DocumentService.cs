@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DocumentManagementSystem.IRepository;
 using DocumentManagementSystem.Models;
+using System.Linq.Dynamic;
 
 namespace DocumentManagementSystem.Services
 {
@@ -61,8 +62,14 @@ namespace DocumentManagementSystem.Services
         }
 
         public List<Document> LazyLoadDocuments(bool desc, int page, int pageSize, int parentId, string propertyName, out int totalRecords)
-        {
-            List<Document> documents = documentRepository.LazyLoadDocuments(propertyName, desc, page, pageSize, parentId, out totalRecords);
+        {            
+            //List<Document> documents = new List<Document>();
+
+            var ctx = documentRepository.GetAllDocuments().Where(d => d.ParentId == parentId);
+            totalRecords = ctx.Count();
+            int skipRows = page * pageSize;
+            List<Document> documents = desc == true ? ctx.OrderBy(propertyName + " desc").Skip(skipRows).Take(pageSize).ToList() 
+                                : ctx.OrderBy(propertyName + " asc").Skip(skipRows).Take(pageSize).ToList();
 
             return documents;
         }

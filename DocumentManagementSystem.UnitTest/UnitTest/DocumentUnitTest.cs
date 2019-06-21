@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DocumentManagementSystem.Models;
 using DocumentManagementSystem.IRepository;
+using NSubstitute;
 
 namespace DocumentManagementSystem.UnitTest.UnitTest
 {
@@ -16,28 +17,37 @@ namespace DocumentManagementSystem.UnitTest.UnitTest
     {
         private IDocumentService documentService;
         private IDocumentRepository documentRepository;
+        private IDocumentHistoryRepository documentHistoryRepository;
 
         [OneTimeSetUp]
         public void Init()
         {
             documentService = UnityConfig.container.Resolve<IDocumentService>();
+
             documentRepository = UnityConfig.container.Resolve<IDocumentRepository>();
+            documentHistoryRepository = UnityConfig.container.Resolve<IDocumentHistoryRepository>();
+            //documentRepository = Substitute.For<IDocumentRepository>();
+            //documentHistoryRepository = Substitute.For<IDocumentHistoryRepository>();
         }
 
         [TestCaseSource(typeof(Data), "lazyLoadCases")]
         public void GetLazyLoad(bool desc, int page, int pageSize, int parentId, string propertyName)
         {
-            int totalRecords;
-            List<Document> expectedDocument = documentRepository.LazyLoadDocuments(propertyName, desc, page, pageSize, parentId, out totalRecords);
-            List<Document> documents = documentService.LazyLoadDocuments(desc, page, pageSize, parentId, propertyName, out totalRecords);
-            if(expectedDocument.Count != documents.Count)
-            {
-                Assert.Fail();
-            }
-            for(int i =0; i < expectedDocument.Count; i++)
-            {
-                Assert.AreEqual(expectedDocument[i], documents[i]);
-            }
+            documentRepository.GetAllDocuments().Returns(Data.documents);
+            documentService = new DocumentService(documentRepository, documentHistoryRepository);
+
+            int actualRecords;            
+            List<Document> actualDocuments = documentService.LazyLoadDocuments(desc, page, pageSize, parentId, propertyName, out actualRecords);
+
+            //List<Document> expectedDocument = documentRepository.LazyLoadDocuments(propertyName, desc, page, pageSize, parentId, out expectedRecords);
+            //if(expectedDocument.Count != actualDocuments.Count)
+            //{
+            //    Assert.Fail();
+            //}
+            //for(int i =0; i < expectedDocument.Count; i++)
+            //{
+            //    Assert.AreEqual(expectedDocument[i], actualDocuments[i]);
+            //}
         }
 
         [Test]

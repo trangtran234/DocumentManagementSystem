@@ -88,10 +88,13 @@ namespace DocumentManagementSystem.Repository
 
         public bool AddDocument(Models.Document document, List<Models.DocumentType> documentTypes)
         {
+            DocumentContent content = mapper.Map<DocumentContent>(document);
             Document documentRepo = mapper.Map<Document>(document);
             List<DocumentType> typesRepository = mapper.Map<List<DocumentType>>(documentTypes);
             try
             {
+                context.DocumentContents.Add(content);
+
                 //add instance to context
                 context.Documents.Add(documentRepo);
                 //attach instance to context
@@ -117,21 +120,6 @@ namespace DocumentManagementSystem.Repository
                 //}
             }
             catch(Exception e)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public bool AddDocumentContent(Models.DocumentContent documentContent)
-        {
-            DocumentContent contentRepository = mapper.Map<DocumentContent>(documentContent);
-            try
-            {
-                context.DocumentContents.Add(contentRepository);
-                context.SaveChanges();
-            }
-            catch (Exception e)
             {
                 return false;
             }
@@ -190,7 +178,6 @@ namespace DocumentManagementSystem.Repository
 
         public List<Models.Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId, out int totalRecords)
         {
-            //List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentListRepository);
             var documentsContext = context.Documents.Where(d => d.ParentId.Equals(null));
             if (parentId != 0)
             {

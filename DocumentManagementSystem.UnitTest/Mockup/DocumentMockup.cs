@@ -17,14 +17,15 @@ namespace DocumentManagementSystem.UnitTest.Mockup
 
         public bool AddDocument(Document document, List<DocumentType> types)
         {
-            document.DocumentTypes = types;
-            documents.Add(document);
-            return true;
-        }
+            //document.DocumentTypes = types;
+            //DocumentContent content = new DocumentContent
+            //{
+            //    Id = document.DocumentContentId,
+            //    Content = document.DocumentContent
+            //};
 
-        public bool AddDocumentContent(DocumentContent documentContent)
-        {
-            contents.Add(documentContent);
+            //contents.Add(content);
+            documents.Add(document);
             return true;
         }
 
