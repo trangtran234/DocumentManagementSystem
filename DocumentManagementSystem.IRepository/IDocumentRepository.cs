@@ -19,6 +19,5 @@ namespace DocumentManagementSystem.IRepository
         Guid FindDocumentContent(int id);
         bool AddDocument(Document document, List<DocumentType> types);
         bool UpdateDocument(Models.Document document);
-        List<Models.Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId, out int totalRecords);
     }
 }

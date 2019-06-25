@@ -175,29 +175,5 @@ namespace DocumentManagementSystem.Repository
 
             return false;
         }
-
-        public List<Models.Document> LazyLoadDocuments(string propertyName, bool desc, int page, int pageSize, int parentId, out int totalRecords)
-        {
-            var documentsContext = context.Documents.Where(d => d.ParentId.Equals(null));
-            if (parentId != 0)
-            {
-                documentsContext = context.Documents.Where(d => d.ParentId == parentId);
-            }
-            List<Document> documentListRepository = new List<Document>();
-
-            totalRecords = documentsContext.Count();
-
-            int skipRows = page * pageSize;
-            if (desc)
-            {
-                documentListRepository = documentsContext.OrderBy(propertyName + " desc").Skip(skipRows).Take(pageSize).ToList();
-            }
-            else
-            {
-                documentListRepository = documentsContext.OrderBy(propertyName + " asc").Skip(skipRows).Take(pageSize).ToList();
-            }
-            List<Models.Document> documents = mapper.Map<List<Models.Document>>(documentListRepository);
-            return documents;
-        }
     }
 }
